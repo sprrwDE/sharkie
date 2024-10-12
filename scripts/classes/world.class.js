@@ -4,7 +4,10 @@ class World {
     ctx;
 
     backgroundObects = [
-        new BackgroundObject('./assets/imgs/3. Background/Layers/2. Floor/D1.png'),
+        new BackgroundObject('./assets/imgs/3. Background/Layers/5. Water/D1.png', 0, 0),
+        new BackgroundObject('./assets/imgs/3. Background/Layers/4.Fondo 2/D1.png', 0, 80),
+        new BackgroundObject('./assets/imgs/3. Background/Layers/3.Fondo 1/D1.png', 0, 80),
+        new BackgroundObject('./assets/imgs/3. Background/Layers/2. Floor/D1.png', 0, 80),
     ]
 
     character = new Character();
@@ -12,7 +15,7 @@ class World {
         new PufferFish(),
         new PufferFish(),
         new PufferFish(),
-        
+
         new JellyFish(),
         new JellyFish(),
     ];
@@ -26,15 +29,10 @@ class World {
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
-        this.backgroundObects.forEach(bgObject => {
-            this.addToMap(bgObject)        
-        })
+        this.addObjectToMap(this.backgroundObects);
+        this.addObjectToMap(this.enemies);
 
-        this.addToMap(this.character)    
-
-        this.enemies.forEach(enemy => {
-            this.addToMap(enemy)        
-        });
+        this.renderToCanvas(this.character);    
 
         // Draw wird wiederholt aufgerufen
         let self = this;
@@ -44,7 +42,13 @@ class World {
         );
     };
 
-    addToMap(mo) {
-        this.ctx.drawImage(mo.img, mo.x, mo.y, mo.width, mo.height);
+    addObjectToMap(objects) {
+        objects.forEach(object => {
+            this.renderToCanvas(object)
+        })
+    }
+
+    renderToCanvas(object) {
+        this.ctx.drawImage(object.img, object.x, object.y, object.width, object.height);
     }
 }
