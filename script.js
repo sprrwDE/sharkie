@@ -1,8 +1,8 @@
 let canvas = document.getElementById('canvas');
-let ctx = canvas.getContext('2d');
-let world = new World();
+let world;
 
 function init() {
-    console.log('char', character);
-    console.log('enemies', enemies);
+    world = new World(canvas);
+    console.log('char', world.character);
+    console.log('enemies', world.enemies);
 }
