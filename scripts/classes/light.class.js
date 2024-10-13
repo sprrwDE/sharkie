@@ -6,14 +6,13 @@ class Light extends MovableObject {
         super().loadImage(imagePath)
         this.y = canvasHeight - this.height;
         this.x = Math.random() * canvasWidth;
+        this.moveSpeed = 0.15
 
         this.animate()
     }
 
     // wie hin und her animieren? stop interval? reset, andere richtung
     animate() {
-        setInterval( () => {
-            this.x -= 0.25;
-        }, 1000 / 60)
+        this.moveLeft()
     }
 }
