@@ -18,7 +18,6 @@ class World {
         new PufferFish(),
         new PufferFish(),
         new PufferFish(),
-
         new JellyFish(),
         new JellyFish(),
     ];
@@ -33,13 +32,10 @@ class World {
 
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-
         this.addObjectToMap(this.backgroundObects);
         this.addObjectToMap(this.light)
         this.addObjectToMap(this.enemies);
-
         this.renderToCanvas(this.character);    
-
         let self = this;
         requestAnimationFrame(function () {
             self.draw()

@@ -8,7 +8,6 @@ function init() {
     world = new World(canvas, keyboard);
 }
 
-// arrowkeys hinzufügen (keycode)
 document.addEventListener('keydown', (event) => {
     if (event.keyCode == 87) {  // W-Taste
         keyboard.UP = true;
@@ -51,4 +50,4 @@ document.addEventListener('keyup', (event) => {
     if (event.keyCode == 69) {
         keyboard.SHOOT = false;
     }
-}); 
+});
