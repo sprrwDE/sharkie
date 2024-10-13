@@ -32,11 +32,16 @@ class Character extends MovableObject {
 
     animate() {
         setInterval( () => {
-            let path = this.IMAGES_IDLE[this.currentImage];
+            let index = this.currentImage % this.IMAGES_IDLE.length // % = Modulo = Mathematischer Rest
+            // i = 0, 17, 16, 15, etc
+            let path = this.IMAGES_IDLE[index];
             this.img = this.imgCache[path]
             this.currentImage++;
         }, 200)
     }
+
+
+
 
     jump() {
 
