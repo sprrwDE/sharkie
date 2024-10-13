@@ -4,6 +4,7 @@ class World {
     ctx;
     keyboard;
     camera_x = 0;
+    
     // For Schleife Implementieren
     backgroundObects = [
         new BackgroundObject('./assets/imgs/3. Background/Layers/5. Water/D2.png', -720),

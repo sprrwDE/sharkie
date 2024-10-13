@@ -1,5 +1,5 @@
 class MovableObject {
-    x = 120;
+    x = 0;
     y = 200;
     height = 200;
     width = 200;
@@ -43,13 +43,6 @@ class MovableObject {
     moveDown() {
         setInterval(() => {
             this.y += this.moveSpeed;
-        }, 1000 / 60);
-    };
-
-    stop() {
-        setInterval(() => {
-            this.y = this.y;
-            this.x = this.x;
         }, 1000 / 60);
     };
 }
