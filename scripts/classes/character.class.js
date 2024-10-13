@@ -19,23 +19,39 @@ class Character extends MovableObject {
         './assets/imgs/1.Sharkie/1.IDLE/16.png',
         './assets/imgs/1.Sharkie/1.IDLE/17.png',
         './assets/imgs/1.Sharkie/1.IDLE/18.png'
+    ];
+    IMAGES_SWIM = [
+        './assets/imgs/1.Sharkie/3.Swim/1.png',
+        './assets/imgs/1.Sharkie/3.Swim/2.png',
+        './assets/imgs/1.Sharkie/3.Swim/3.png',
+        './assets/imgs/1.Sharkie/3.Swim/4.png',
+        './assets/imgs/1.Sharkie/3.Swim/5.png',
+        './assets/imgs/1.Sharkie/3.Swim/6.png'
     ]
+    world;
 
     constructor() {
         super().loadImage('./assets/imgs/1.Sharkie/1.IDLE/1.png')
         this.loadImages(this.IMAGES_IDLE);
+        this.loadImages(this.IMAGES_SWIM);
 
         this.animate();
 
     }
 
     animate() {
-        setInterval( () => {
-            let index = this.currentImage % this.IMAGES_IDLE.length // % = Modulo = Mathematischer Rest
-            // i = 0, 17, 16, 15, etc
-            let path = this.IMAGES_IDLE[index];
-            this.img = this.imgCache[path]
-            this.currentImage++;
+        setInterval(() => {
+            if (this.world.keyboard.RIGHT) {
+                let index = this.currentImage % this.IMAGES_SWIM.length 
+                let path = this.IMAGES_SWIM[index];
+                this.img = this.imgCache[path]
+                this.currentImage++;
+            } else {
+                let index = this.currentImage % this.IMAGES_IDLE.length 
+                let path = this.IMAGES_IDLE[index];
+                this.img = this.imgCache[path]
+                this.currentImage++;
+            }
         }, 200)
     }
 

@@ -28,7 +28,7 @@ class JellyFish extends MovableObject {
             this.currentImage++;
         }, 200);
 
-        this.moveUp()
+        this.moveUp() // wie auch nach unten bewegen?
     };
 
 }
