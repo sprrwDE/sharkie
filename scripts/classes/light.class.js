@@ -10,6 +10,7 @@ class Light extends MovableObject {
         this.animate()
     }
 
+    // wie hin und her animieren? stop interval? reset, andere richtung
     animate() {
         setInterval( () => {
             this.x -= 0.25;
