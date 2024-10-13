@@ -6,7 +6,7 @@ class MovableObject {
     img;
     currentImage = 0;
     imgCache = {};
-    moveSpeed = 0.10 + Math.random() * 0.25
+    moveSpeed;
 
     loadImage(path) {
         this.img = new Image();
@@ -28,6 +28,12 @@ class MovableObject {
     moveLeft() {
         setInterval( () => {
             this.x -= this.moveSpeed;
+        }, 1000 / 60);
+    };
+
+    moveUp() {
+        setInterval(() => {
+            this.y -= this.moveSpeed;
         }, 1000 / 60);
     };
 }
