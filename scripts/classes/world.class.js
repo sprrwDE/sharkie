@@ -3,11 +3,29 @@ class World {
     canvas;
     ctx;
     keyboard;
+    camera_x = 0;
+    // For Schleife Implementieren
     backgroundObects = [
-        new BackgroundObject('./assets/imgs/3. Background/Layers/5. Water/D1.png'),
-        new BackgroundObject('./assets/imgs/3. Background/Layers/4.Fondo 2/D1.png'),
-        new BackgroundObject('./assets/imgs/3. Background/Layers/3.Fondo 1/D1.png'),
-        new BackgroundObject('./assets/imgs/3. Background/Layers/2. Floor/D1.png'),
+        new BackgroundObject('./assets/imgs/3. Background/Layers/5. Water/D2.png', -720),
+        new BackgroundObject('./assets/imgs/3. Background/Layers/4.Fondo 2/D2.png', -720),
+        new BackgroundObject('./assets/imgs/3. Background/Layers/3.Fondo 1/D2.png', -720),
+        new BackgroundObject('./assets/imgs/3. Background/Layers/2. Floor/D2.png', -720), 
+        new BackgroundObject('./assets/imgs/3. Background/Layers/5. Water/D1.png', 0),
+        new BackgroundObject('./assets/imgs/3. Background/Layers/4.Fondo 2/D1.png', 0),
+        new BackgroundObject('./assets/imgs/3. Background/Layers/3.Fondo 1/D1.png', 0),
+        new BackgroundObject('./assets/imgs/3. Background/Layers/2. Floor/D1.png', 0),
+        new BackgroundObject('./assets/imgs/3. Background/Layers/5. Water/D2.png', 720),
+        new BackgroundObject('./assets/imgs/3. Background/Layers/4.Fondo 2/D2.png', 720),
+        new BackgroundObject('./assets/imgs/3. Background/Layers/3.Fondo 1/D2.png', 720),
+        new BackgroundObject('./assets/imgs/3. Background/Layers/2. Floor/D2.png', 720), 
+        new BackgroundObject('./assets/imgs/3. Background/Layers/5. Water/D1.png', 720 * 2),
+        new BackgroundObject('./assets/imgs/3. Background/Layers/4.Fondo 2/D1.png', 720 * 2),
+        new BackgroundObject('./assets/imgs/3. Background/Layers/3.Fondo 1/D1.png', 720 * 2),
+        new BackgroundObject('./assets/imgs/3. Background/Layers/2. Floor/D1.png', 720 * 2),
+        new BackgroundObject('./assets/imgs/3. Background/Layers/5. Water/D2.png', 720 * 3),
+        new BackgroundObject('./assets/imgs/3. Background/Layers/4.Fondo 2/D2.png', 720 * 3),
+        new BackgroundObject('./assets/imgs/3. Background/Layers/3.Fondo 1/D2.png', 720 * 3),
+        new BackgroundObject('./assets/imgs/3. Background/Layers/2. Floor/D2.png', 720 * 3),
     ]
     light = [
         new Light('./assets/imgs/3. Background/Layers/1. Light/1.png'),
@@ -32,10 +50,16 @@ class World {
 
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
+        this.ctx.translate(this.camera_x, 0);
+
         this.addObjectToMap(this.backgroundObects);
         this.addObjectToMap(this.light)
         this.addObjectToMap(this.enemies);
-        this.renderToCanvas(this.character);    
+        this.renderToCanvas(this.character);
+
+        this.ctx.translate(-this.camera_x, 0);
+
         let self = this;
         requestAnimationFrame(function () {
             self.draw()
@@ -50,14 +74,14 @@ class World {
     };
 
     renderToCanvas(object) {
-        if(object.mirror) {
+        if (object.mirror) {
             this.ctx.save();
             this.ctx.translate(object.width, 0);
             this.ctx.scale(-1, 1);
             object.x = object.x * -1;
         }
         this.ctx.drawImage(object.img, object.x, object.y, object.width, object.height);
-        if(object.mirror) {
+        if (object.mirror) {
             object.x = object.x * -1;
             this.ctx.restore()
         }
