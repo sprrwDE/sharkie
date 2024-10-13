@@ -1,4 +1,4 @@
-class BackgroundObject extends MovableObject {
+class Light extends MovableObject {
     height = canvasHeight;
     width = canvasWidth;
 
@@ -6,6 +6,5 @@ class BackgroundObject extends MovableObject {
         super().loadImage(imagePath)
         this.y = canvasHeight - this.height;
         this.x = 0;
-
     }
 }

@@ -4,10 +4,15 @@ class World {
     ctx;
 
     backgroundObects = [
-        new BackgroundObject('./assets/imgs/3. Background/Layers/5. Water/D1.png', 0, 0),
-        new BackgroundObject('./assets/imgs/3. Background/Layers/4.Fondo 2/D1.png', 0, 80),
-        new BackgroundObject('./assets/imgs/3. Background/Layers/3.Fondo 1/D1.png', 0, 80),
-        new BackgroundObject('./assets/imgs/3. Background/Layers/2. Floor/D1.png', 0, 80),
+        new BackgroundObject('./assets/imgs/3. Background/Layers/5. Water/D1.png'),
+        new BackgroundObject('./assets/imgs/3. Background/Layers/4.Fondo 2/D1.png'),
+        new BackgroundObject('./assets/imgs/3. Background/Layers/3.Fondo 1/D1.png'),
+        new BackgroundObject('./assets/imgs/3. Background/Layers/2. Floor/D1.png'),
+    ]
+
+    light = [
+        new Light('./assets/imgs/3. Background/Layers/1. Light/1.png'),
+        new Light('./assets/imgs/3. Background/Layers/1. Light/2.png'),
     ]
 
     character = new Character();
@@ -27,11 +32,15 @@ class World {
     }
 
     draw() {
+        // Reset
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
+        // Render Schleifen
         this.addObjectToMap(this.backgroundObects);
+        this.addObjectToMap(this.light)
         this.addObjectToMap(this.enemies);
 
+        // Render
         this.renderToCanvas(this.character);    
 
         // Draw wird wiederholt aufgerufen
