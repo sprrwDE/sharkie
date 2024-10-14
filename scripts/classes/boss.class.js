@@ -17,13 +17,19 @@ class Endboss extends MovableObject {
 
     constructor() {
         super().loadImage('./assets/imgs/2.Enemy/3 Final Enemy/2.floating/1.png')
-        this.y = 240
+        this.y = 0;
         this.x = 700
-        this.height = 80;
+        this.height = 400;
         this.width = this.height;
 
         this.moveSpeed = 0.15 + Math.random() * 0.45
         this.loadImages(this.IMAGES_SWIMMING);
         this.animate();
+    }
+
+    animate() {
+        setInterval(()=> {
+            this.playAnimation(this.IMAGES_SWIMMING)
+        }, 200)
     }
 }
