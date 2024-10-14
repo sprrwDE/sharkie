@@ -44,20 +44,20 @@ class Character extends MovableObject {
 
         // Move
         setInterval(() => {
-            if (this.world.keyboard.RIGHT) {
+            if (this.world.keyboard.RIGHT && this.x < 740*3) {
                 this.x += this.moveSpeed;
-                this.world.camera_x = -this.x
+                this.world.camera_x = -this.x + 100
                 this.mirror = false;
             } 
-            if (this.world.keyboard.LEFT) {
+            if (this.world.keyboard.LEFT && this.x > 0) {
                 this.x -= this.moveSpeed;
-                this.world.camera_x = -this.x
+                this.world.camera_x = -this.x + 100
                 this.mirror = true;
             } 
-            if (this.world.keyboard.UP) {
+            if (this.world.keyboard.UP && this.y > -80) {
                 this.y -= this.moveSpeed;
             } 
-            if (this.world.keyboard.DOWN) {
+            if (this.world.keyboard.DOWN && this.y < 300) {
                 this.y += this.moveSpeed;
             }
         })
