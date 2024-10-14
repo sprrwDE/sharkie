@@ -31,6 +31,7 @@ const level_1 = new Level(
         new PufferFish(),
         new JellyFish(),
         new JellyFish(),
+        // new Endboss()
     ],
     [
         new Light('./assets/imgs/3. Background/Layers/1. Light/1.png'),

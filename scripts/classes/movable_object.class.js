@@ -22,6 +22,13 @@ class MovableObject {
         });
     }
 
+    playAnimation(images) {
+        let index = this.currentImage % images.length;
+        let path = images[index];
+        this.img = this.imgCache[path];
+        this.currentImage++;
+    }
+
     moveLeft() {
         setInterval(() => {
             this.x -= this.moveSpeed;

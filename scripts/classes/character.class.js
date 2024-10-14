@@ -44,7 +44,7 @@ class Character extends MovableObject {
 
         // Move
         setInterval(() => {
-            if (this.world.keyboard.RIGHT && this.x < 740*3) {
+            if (this.world.keyboard.RIGHT && this.x < this.world.level.levelEndX) {
                 this.x += this.moveSpeed;
                 this.world.camera_x = -this.x + 100
                 this.mirror = false;
@@ -66,18 +66,12 @@ class Character extends MovableObject {
         setInterval(() => {
             this.moving = false;
             if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT || this.world.keyboard.UP || this.world.keyboard.DOWN) {
-                let index = this.currentImage % this.IMAGES_SWIM.length;
-                let path = this.IMAGES_SWIM[index];
-                this.img = this.imgCache[path];
-                this.currentImage++;
+                this.playAnimation(this.walkingImages)
                 this.moving = true;
             } 
             //Idle
             if (!this.moving) {
-                let index = this.currentImage % this.IMAGES_IDLE.length;
-                let path = this.IMAGES_IDLE[index];
-                this.img = this.imgCache[path];
-                this.currentImage++;
+                this.playAnimation(this.IMAGES_IDLE)
             }
         }, 200);
     };
