@@ -52,4 +52,20 @@ class MovableObject {
             this.y += this.moveSpeed;
         }, 1000 / 60);
     };
+
+    moveUpAndDown() {
+        setInterval(() => {
+            if (this.movingUp) {
+                this.y -= this.moveSpeed; 
+                if (this.y <= 0) { 
+                    this.movingUp = false;
+                }
+            } else {
+                this.y += this.moveSpeed; 
+                if (this.y + this.height >= 480) { 
+                    this.movingUp = true;
+                }
+            }
+        }, 1000 / 60);
+    };
 }

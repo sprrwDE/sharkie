@@ -25,10 +25,7 @@ class JellyFishPurple extends MovableObject {
             this.playAnimation(this.IMAGES_SWIMMING)
         }, 200);
 
-        this.moveUp() // wie auch nach unten bewegen? eventuell lösen wie bei character mit moving
-        /* if (this.y === 0) {
-            this.moveDown()
-        } */
+        this.moveUpAndDown() 
     };
 
 }
