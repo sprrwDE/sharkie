@@ -26,14 +26,14 @@ const level_1 = new Level(
         new BackgroundObject('./assets/imgs/3. Background/Layers/2. Floor/D2.png', 720 * 3),
     ],
     [
+        new PufferFish(), // mehrere verschiedene Farben
         new PufferFish(),
         new PufferFish(),
-        new PufferFish(),
-        new JellyFish(),
-        new JellyFish(),
+        new JellyFishYellow(),
+        new JellyFishPurple(), // mehrere verschiedene Farben, up and down
         new Endboss()
     ],
     [
-        new Light('./assets/imgs/3. Background/Layers/1. Light/1.png'),
+        new Light('./assets/imgs/3. Background/Layers/1. Light/1.png'), // wie animieren?
     ]
 );

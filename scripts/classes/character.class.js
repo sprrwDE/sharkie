@@ -66,7 +66,7 @@ class Character extends MovableObject {
         setInterval(() => {
             this.moving = false;
             if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT || this.world.keyboard.UP || this.world.keyboard.DOWN) {
-                this.playAnimation(this.walkingImages)
+                this.playAnimation(this.IMAGES_SWIM)
                 this.moving = true;
             } 
             //Idle
