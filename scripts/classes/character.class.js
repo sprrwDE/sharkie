@@ -28,6 +28,16 @@ class Character extends MovableObject {
         './assets/imgs/1.Sharkie/3.Swim/5.png',
         './assets/imgs/1.Sharkie/3.Swim/6.png'
     ]
+    IMAGES_FINSLAP = [
+        './assets/imgs/1.Sharkie/4.Attack/Fin slap/1.png',
+        './assets/imgs/1.Sharkie/4.Attack/Fin slap/2.png',
+        './assets/imgs/1.Sharkie/4.Attack/Fin slap/3.png',
+        './assets/imgs/1.Sharkie/4.Attack/Fin slap/4.png',
+        './assets/imgs/1.Sharkie/4.Attack/Fin slap/5.png',
+        './assets/imgs/1.Sharkie/4.Attack/Fin slap/6.png',
+        './assets/imgs/1.Sharkie/4.Attack/Fin slap/7.png',
+        './assets/imgs/1.Sharkie/4.Attack/Fin slap/8.png'
+    ]
     world;
     moving;
     moveSpeed = 1;
@@ -37,6 +47,7 @@ class Character extends MovableObject {
         this.loadImage('./assets/imgs/1.Sharkie/1.IDLE/1.png')
         this.loadImages(this.IMAGES_IDLE);
         this.loadImages(this.IMAGES_SWIM);
+        this.loadImages(this.IMAGES_FINSLAP)
         this.animate();
         this.applyGravity();
 
@@ -67,6 +78,7 @@ class Character extends MovableObject {
         // Animation
         setInterval(() => {
             this.moving = false;
+            this.slap = false;
             if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT || this.world.keyboard.UP || this.world.keyboard.DOWN) {
                 this.playAnimation(this.IMAGES_SWIM)
                 this.moving = true;
@@ -74,6 +86,14 @@ class Character extends MovableObject {
             //Idle
             if (!this.moving) {
                 this.playAnimation(this.IMAGES_IDLE)
+            }
+            //Slap
+            if (this.world.keyboard.FIN) {
+                this.slap = true;
+            }
+
+            if(this.slap) {
+                this.playAnimation(this.IMAGES_FINSLAP)
             }
         }, 200);
     };
