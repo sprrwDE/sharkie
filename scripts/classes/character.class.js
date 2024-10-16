@@ -33,10 +33,12 @@ class Character extends MovableObject {
     moveSpeed = 1;
 
     constructor() {
-        super().loadImage('./assets/imgs/1.Sharkie/1.IDLE/1.png')
+        super()
+        this.loadImage('./assets/imgs/1.Sharkie/1.IDLE/1.png')
         this.loadImages(this.IMAGES_IDLE);
         this.loadImages(this.IMAGES_SWIM);
         this.animate();
+        this.applyGravity();
 
     }
 

@@ -5,7 +5,6 @@ class World {
     keyboard;
     camera_x = -2;
     
-    backgroundObects = level_1.backgroundObects;
     character = new Character();
     level = level_1;
 

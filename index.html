@@ -25,3 +25,12 @@
     <script src="main.js"></script>
 </body>
 </html>
+
+<!-- 
+##### Ablauf bei Spielstart und interaktion zwischen den Dateien #####
+- init wird aufgerufen (main.js) ->
+- new World() wird definiert, canvas + keyboard übergeben 
+- World() greift auf level_1 zu
+- dieses wiederum erschafft new Character() und new Level()
+- in new Level() sind die Arrays mit movable Objects gespeichert
+-->

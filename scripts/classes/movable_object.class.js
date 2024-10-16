@@ -8,6 +8,8 @@ class MovableObject {
     imgCache = {};
     moveSpeed;
     mirror = false;
+    gravitySpeed = 0;
+    acceleration = 0.01;
 
     loadImage(path) {
         this.img = new Image();
@@ -69,7 +71,9 @@ class MovableObject {
         }, 1000 / 60);
     };
 
-    /*moveLeftAndRight() {
+    /* Fehlerhaft
+
+    moveLeftAndRight() {
         setInterval(() => {
             if (this.movingLeft) {
                 this.x += this.moveSpeed; 
@@ -85,5 +89,22 @@ class MovableObject {
                 }
             }
         }, 1000 / 60);
-    }; */
+    }; 
+    
+    */
+
+    applyGravity() { 
+        // gravity wird schneller, wie resetten bei nach oben button? 
+        // oder feste werte ohne acceleration?
+        setInterval(() => {
+            if (this.isAboveGround()) {
+                this.y -= this.gravitySpeed;
+                this.gravitySpeed -= this.acceleration;
+            }
+        }, 50 )
+    }
+
+    isAboveGround() {
+        return this.y < 480 - this.height
+    }
 }

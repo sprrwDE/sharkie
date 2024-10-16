@@ -26,11 +26,11 @@ const level_1 = new Level(
         new BackgroundObject('./assets/imgs/3. Background/Layers/2. Floor/D2.png', 720 * 3),
     ],
     [
-        new PufferFishGreen(), // mehrere verschiedene Farben
-        new PufferFishGreen(),
+        new PufferFishGreen(), // mehrere verschiedene Farben erstellen
+        new PufferFishGreen(), // left + right?
         new PufferFishGreen(),
         new JellyFishYellow(),
-        new JellyFishPurple(), // mehrere verschiedene Farben, up and down
+        new JellyFishPurple(),
         new Endboss()
     ],
     [
