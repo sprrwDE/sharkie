@@ -9,7 +9,7 @@ class MovableObject {
     moveSpeed;
     mirror = false;
     gravitySpeed = 0;
-    acceleration = 0.01;
+    acceleration = 0.05;
 
     loadImage(path) {
         this.img = new Image();
@@ -31,49 +31,51 @@ class MovableObject {
         this.currentImage++;
     }
 
-    moveLeft() {
+    worldLeft() {
         setInterval(() => {
             this.x -= this.moveSpeed;
         }, 1000 / 60);
     };
 
     moveRight() {
-        setInterval(() => {
-            this.x += this.moveSpeed;
-        }, 1000 / 60);
+        this.x += this.moveSpeed;
+        this.world.camera_x = -this.x + 100
+        this.mirror = false;
+    };
+
+    moveLeft() {
+        this.x -= this.moveSpeed;
+        this.world.camera_x = -this.x + 100
+        this.mirror = true;
     };
 
     moveUp() {
-        setInterval(() => {
-            this.y -= this.moveSpeed;
-        }, 1000 / 60);
+        this.y -= this.moveSpeed;
     };
 
     moveDown() {
-        setInterval(() => {
-            this.y += this.moveSpeed;
-        }, 1000 / 60);
+        this.y += this.moveSpeed;
     };
 
-    moveUpAndDown() {
+    enemyUpAndDown() {
         setInterval(() => {
             if (this.movingUp) {
-                this.y -= this.moveSpeed; 
-                if (this.y <= 0) { 
+                this.y -= this.moveSpeed;
+                if (this.y <= 0) {
                     this.movingUp = false;
                 }
             } else {
-                this.y += this.moveSpeed; 
-                if (this.y + this.height >= 480) { 
+                this.y += this.moveSpeed;
+                if (this.y + this.height >= 480) {
                     this.movingUp = true;
                 }
             }
         }, 1000 / 60);
     };
 
-    /* Fehlerhaft
+    /* noch Fehlerhaft
 
-    moveLeftAndRight() {
+    enemyLeftAndRight() {
         setInterval(() => {
             if (this.movingLeft) {
                 this.x += this.moveSpeed; 
@@ -93,15 +95,18 @@ class MovableObject {
     
     */
 
-    applyGravity() { 
+    applyGravity() {
+        // fragen!!
         // gravity wird schneller, wie resetten bei nach oben button? 
-        // oder feste werte ohne acceleration?
+        // oder stattdessen feste werte ohne acceleration benutzen?
+        // -> in character bei move gravity speed definiert / fixed?
+        // aber gravitation bei stillstand ruckelig
         setInterval(() => {
             if (this.isAboveGround()) {
                 this.y -= this.gravitySpeed;
                 this.gravitySpeed -= this.acceleration;
             }
-        }, 50 )
+        }, 50)
     }
 
     isAboveGround() {

@@ -7,6 +7,5 @@ class BackgroundObject extends MovableObject {
         this.loadImage(imagePath)
         this.y = canvasHeight - this.height;
         this.x = coord;
-
     }
 }

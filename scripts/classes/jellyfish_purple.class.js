@@ -26,7 +26,7 @@ class JellyFishPurple extends MovableObject {
             this.playAnimation(this.IMAGES_SWIMMING)
         }, 200);
 
-        this.moveUpAndDown(); 
+        this.enemyUpAndDown(); 
     };
 
 }

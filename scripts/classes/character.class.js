@@ -58,28 +58,25 @@ class Character extends MovableObject {
         // Move
         setInterval(() => {
             if (this.world.keyboard.RIGHT && this.x < this.world.level.levelEndX) {
-                this.x += this.moveSpeed;
-                this.world.camera_x = -this.x + 100
-                this.mirror = false;
+                this.moveRight();
             } 
             if (this.world.keyboard.LEFT && this.x > 0) {
-                this.x -= this.moveSpeed;
-                this.world.camera_x = -this.x + 100
-                this.mirror = true;
+                this.moveLeft();
             } 
             if (this.world.keyboard.UP && this.y > -80) {
-                this.y -= this.moveSpeed;
+                this.moveUp()
             } 
             if (this.world.keyboard.DOWN && this.y < 300) {
-                this.y += this.moveSpeed;
+                this.moveDown()
             }
         })
 
-        // Animation
+        // Animations
         setInterval(() => {
             this.moving = false;
             this.slap = false;
             if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT || this.world.keyboard.UP || this.world.keyboard.DOWN) {
+                this.gravitySpeed = -0.5;
                 this.playAnimation(this.IMAGES_SWIM)
                 this.moving = true;
             } 
