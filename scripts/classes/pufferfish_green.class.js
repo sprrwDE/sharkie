@@ -15,11 +15,9 @@ class PufferFishGreen extends MovableObject {
         this.x = 300 + Math.random() * 700;
         this.height = 80;
         this.width = this.height;
-
         this.moveSpeed = 0.15 + Math.random() * 0.45
         this.loadImages(this.IMAGES_SWIMMING);
         this.animate();
-
     }
 
     animate() {
@@ -27,6 +25,8 @@ class PufferFishGreen extends MovableObject {
             this.playAnimation(this.IMAGES_SWIMMING)
         }, 200);
 
-        this.worldLeft();
+        setInterval(() => {
+            this.moveLeft();
+        }, 1000 / 60);
     };
 }

@@ -31,22 +31,12 @@ class MovableObject {
         this.currentImage++;
     }
 
-    worldLeft() {
-        setInterval(() => {
-            this.x -= this.moveSpeed;
-        }, 1000 / 60);
-    };
-
     moveRight() {
         this.x += this.moveSpeed;
-        this.world.camera_x = -this.x + 100
-        this.mirror = false;
     };
 
     moveLeft() {
         this.x -= this.moveSpeed;
-        this.world.camera_x = -this.x + 100
-        this.mirror = true;
     };
 
     moveUp() {
