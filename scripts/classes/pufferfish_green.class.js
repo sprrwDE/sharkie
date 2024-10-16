@@ -26,6 +26,6 @@ class PufferFishGreen extends MovableObject {
             this.playAnimation(this.IMAGES_SWIMMING)
         }, 200);
 
-        this.moveLeft()
+        this.moveLeft();
     };
 }

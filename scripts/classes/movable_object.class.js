@@ -68,4 +68,22 @@ class MovableObject {
             }
         }, 1000 / 60);
     };
+
+    /*moveLeftAndRight() {
+        setInterval(() => {
+            if (this.movingLeft) {
+                this.x += this.moveSpeed; 
+                if (this.x>= 720*3) { 
+                    this.movingLeft = false;
+                    this.mirror = true;
+                }
+            } else {
+                this.x -= this.moveSpeed; 
+                if (this.x - this.width <= 0) { 
+                    this.movingLeft = true;
+                    this.mirror = false;
+                }
+            }
+        }, 1000 / 60);
+    }; */
 }
