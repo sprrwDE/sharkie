@@ -24,6 +24,10 @@ class MovableObject {
         });
     }
 
+    draw(ctx) {
+
+    }
+
     playAnimation(images) {
         let index = this.currentImage % images.length;
         let path = images[index];

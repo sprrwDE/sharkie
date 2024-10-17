@@ -39,15 +39,11 @@ class World {
 
     renderToCanvas(object) {
         if (object.mirror) {
-            this.ctx.save();
-            this.ctx.translate(object.width, 0);
-            this.ctx.scale(-1, 1);
-            object.x = object.x * -1;
+            this.mirror(object);
         }
         this.ctx.drawImage(object.img, object.x, object.y, object.width, object.height);
         if (object.mirror) {
-            object.x = object.x * -1;
-            this.ctx.restore()
+            this.restoreDirection(object);
         }
         // Hitbox
         this.ctx.beginPath();
@@ -56,6 +52,18 @@ class World {
         this.ctx.rect(object.x, object.y, object.width, object.height);
         this.ctx.stroke();
     };
+
+    mirror(object) {
+        this.ctx.save();
+        this.ctx.translate(object.width, 0);
+        this.ctx.scale(-1, 1);
+        object.x = object.x * -1;
+    }
+
+    restoreDirection(object) {
+        object.x = object.x * -1;
+        this.ctx.restore();
+    }
 
     setWorld() {
         this.character.world = this;
