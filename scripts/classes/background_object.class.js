@@ -1,6 +1,7 @@
 class BackgroundObject extends MovableObject {
     height = canvasHeight;
     width = canvasWidth;
+    hitboxWidth = '3';
 
     constructor(imagePath, coord) {
         super()

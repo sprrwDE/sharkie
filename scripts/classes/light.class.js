@@ -1,6 +1,7 @@
 class Light extends MovableObject {
     height = canvasHeight;
     width = canvasWidth;
+    hitboxWidth = '0'
 
     constructor(imagePath) {
         super().loadImage(imagePath)

@@ -41,6 +41,8 @@ class Character extends MovableObject {
     world;
     moving;
     moveSpeed = 1;
+    hitboxColor = 'green';
+    hitboxWidth = '3';
 
     constructor() {
         super()
@@ -61,15 +63,15 @@ class Character extends MovableObject {
                 this.world.camera_x = -this.x + 100
                 this.mirror = false;
                 this.moveRight();
-            } 
+            }
             if (this.world.keyboard.LEFT && this.x > 0) {
                 this.world.camera_x = -this.x + 100
                 this.mirror = true;
                 this.moveLeft();
-            } 
+            }
             if (this.world.keyboard.UP && this.y > -80) {
                 this.moveUp()
-            } 
+            }
             if (this.world.keyboard.DOWN && this.y < 300) {
                 this.moveDown()
             }
@@ -83,7 +85,7 @@ class Character extends MovableObject {
                 // this.gravitySpeed = -0.5;
                 this.playAnimation(this.IMAGES_SWIM)
                 this.moving = true;
-            } 
+            }
             //Idle
             if (!this.moving) {
                 this.playAnimation(this.IMAGES_IDLE)
@@ -93,7 +95,7 @@ class Character extends MovableObject {
                 this.slap = true;
             }
 
-            if(this.slap) {
+            if (this.slap) {
                 this.playAnimation(this.IMAGES_FINSLAP)
             }
         }, 200);

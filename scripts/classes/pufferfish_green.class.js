@@ -8,6 +8,9 @@ class PufferFishGreen extends MovableObject {
         './assets/imgs/2.Enemy/1.Puffer fish (3 color options)/1.Swim/1.swim5.png'
     ]
 
+    hitboxColor = 'red'
+    hitboxWidth = '3'
+
     constructor() {
         super()
         this.loadImage('./assets/imgs/2.Enemy/1.Puffer fish (3 color options)/1.Swim/1.swim1.png')

@@ -45,7 +45,10 @@ class World {
         if (object.mirror) {
             this.mirror(object);
         }
+        
         object.draw(this.ctx)
+        object.hitbox(this.ctx)
+
         if (object.mirror) {
             this.restoreDirection(object);
         }

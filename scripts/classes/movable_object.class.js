@@ -26,10 +26,12 @@ class MovableObject {
 
     draw(ctx) {
         ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
-        // Hitbox
+    }
+
+    hitbox(ctx) {
         ctx.beginPath();
         ctx.lineWidth = '3';
-        ctx.strokeStyle = 'blue';
+        ctx.strokeStyle = this.hitboxColor;
         ctx.rect(this.x, this.y, this.width, this.height);
         ctx.stroke();
     }
