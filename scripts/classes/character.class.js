@@ -42,7 +42,6 @@ class Character extends MovableObject {
     moving;
     moveSpeed = 1;
     hitboxColor = 'green';
-    hitboxWidth = '3';
 
     constructor() {
         super()

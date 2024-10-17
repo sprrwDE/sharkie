@@ -10,12 +10,7 @@ class JellyFishYellow extends MovableObject {
     constructor(){
         super()
         this.loadImage('./assets/imgs/2.Enemy/2 Jelly fish/Regular damage/Yellow 1.png')
-        this.y = Math.random() * 480;
-        this.x = 300 + Math.random() * 700;
-        this.height = 80
-        this.width = this.height;
-
-        this.moveSpeed = 0.15 + Math.random() * 0.45
+        this.setCharacteristics()
         this.loadImages(this.IMAGES_SWIMMING);
         this.animate();
 

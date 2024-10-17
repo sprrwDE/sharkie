@@ -1,5 +1,6 @@
 class JellyFishPurple extends MovableObject {
-
+    hitboxColor = 'red';
+    
     IMAGES_SWIMMING = [
         './assets/imgs/2.Enemy/2 Jelly fish/Regular damage/Lila 1.png',
         './assets/imgs/2.Enemy/2 Jelly fish/Regular damage/Lila 2.png',
@@ -10,12 +11,7 @@ class JellyFishPurple extends MovableObject {
     constructor(){
         super()
         this.loadImage('./assets/imgs/2.Enemy/2 Jelly fish/Regular damage/Lila 1.png')
-        this.y = Math.random() * 480;
-        this.x = 300 + Math.random() * 700;
-        this.height = 80
-        this.width = this.height;
-
-        this.moveSpeed = 0.15 + Math.random() * 0.45
+        this.setCharacteristics()
         this.loadImages(this.IMAGES_SWIMMING);
         this.animate();
 
@@ -30,4 +26,5 @@ class JellyFishPurple extends MovableObject {
     };
 
 }
+
 
