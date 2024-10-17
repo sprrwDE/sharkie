@@ -49,7 +49,7 @@ class Character extends MovableObject {
         this.loadImages(this.IMAGES_SWIM);
         this.loadImages(this.IMAGES_FINSLAP)
         this.animate();
-        this.applyGravity();
+        // this.applyGravity();
 
     }
 
@@ -80,7 +80,7 @@ class Character extends MovableObject {
             this.moving = false;
             this.slap = false;
             if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT || this.world.keyboard.UP || this.world.keyboard.DOWN) {
-                this.gravitySpeed = -0.5;
+                // this.gravitySpeed = -0.5;
                 this.playAnimation(this.IMAGES_SWIM)
                 this.moving = true;
             } 

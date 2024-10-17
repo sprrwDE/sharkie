@@ -8,8 +8,8 @@ class MovableObject {
     imgCache = {};
     moveSpeed;
     mirror = false;
-    gravitySpeed = 0;
-    acceleration = 0.05;
+    // gravitySpeed = 0;
+    // acceleration = 0.05;
 
     loadImage(path) {
         this.img = new Image();
@@ -85,6 +85,7 @@ class MovableObject {
     
     */
 
+    /* 
     applyGravity() {
         // fragen!!
         // gravity wird schneller, wie resetten bei nach oben button? 
@@ -97,7 +98,8 @@ class MovableObject {
                 this.gravitySpeed -= this.acceleration;
             }
         }, 50)
-    }
+    } 
+    */
 
     isAboveGround() {
         return this.y < 480 - this.height
