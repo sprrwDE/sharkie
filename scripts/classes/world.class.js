@@ -4,7 +4,7 @@ class World {
     ctx;
     keyboard;
     camera_x = -2;
-    
+
     character = new Character();
     level = level_1;
 
@@ -49,6 +49,12 @@ class World {
             object.x = object.x * -1;
             this.ctx.restore()
         }
+        // Hitbox
+        this.ctx.beginPath();
+        this.ctx.lineWidth = '3';
+        this.ctx.strokeStyle = 'blue';
+        this.ctx.rect(object.x, object.y, object.width, object.height);
+        this.ctx.stroke();
     };
 
     setWorld() {
