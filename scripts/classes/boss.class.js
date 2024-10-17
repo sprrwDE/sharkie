@@ -1,4 +1,5 @@
 class Endboss extends MovableObject {
+    hitboxColor = 'red';
     IMAGES_SWIMMING = [
         './assets/imgs/2.Enemy/3 Final Enemy/2.floating/1.png',
         './assets/imgs/2.Enemy/3 Final Enemy/2.floating/2.png',

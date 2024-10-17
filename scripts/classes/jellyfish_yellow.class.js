@@ -1,4 +1,5 @@
 class JellyFishYellow extends MovableObject {
+    hitboxColor = 'red';
 
     IMAGES_SWIMMING = [
         './assets/imgs/2.Enemy/2 Jelly fish/Regular damage/Yellow 1.png',
@@ -10,7 +11,7 @@ class JellyFishYellow extends MovableObject {
     constructor(){
         super()
         this.loadImage('./assets/imgs/2.Enemy/2 Jelly fish/Regular damage/Yellow 1.png')
-        this.setCharacteristics()
+        this.setEnemyCharacteristics()
         this.loadImages(this.IMAGES_SWIMMING);
         this.animate();
 

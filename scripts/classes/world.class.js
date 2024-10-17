@@ -14,6 +14,7 @@ class World {
         this.keyboard = keyboard;
         this.draw();
         this.setWorld();
+        this.checkCollissions()
     }
 
     setWorld() {
@@ -35,6 +36,16 @@ class World {
         );
     };
 
+    checkCollissions() {
+        setInterval(() => {
+            this.level.enemies.forEach((enemy) => {
+               if(this.character.isColliding(enemy)) {
+                console.log('kollission')
+               } 
+            })
+        }, 1000)
+    }
+
     addObjectToMap(objects) {
         objects.forEach(object => {
             this.renderToCanvas(object)
@@ -45,7 +56,7 @@ class World {
         if (object.mirror) {
             this.mirror(object);
         }
-        
+
         object.draw(this.ctx)
         object.hitbox(this.ctx)
 

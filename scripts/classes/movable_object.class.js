@@ -28,7 +28,7 @@ class MovableObject {
         ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
     }
 
-    setCharacteristics() {
+    setEnemyCharacteristics() {
         this.y = Math.random() * 480;
         this.x = 300 + Math.random() * 700;
         this.height = 80
@@ -40,14 +40,21 @@ class MovableObject {
         if (this instanceof Character ||
             this instanceof PufferFishGreen ||
             this instanceof JellyFishYellow ||
-            this instanceof JellyFishPurple) {
+            this instanceof JellyFishPurple ||
+            this instanceof Endboss) {
             ctx.beginPath();
             ctx.lineWidth = '3';
             ctx.strokeStyle = this.hitboxColor;
             ctx.rect(this.x, this.y, this.width, this.height);
             ctx.stroke();
         }
+    }
 
+    isColliding(object) {
+        offsetY = 40; // was macht es?
+        return (this.y + this.width) >= object.y && this.y <= (object.y + object.width) &&
+            (this.y + offsetY + this.height) >= object.y &&
+            (this.y + offsetY) <= (object.y + object.height)
     }
 
     playAnimation(images) {
@@ -57,6 +64,8 @@ class MovableObject {
         this.currentImage++;
     }
 
+    // Bewegen
+    
     moveRight() {
         this.x += this.moveSpeed;
     };
