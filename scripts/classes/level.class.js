@@ -5,7 +5,7 @@ class Level {
     enemies;
     levelEndX = 720 * 3;
 
-    constructor(backgroundObjects, light, enemies) {
+    constructor(backgroundObjects, enemies, light) {
         this.height = canvasHeight;
         this.width = canvasWidth;
         this.backgroundObects = backgroundObjects;

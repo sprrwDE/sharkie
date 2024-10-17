@@ -51,10 +51,12 @@ class MovableObject {
     }
 
     isColliding(object) {
-        offsetY = 40; // was macht es?
-        return (this.y + this.width) >= object.y && this.y <= (object.y + object.width) &&
+        let offsetY = 0; // was macht es?
+        return (this.x + this.width) >= object.x && this.x <= (object.x + object.width) &&
             (this.y + offsetY + this.height) >= object.y &&
             (this.y + offsetY) <= (object.y + object.height)
+
+
     }
 
     playAnimation(images) {
