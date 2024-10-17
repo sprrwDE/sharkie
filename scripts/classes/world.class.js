@@ -16,6 +16,10 @@ class World {
         this.setWorld();
     }
 
+    setWorld() {
+        this.character.world = this;
+    }
+
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         this.ctx.translate(this.camera_x, 0);
@@ -41,16 +45,10 @@ class World {
         if (object.mirror) {
             this.mirror(object);
         }
-        this.ctx.drawImage(object.img, object.x, object.y, object.width, object.height);
+        object.draw(this.ctx)
         if (object.mirror) {
             this.restoreDirection(object);
         }
-        // Hitbox
-        this.ctx.beginPath();
-        this.ctx.lineWidth = '3';
-        this.ctx.strokeStyle = 'blue';
-        this.ctx.rect(object.x, object.y, object.width, object.height);
-        this.ctx.stroke();
     };
 
     mirror(object) {
@@ -63,9 +61,5 @@ class World {
     restoreDirection(object) {
         object.x = object.x * -1;
         this.ctx.restore();
-    }
-
-    setWorld() {
-        this.character.world = this;
     }
 }
