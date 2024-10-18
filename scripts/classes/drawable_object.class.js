@@ -25,7 +25,6 @@ class DrawableObject {
         ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
     }
 
-    // Kollission
     hitbox(ctx) {
         if (this instanceof Character ||
             this instanceof PufferFishGreen ||
@@ -39,6 +38,5 @@ class DrawableObject {
             ctx.stroke();
         }
     }
-
     
 }

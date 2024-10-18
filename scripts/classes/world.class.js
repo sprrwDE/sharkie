@@ -26,13 +26,14 @@ class World {
 
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-        this.ctx.translate(this.camera_x, 0);
+        this.ctx.translate(this.camera_x, 0); // camera back
         this.addObjectToMap(this.level.backgroundObects);
         this.addObjectToMap(this.level.light)
-        this.addObjectToMap(this.level.enemies);
+        this.addObjectToMap(this.level.enemies); 
         this.renderToCanvas(this.character);
+        this.ctx.translate(-this.camera_x, 0); // camera forward
+        // fixed
         this.renderToCanvas(this.statusbar);
-        this.ctx.translate(-this.camera_x, 0);
         let self = this;
         requestAnimationFrame(function () {
             self.draw()
@@ -43,10 +44,10 @@ class World {
     checkCollissions() {
         setInterval(() => {
             this.level.enemies.forEach((enemy) => {
-               if(this.character.isColliding(enemy)) {
-                this.character.getHit(5);
-                console.log('hp', this.character.health, 'hurt by', enemy)
-               } 
+                if (this.character.isColliding(enemy)) {
+                    this.character.getHit(5);
+                    this.statusbar.setPercentage(this.character.health)
+                }
             })
         }, 150)
     }
