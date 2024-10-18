@@ -45,7 +45,7 @@ class Character extends MovableObject {
         './assets/imgs/1.Sharkie/5.Hurt/1.Poisoned/4.png',
         './assets/imgs/1.Sharkie/5.Hurt/1.Poisoned/5.png'
     ]
-    IMAGES_DEAD = [ // Change to specific dead
+    IMAGES_DEAD = [ // Change to specific death
         './assets/imgs/1.Sharkie/6.dead/1.Poisoned/sin subir/DES 2_00000.png',
         './assets/imgs/1.Sharkie/6.dead/1.Poisoned/sin subir/DES 2_00001.png',
         './assets/imgs/1.Sharkie/6.dead/1.Poisoned/sin subir/DES 2_00002.png',
@@ -79,7 +79,6 @@ class Character extends MovableObject {
 
     animate() {
 
-        // Move
         setInterval(() => {
             if (this.world.keyboard.RIGHT && this.x < this.world.level.levelEndX) {
                 this.world.camera_x = -this.x + 100
@@ -99,7 +98,6 @@ class Character extends MovableObject {
             } 
         })
 
-        // Animations
         setInterval(() => {
             this.moving = false;
             this.slap = false;
