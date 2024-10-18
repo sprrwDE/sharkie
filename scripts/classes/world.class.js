@@ -8,6 +8,9 @@ class World {
     character = new Character();
     level = level_1;
 
+    statusbar = new Statusbar();
+
+
     constructor(canvas) {
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
@@ -28,6 +31,7 @@ class World {
         this.addObjectToMap(this.level.light)
         this.addObjectToMap(this.level.enemies);
         this.renderToCanvas(this.character);
+        this.renderToCanvas(this.statusbar);
         this.ctx.translate(-this.camera_x, 0);
         let self = this;
         requestAnimationFrame(function () {
