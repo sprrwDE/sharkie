@@ -38,6 +38,14 @@ class Character extends MovableObject {
         './assets/imgs/1.Sharkie/4.Attack/Fin slap/7.png',
         './assets/imgs/1.Sharkie/4.Attack/Fin slap/8.png'
     ]
+    IMAGES_POISONED = [
+        './assets/imgs/1.Sharkie/5.Hurt/1.Poisoned/1.png',
+        './assets/imgs/1.Sharkie/5.Hurt/1.Poisoned/2.png',
+        './assets/imgs/1.Sharkie/5.Hurt/1.Poisoned/3.png',
+        './assets/imgs/1.Sharkie/5.Hurt/1.Poisoned/4.png',
+        './assets/imgs/1.Sharkie/5.Hurt/1.Poisoned/5.png',
+        './assets/imgs/1.Sharkie/5.Hurt/1.Poisoned/6.png'
+    ]
     world;
     moving;
     moveSpeed = 1;
@@ -73,7 +81,7 @@ class Character extends MovableObject {
             }
             if (this.world.keyboard.DOWN && this.y < 300) {
                 this.moveDown()
-            }
+            } 
         })
 
         // Animations
@@ -91,10 +99,6 @@ class Character extends MovableObject {
             }
             //Slap
             if (this.world.keyboard.FIN) {
-                this.slap = true;
-            }
-
-            if (this.slap) {
                 this.playAnimation(this.IMAGES_FINSLAP)
             }
         }, 200);

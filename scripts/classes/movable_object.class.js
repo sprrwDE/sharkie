@@ -8,6 +8,7 @@ class MovableObject {
     imgCache = {};
     moveSpeed;
     mirror = false;
+    health = 100;
     // gravitySpeed = 0;
     // acceleration = 0.05;
 
@@ -36,6 +37,7 @@ class MovableObject {
         this.moveSpeed = 0.15 + Math.random() * 0.45
     }
 
+    // Kollission
     hitbox(ctx) {
         if (this instanceof Character ||
             this instanceof PufferFishGreen ||
@@ -55,10 +57,16 @@ class MovableObject {
         return (this.x + this.width) >= object.x && this.x <= (object.x + object.width) &&
             (this.y + offsetY + this.height) >= object.y &&
             (this.y + offsetY) <= (object.y + object.height)
-
-
     }
 
+    getHit(hp) {
+        this.health -= hp;
+        if (this.health < 0) {
+            this.health = 0;
+        }
+    }
+
+    // Animation
     playAnimation(images) {
         let index = this.currentImage % images.length;
         let path = images[index];
@@ -67,7 +75,6 @@ class MovableObject {
     }
 
     // Bewegen
-    
     moveRight() {
         this.x += this.moveSpeed;
     };
@@ -108,16 +115,24 @@ class MovableObject {
                 this.x += this.moveSpeed; 
                 if (this.x>= 720*3) { 
                     this.movingLeft = false;
-                    this.mirror = true;
+                    mirror(this.enemy)
                 }
             } else {
                 this.x -= this.moveSpeed; 
                 if (this.x - this.width <= 0) { 
                     this.movingLeft = true;
-                    this.mirror = false;
+                    mirror(this.enemy)
                 }
             }
         }, 1000 / 60);
+
+    mirror(object) {
+        this.ctx.save();
+        this.ctx.translate(object.width, 0);
+        this.ctx.scale(-1, 1);
+        object.x = object.x * -1;
+    }
+
     }; 
     
     */

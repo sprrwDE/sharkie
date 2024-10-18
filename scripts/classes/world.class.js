@@ -40,10 +40,11 @@ class World {
         setInterval(() => {
             this.level.enemies.forEach((enemy) => {
                if(this.character.isColliding(enemy)) {
-                console.log('kollission mit', enemy)
+                this.character.getHit(5);
+                console.log('hp', this.character.health, 'hurt by', enemy)
                } 
             })
-        }, 1000)
+        }, 150)
     }
 
     addObjectToMap(objects) {
