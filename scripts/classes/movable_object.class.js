@@ -9,6 +9,7 @@ class MovableObject {
     moveSpeed;
     mirror = false;
     health = 100;
+    lastHit = 0;
     // gravitySpeed = 0;
     // acceleration = 0.05;
 
@@ -63,8 +64,16 @@ class MovableObject {
         this.health -= hp;
         if (this.health < 0) {
             this.health = 0;
+        } else {
+            this.lastHit = new Date().getTime();
         }
     }
+
+    isHurt() {
+        let timespan = new Date() - this.lastHit; // differenz in ms
+        timespan = timespan / 1000 // differenz in s
+        return timespan < 0.3;
+    } 
 
     isDead() {
         return this.health == 0;

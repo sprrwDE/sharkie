@@ -43,8 +43,7 @@ class Character extends MovableObject {
         './assets/imgs/1.Sharkie/5.Hurt/1.Poisoned/2.png',
         './assets/imgs/1.Sharkie/5.Hurt/1.Poisoned/3.png',
         './assets/imgs/1.Sharkie/5.Hurt/1.Poisoned/4.png',
-        './assets/imgs/1.Sharkie/5.Hurt/1.Poisoned/5.png',
-        './assets/imgs/1.Sharkie/5.Hurt/1.Poisoned/6.png'
+        './assets/imgs/1.Sharkie/5.Hurt/1.Poisoned/5.png'
     ]
     IMAGES_DEAD = [ // Change to specific dead
         './assets/imgs/1.Sharkie/6.dead/1.Poisoned/sin subir/DES 2_00000.png',
@@ -70,8 +69,9 @@ class Character extends MovableObject {
         this.loadImage('./assets/imgs/1.Sharkie/1.IDLE/1.png')
         this.loadImages(this.IMAGES_IDLE);
         this.loadImages(this.IMAGES_SWIM);
-        this.loadImages(this.IMAGES_FINSLAP)
-        this.loadImages(this.IMAGES_DEAD)
+        this.loadImages(this.IMAGES_FINSLAP);
+        this.loadImages(this.IMAGES_POISONED);
+        this.loadImages(this.IMAGES_DEAD);
         this.animate();
         // this.applyGravity();
 
@@ -104,20 +104,16 @@ class Character extends MovableObject {
             this.moving = false;
             this.slap = false;
             if(this.isDead()) {
-                this.playAnimation(this.IMAGES_DEAD)
-            } else 
-            if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT || this.world.keyboard.UP || this.world.keyboard.DOWN) {
-                // this.gravitySpeed = -0.5;
-                this.playAnimation(this.IMAGES_SWIM)
+                this.playAnimation(this.IMAGES_DEAD);
+            } else if (this.isHurt()) {
+                this.playAnimation(this.IMAGES_POISONED);
+            } else if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT || this.world.keyboard.UP || this.world.keyboard.DOWN) {
+                this.playAnimation(this.IMAGES_SWIM);
                 this.moving = true;
-            } else
-            //Idle
-            if (!this.moving) {
-                this.playAnimation(this.IMAGES_IDLE)
-            } else
-            //Slap
-            if (this.world.keyboard.FIN) {
-                this.playAnimation(this.IMAGES_FINSLAP)
+            } else if (!this.moving) {
+                this.playAnimation(this.IMAGES_IDLE);
+            } else if (this.world.keyboard.FIN) {
+                this.playAnimation(this.IMAGES_FINSLAP);
             } 
         }, 200);
     };
