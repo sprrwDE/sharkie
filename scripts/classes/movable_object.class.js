@@ -66,6 +66,10 @@ class MovableObject {
         }
     }
 
+    isDead() {
+        return this.health == 0;
+    }
+
     // Animation
     playAnimation(images) {
         let index = this.currentImage % images.length;
