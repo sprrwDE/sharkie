@@ -7,6 +7,7 @@ class Bubble extends MovableObject {
         this.y = y;
         this.width = 25;
         this.height = 25;
+        this.throw(x, y)
     }
 
     throw(x, y) {
