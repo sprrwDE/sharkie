@@ -6,7 +6,7 @@ class Statusbar extends DrawableObject {
         './assets/imgs/4. Marcadores/green/Life/60_  copia 3.png',
         './assets/imgs/4. Marcadores/green/Life/40_  copia 3.png',
         './assets/imgs/4. Marcadores/green/Life/20_ copia 4.png',
-        './assets/imgs/4. Marcadores/green/Life/0_  copia 3.png'
+        './assets/imgs/4. Marcadores/green/Life/0_ copia 3.png'
     ]
     percentage = 100
 
@@ -39,9 +39,7 @@ class Statusbar extends DrawableObject {
             return 4;
         } else if (this.percentage > 0) {
             return 5;
-        } else if (this.percentage == 0) {
-            return 6;
-        }
+        } 
     }
 
 }

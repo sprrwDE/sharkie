@@ -30,6 +30,7 @@ class World {
         this.addObjectToMap(this.level.backgroundObects);
         this.addObjectToMap(this.level.light)
         this.addObjectToMap(this.level.enemies); 
+        // this.addObjectToMap(this.level.bottles); 
         this.renderToCanvas(this.character);
         this.ctx.translate(-this.camera_x, 0); // camera forward
         // fixed
