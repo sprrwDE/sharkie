@@ -10,11 +10,11 @@ class Bottle extends MovableObject {
         './assets/imgs/4. Marcadores/Posion/Animada/8.png'
     ]
 
-    constructor() {
+    constructor(x, y) {
         super();
         this.loadImages(this.IMAGES_BOTTLE);
-        this.x = 100;
-        this.y = 300;
+        this.x = x;
+        this.y = y;
         this.width = 50;
         this.height = 50;
         this.animate();
