@@ -8,7 +8,7 @@ class World {
     character = new Character();
     level = level_1;
 
-    statusbar = new Statusbar();
+    statusbar = new Statusbar();        
 
 
     constructor(canvas) {
@@ -30,7 +30,7 @@ class World {
         this.addObjectToMap(this.level.backgroundObects);
         this.addObjectToMap(this.level.light)
         this.addObjectToMap(this.level.enemies); 
-        // this.addObjectToMap(this.level.bottles); 
+        this.addObjectToMap(this.level.bottles); 
         this.renderToCanvas(this.character);
         this.ctx.translate(-this.camera_x, 0); // camera forward
         // fixed
