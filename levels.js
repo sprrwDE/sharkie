@@ -37,8 +37,8 @@ const level_1 = new Level(
         new Light('./assets/imgs/3. Background/Layers/1. Light/1.png'), // wie animieren?
     ],
     [
-        new Bottle(300, 300),
-        new Bottle(400, 300)
+        new Poison(300, 300),
+        new Poison(400, 300)
     ],
     [
         new Coin(300, 200),

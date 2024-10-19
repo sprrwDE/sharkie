@@ -4,11 +4,10 @@ class World {
     ctx;
     keyboard;
     camera_x = -2;
-
     character = new Character();
     level = level_1;
-
-    statusbar = new Statusbar();        
+    statusbar = new Statusbar();   
+    bubble = new Bubble(100, 100)     
 
 
     constructor(canvas) {
@@ -30,9 +29,10 @@ class World {
         this.addObjectToMap(this.level.backgroundObects);
         this.addObjectToMap(this.level.light)
         this.addObjectToMap(this.level.enemies); 
-        this.addObjectToMap(this.level.bottles); 
+        this.addObjectToMap(this.level.poison); 
         this.addObjectToMap(this.level.coins); 
         this.renderToCanvas(this.character);
+        this.renderToCanvas(this.bubble);
         this.ctx.translate(-this.camera_x, 0); // camera forward
         // fixed
         this.renderToCanvas(this.statusbar);

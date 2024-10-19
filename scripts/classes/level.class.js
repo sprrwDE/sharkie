@@ -8,13 +8,13 @@ class Level {
     coins;
 
 
-    constructor(backgroundObjects, enemies, light, bottles, coins) {
+    constructor(backgroundObjects, enemies, light, poison, coins) {
         this.height = canvasHeight;
         this.width = canvasWidth;
         this.backgroundObects = backgroundObjects;
         this.light = light;
         this.enemies = enemies;
-        this.bottles = bottles;
+        this.poison = poison;
         this.coins = coins;
     }
 }

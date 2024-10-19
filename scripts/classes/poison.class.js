@@ -1,4 +1,4 @@
-class Bottle extends MovableObject {
+class Poison extends MovableObject {
     IMAGES_BOTTLE = [
         './assets/imgs/4. Marcadores/Posion/Animada/1.png',
         './assets/imgs/4. Marcadores/Posion/Animada/2.png',
@@ -25,8 +25,4 @@ class Bottle extends MovableObject {
             this.playAnimation(this.IMAGES_BOTTLE)
         }, 200);
     }
-
-    throw() {
-
-    };
 }
