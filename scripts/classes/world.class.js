@@ -6,8 +6,8 @@ class World {
     camera_x = -2;
     character = new Character();
     level = level_1;
-    statusbar = new Statusbar();   
-    bubble = new Bubble(100, 100)     
+    statusbar = new Statusbar();
+    bubbles = []
 
 
     constructor(canvas) {
@@ -16,7 +16,7 @@ class World {
         this.keyboard = keyboard;
         this.draw();
         this.setWorld();
-        this.checkCollissions()
+        this.run()
     }
 
     setWorld() {
@@ -28,11 +28,12 @@ class World {
         this.ctx.translate(this.camera_x, 0); // camera back
         this.addObjectToMap(this.level.backgroundObects);
         this.addObjectToMap(this.level.light)
-        this.addObjectToMap(this.level.enemies); 
-        this.addObjectToMap(this.level.poison); 
-        this.addObjectToMap(this.level.coins); 
-        this.renderToCanvas(this.character);
-        this.renderToCanvas(this.bubble);
+        this.addObjectToMap(this.level.enemies);
+        this.addObjectToMap(this.level.poison);
+        this.addObjectToMap(this.level.coins);
+        this.renderToCanvas(this.character);            
+        this.addObjectToMap(this.bubbles);
+
         this.ctx.translate(-this.camera_x, 0); // camera forward
         // fixed
         this.renderToCanvas(this.statusbar);
@@ -43,15 +44,27 @@ class World {
         );
     };
 
-    checkCollissions() {
+    run() {
         setInterval(() => {
-            this.level.enemies.forEach((enemy) => {
-                if (this.character.isColliding(enemy)) {
-                    this.character.getHit(5);
-                    this.statusbar.setPercentage(this.character.health)
-                }
-            })
+            this.checkCollissions();
+            this.checkBubbleThrow();
         }, 150)
+    }
+
+    checkCollissions() {
+        this.level.enemies.forEach((enemy) => {
+            if (this.character.isColliding(enemy)) {
+                this.character.getHit(5);
+                this.statusbar.setPercentage(this.character.health)
+            }
+        })
+    }
+
+    checkBubbleThrow() {
+        if (this.keyboard.SHOOT) {
+            let bubble = new Bubble(this.character.x, this.character.y);
+            this.bubbles.push(bubble);
+        }
     }
 
     addObjectToMap(objects) {

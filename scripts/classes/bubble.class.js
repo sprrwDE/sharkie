@@ -9,7 +9,12 @@ class Bubble extends MovableObject {
         this.height = 25;
     }
 
-    throw() {
-
+    throw(x, y) {
+        this.x = x;
+        this.y = y;
+        setInterval(() => {
+            this.x += 20
+        }, 25)
+        // this.applyGravity() -> hinzufügen, bubbles sollen leicht nach oben
     };
 }

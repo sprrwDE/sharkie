@@ -4,7 +4,7 @@ class Level {
     light;
     enemies;
     levelEndX = 720 * 3;
-    bottles;
+    poison;
     coins;
 
 
