@@ -38,12 +38,20 @@ class World {
         this.ctx.translate(-this.camera_x, 0); // camera forward
         // fixed
         this.renderToCanvas(this.statusbar);
+        this.drawText(this.collectedBottles, 80, 120);
+        this.drawText(this.collectedCoins, 80, 160);
         let self = this;
         requestAnimationFrame(function () {
             self.draw()
         }
         );
     };
+
+    drawText(item, x, y) {
+        const ctx = document.getElementById("canvas").getContext("2d");
+        ctx.font = "48px sans-serif";
+        ctx.fillText(item, x, y);
+    }
 
     run() {
         setInterval(() => {
