@@ -8,6 +8,7 @@ class PufferFishGreen extends MovableObject {
         './assets/imgs/2.Enemy/1.Puffer fish (3 color options)/1.Swim/1.swim4.png',
         './assets/imgs/2.Enemy/1.Puffer fish (3 color options)/1.Swim/1.swim5.png'
     ]
+    offsetBottom = 20;
 
     constructor() {
         super()

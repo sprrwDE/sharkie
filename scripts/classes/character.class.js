@@ -74,6 +74,10 @@ class Character extends MovableObject {
     moving;
     moveSpeed = 1;
     hitboxColor = 'green';
+    offsetLeft = 40;
+    offsetRight = 80;
+    offsetTop = 90;
+    offsetBottom = 130;
 
     constructor() {
         super()
@@ -85,7 +89,6 @@ class Character extends MovableObject {
         this.loadImages(this.IMAGES_POISONED);
         this.loadImages(this.IMAGES_DEAD);
         this.animate();
-
     }
 
     animate() {

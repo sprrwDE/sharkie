@@ -16,11 +16,13 @@ class MovableObject extends DrawableObject {
         this.moveSpeed = 0.15 + Math.random() * 0.45
     }
 
+
+
     isColliding(object) {
-        let offsetY = 0; // was macht es?
-        return (this.x + this.width) >= object.x && this.x <= (object.x + object.width) &&
-            (this.y + offsetY + this.height) >= object.y &&
-            (this.y + offsetY) <= (object.y + object.height)
+        return (this.x + this.width - (this.offsetRight / 2)) >= object.x + object.offsetLeft && 
+            (this.x + (this.offsetLeft / 2)) <= (object.x + (object.width - object.offsetRight)) &&
+            (this.y + this.height - (this.offsetBottom / 3)) >= object.y + object.offsetTop &&
+            (this.y + (this.offsetTop)) <= (object.y + (object.height - object.offsetBottom))
     }
 
     getHit(hp) {
@@ -82,8 +84,6 @@ class MovableObject extends DrawableObject {
             }
         }, 1000 / 60);
     };
-
-
 
     /* noch Fehlerhaft
 

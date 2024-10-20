@@ -7,7 +7,6 @@ class Level {
     poison;
     coins;
 
-
     constructor(backgroundObjects, enemies, light, poison, coins) {
         this.height = canvasHeight;
         this.width = canvasWidth;
