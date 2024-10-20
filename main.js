@@ -3,6 +3,7 @@ let keyboard = new Keyboard();
 let startContainer = document.getElementById('startscreen')
 let endContainer = document.getElementById('endscreen')
 let startButton = document.getElementById('start')
+let cvs = document.getElementById('canvas')
 
 function init() {
     world = new World(canvas, keyboard);
@@ -60,7 +61,8 @@ document.addEventListener('keyup', (event) => {
 
 function startGame() {
     startContainer.classList.add('d-none')
-    endContainer.classList.add('d-none')
+    endContainer.classList.add('d-none');
+    cvs.classList.remove('d-none');
 }
 
 function stopGame() {
@@ -76,4 +78,6 @@ function clearAllIntervals() {
 
 function showEndScreen() {
     endContainer.classList.remove('d-none')
+    cvs.classList.add('d-none');
 }
+

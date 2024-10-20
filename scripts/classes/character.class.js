@@ -88,6 +88,7 @@ class Character extends MovableObject {
     offsetRight = 80;
     offsetTop = 90;
     offsetBottom = 130;
+    immune = false;
 
     constructor() {
         super()
@@ -137,6 +138,7 @@ class Character extends MovableObject {
                 this.playAnimation(this.IMAGES_SWIM);
                 this.moving = true;
             } else if (this.world.keyboard.FIN) {
+                this.immune = true;                
                 this.playAnimation(this.IMAGES_FINSLAP);
             } else if (this.world.keyboard.SHOOT) {
                 this.playAnimation(this.IMAGES_SHOOTING);
@@ -144,7 +146,8 @@ class Character extends MovableObject {
                 this.playAnimation(this.IMAGES_POISONBUBBLE);
             } else  {
                 this.playAnimation(this.IMAGES_IDLE);
+                this.immune = false;
             }
-        }, 200);
+        }, 150);
     };
 }

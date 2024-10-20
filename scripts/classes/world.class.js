@@ -9,7 +9,6 @@ class World {
     statusbar = new Statusbar();
     bubbles = []
 
-
     constructor(canvas) {
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
@@ -31,7 +30,7 @@ class World {
         this.addObjectToMap(this.level.enemies);
         this.addObjectToMap(this.level.poison);
         this.addObjectToMap(this.level.coins);
-        this.renderToCanvas(this.character);            
+        this.renderToCanvas(this.character);
         this.addObjectToMap(this.bubbles);
 
         this.ctx.translate(-this.camera_x, 0); // camera forward
@@ -48,17 +47,19 @@ class World {
         setInterval(() => {
             this.checkCollissions();
             this.checkBubbleThrow();
-        }, 150)
+        }, 50)
     }
 
     // if !immune (bei finslap immune = true setzen)
     checkCollissions() {
-        this.level.enemies.forEach((enemy) => {
-            if (this.character.isColliding(enemy)) {
-                this.character.getHit(5);
-                this.statusbar.setPercentage(this.character.health)
-            }
-        })
+        if (!this.character.immune) {
+            this.level.enemies.forEach((enemy) => {
+                if (this.character.isColliding(enemy)) {
+                    this.character.getHit(5);
+                    this.statusbar.setPercentage(this.character.health)
+                }
+            })
+        }
     }
 
     checkBubbleThrow() {
@@ -77,6 +78,11 @@ class World {
             this.bubbles.push(bubble);
         }
     }
+
+    /* 
+    kill() {
+        level.enemies.splice(i, 1)
+    } */
 
     addObjectToMap(objects) {
         objects.forEach(object => {
