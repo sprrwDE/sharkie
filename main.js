@@ -1,6 +1,7 @@
 let world;
 let keyboard = new Keyboard();
 let startContainer = document.getElementById('startscreen')
+let endContainer = document.getElementById('endscreen')
 let startButton = document.getElementById('start')
 
 function init() {
@@ -33,19 +34,19 @@ document.addEventListener('keydown', (event) => {
 document.addEventListener('keyup', (event) => {
     if (event.keyCode == 87) {
         keyboard.UP = false;
-    } 
+    }
     if (event.keyCode == 83) {
         keyboard.DOWN = false;
-    } 
+    }
     if (event.keyCode == 65) {
         keyboard.LEFT = false;
-    } 
+    }
     if (event.keyCode == 68) {
         keyboard.RIGHT = false;
-    } 
+    }
     if (event.keyCode == 32) {
         keyboard.FIN = false;
-    } 
+    }
     if (event.keyCode == 69) {
         keyboard.SHOOT = false;
     }
@@ -53,12 +54,20 @@ document.addEventListener('keyup', (event) => {
 
 function startGame() {
     startContainer.classList.add('d-none')
+    endContainer.classList.add('d-none')
 }
 
 function stopGame() {
     clearAllIntervals()
+    setTimeout(() => {
+        showEndScreen();
+    }, 500)
 }
 
 function clearAllIntervals() {
     for (let i = 1; i < 9999; i++) window.clearInterval(i);
-  }
+}
+
+function showEndScreen() {
+    endContainer.classList.remove('d-none')
+}

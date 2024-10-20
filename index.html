@@ -9,11 +9,15 @@
 
 </head>
 <body>
-    <div class="start" id="startscreen">
+    <div class="screen" id="startscreen">
         <h1>sharky</h1>
         <button id="start" onclick="startGame(), init()">Starten</button>
     </div>
     <canvas id="canvas" width="720px" height="480px"></canvas>
+        <div class="screen d-none" id="endscreen">
+            <h1>Game Over</h1>
+            <button id="start" onclick="startGame(), init()">Restart</button>
+        </div>
     <script src="./scripts/classes/drawable_object.class.js"></script>
     <script src="./scripts/classes/movable_object.class.js"></script>
     <script src="./scripts/classes/statusbar.class.js"></script>
