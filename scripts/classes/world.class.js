@@ -62,7 +62,7 @@ class World {
 
     checkBubbleThrow() {
         if (this.keyboard.SHOOT) {
-            let bubble = new Bubble(this.character.x, this.character.y);
+            let bubble = new Bubble(this.character.x, this.character.y, this.character.width, this.character.height);
             this.bubbles.push(bubble);
         }
     }

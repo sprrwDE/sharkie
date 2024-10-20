@@ -2,21 +2,21 @@ class Bubble extends MovableObject {
     gravitySpeed = 0.5;
     acceleration = 0.3;
 
-    constructor(x, y) {
+    constructor(x, y, width, height) {
         super();
         this.loadImage('./assets/imgs/1.Sharkie/4.Attack/Bubble trap/Bubble.png')
         this.x = x;
         this.y = y;
         this.width = 25;
         this.height = 25;
-        this.throw(x, y)
+        this.throw(x, y, width, height)
     }
 
-    // spiegeln
+    // spiegeln (mit offset character width arbeiten, if(mirrored), else)
 
-    throw(x, y) {
-        this.x = x;
-        this.y = y;
+    throw(x, y, width, height) {
+        this.x = x + width; 
+        this.y = y + (height / 2);
         setInterval(() => {
             this.x += 20
         }, 25)

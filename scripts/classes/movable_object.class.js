@@ -2,8 +2,7 @@ class MovableObject extends DrawableObject {
     moveSpeed;
     health = 100;
     lastHit = 0;
-    gravitySpeed = 0;
-    acceleration = 0.05;
+
 
     constructor() {
         super()
@@ -16,8 +15,6 @@ class MovableObject extends DrawableObject {
         this.width = this.height;
         this.moveSpeed = 0.15 + Math.random() * 0.45
     }
-
-
 
     isColliding(object) {
         let offsetY = 0; // was macht es?
@@ -86,12 +83,7 @@ class MovableObject extends DrawableObject {
         }, 1000 / 60);
     };
 
-    applyBubbleGravity() {
-        setInterval(() => {
-                this.y += this.gravitySpeed;
-                this.gravitySpeed += this.acceleration;
-        }, 1000 / 25)
-    } 
+
 
     /* noch Fehlerhaft
 
