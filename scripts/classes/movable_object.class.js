@@ -2,8 +2,8 @@ class MovableObject extends DrawableObject {
     moveSpeed;
     health = 100;
     lastHit = 0;
-    // gravitySpeed = 0;
-    // acceleration = 0.05;
+    gravitySpeed = 0;
+    acceleration = 0.05;
 
     constructor() {
         super()
@@ -86,6 +86,13 @@ class MovableObject extends DrawableObject {
         }, 1000 / 60);
     };
 
+    applyBubbleGravity() {
+        setInterval(() => {
+                this.y += this.gravitySpeed;
+                this.gravitySpeed += this.acceleration;
+        }, 1000 / 25)
+    } 
+
     /* noch Fehlerhaft
 
     enemyLeftAndRight() {
@@ -105,6 +112,7 @@ class MovableObject extends DrawableObject {
             }
         }, 1000 / 60);
 
+    Fische Spiegeln
     mirror(object) {
         this.ctx.save();
         this.ctx.translate(object.width, 0);
@@ -116,25 +124,7 @@ class MovableObject extends DrawableObject {
     
     */
 
-    /* 
-    applyGravity() {
-        // fragen!!
-        // gravity wird schneller, wie resetten bei nach oben button? 
-        // oder stattdessen feste werte ohne acceleration benutzen?
-        // -> in character bei move gravity speed definiert / fixed?
-        // aber gravitation bei stillstand ruckelig
-        setInterval(() => {
-            if (this.isAboveGround()) {
-                this.y -= this.gravitySpeed;
-                this.gravitySpeed -= this.acceleration;
-            }
-        }, 50)
-    } 
 
-    isAboveGround() {
-        return this.y < 480 - this.height
-    }
-    */
 
 
 }
