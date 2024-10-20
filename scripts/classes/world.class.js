@@ -52,14 +52,15 @@ class World {
 
     // if !immune (bei finslap immune = true setzen)
     checkCollissions() {
-        if (!this.character.immune) {
             this.level.enemies.forEach((enemy) => {
-                if (this.character.isColliding(enemy)) {
+                if (this.character.isColliding(enemy) && !this.character.immune) {
                     this.character.getHit(5);
                     this.statusbar.setPercentage(this.character.health)
+                } else if ((this.character.isColliding(enemy) && this.character.immune)) {
+                    let i = this.level.enemies.indexOf(enemy)
+                    this.level.enemies.splice(i, 1)
                 }
-            })
-        }
+            }) 
     }
 
     checkBubbleThrow() {

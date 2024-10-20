@@ -43,7 +43,7 @@ class Endboss extends MovableObject {
         this.animate();
     }
 
-    // funktioniert noch nicht, wie auf character zugreifen? -> Wirft Consolen Errors
+    /* funktioniert noch nicht, wie auf character zugreifen? -> Wirft Consolen Errors
     animate() {
         let i = 0;
         setInterval(()=> {
@@ -60,9 +60,20 @@ class Endboss extends MovableObject {
         }, 180);
 
 
+        setInterval(() => {
+            this.moveLeft();
+        }, 1000 / 60);   
+    };    */
+
+    animate() {
+        let i = 0;
+        setInterval(()=> {
+                this.playAnimation(this.IMAGES_SWIMMING);
+            }, 180);
 
         setInterval(() => {
             this.moveLeft();
         }, 1000 / 60);   
-    };
+    }; 
+
 }

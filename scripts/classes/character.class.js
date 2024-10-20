@@ -89,6 +89,7 @@ class Character extends MovableObject {
     offsetTop = 90;
     offsetBottom = 130;
     immune = false;
+    health = 1000;
 
     constructor() {
         super()
@@ -146,7 +147,7 @@ class Character extends MovableObject {
                 this.playAnimation(this.IMAGES_POISONBUBBLE);
             } else  {
                 this.playAnimation(this.IMAGES_IDLE);
-                this.immune = false;
+                this.immune = false;                
             }
         }, 150);
     };
