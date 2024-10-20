@@ -2,9 +2,9 @@ class Bubble extends MovableObject {
     gravitySpeed = 0.5;
     acceleration = 0.3;
 
-    constructor(x, y, width, height, mirror) {
+    constructor(x, y, width, height, mirror, image) {
         super();
-        this.loadImage('./assets/imgs/1.Sharkie/4.Attack/Bubble trap/Bubble.png')
+        this.loadImage(image)
         this.x = x;
         this.y = y;
         this.width = 25;
