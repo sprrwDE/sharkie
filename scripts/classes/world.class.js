@@ -8,6 +8,8 @@ class World {
     level = level_1;
     statusbar = new Statusbar();
     bubbles = []
+    collectedBottles = 0;
+    collectedCoins = 0;
 
     constructor(canvas) {
         this.ctx = canvas.getContext('2d');
@@ -47,20 +49,47 @@ class World {
         setInterval(() => {
             this.checkCollissions();
             this.checkBubbleThrow();
+            this.collectBottle();
+            this.collectCoin();
         }, 50)
     }
 
     // if !immune (bei finslap immune = true setzen)
     checkCollissions() {
-            this.level.enemies.forEach((enemy) => {
-                if (this.character.isColliding(enemy) && !this.character.immune) {
-                    this.character.getHit(5);
-                    this.statusbar.setPercentage(this.character.health)
-                } else if ((this.character.isColliding(enemy) && this.character.immune)) {
-                    let i = this.level.enemies.indexOf(enemy)
-                    this.level.enemies.splice(i, 1)
-                }
-            }) 
+        this.level.enemies.forEach((enemy) => {
+            if (this.character.isColliding(enemy) && !this.character.immune) {
+                this.character.getHit(5);
+                this.statusbar.setPercentage(this.character.health)
+            } else if ((this.character.isColliding(enemy) && this.character.immune)) {
+                // funktion in movableObjekt definieren, animation abspielen, enemy.kill(), eventuell super klasse erstellen /// Instance of Pufferfish
+                let i = this.level.enemies.indexOf(enemy)
+                this.level.enemies.splice(i, 1)
+            }
+        })
+    }
+
+    collectBottle() {
+        this.level.coins.forEach((coin) => {
+            if (this.character.isColliding(coin)) {
+                let i = this.level.coins.indexOf(coin)
+                this.level.coins.splice(i, 1)
+                this.collectedCoins++
+                console.log(this.collectedCoins)
+                // this.statusbar.setPercentage(this.character.health) -> erhöhen
+            }
+        })
+    }
+
+    collectCoin() {
+        this.level.poison.forEach((bottle) => {
+            if (this.character.isColliding(bottle)) {
+                let i = this.level.poison.indexOf(bottle)
+                this.level.poison.splice(i, 1)
+                this.collectedBottles++
+                console.log(this.collectedBottles)
+                // this.statusbar.setPercentage(this.character.health) -> erhöhen
+            }
+        })
     }
 
     checkBubbleThrow() {
@@ -79,11 +108,6 @@ class World {
             this.bubbles.push(bubble);
         }
     }
-
-    /* 
-    kill() {
-        level.enemies.splice(i, 1)
-    } */
 
     addObjectToMap(objects) {
         objects.forEach(object => {
