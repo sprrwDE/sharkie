@@ -1,5 +1,7 @@
 let world;
 let keyboard = new Keyboard();
+let startContainer = document.getElementById('startscreen')
+let startButton = document.getElementById('start')
 
 function init() {
     world = new World(canvas, keyboard);
@@ -48,6 +50,10 @@ document.addEventListener('keyup', (event) => {
         keyboard.SHOOT = false;
     }
 });
+
+function startGame() {
+    startContainer.classList.add('d-none')
+}
 
 function stopGame() {
     clearAllIntervals()

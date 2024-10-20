@@ -8,7 +8,11 @@
     <title>Kai der Hai</title>
 
 </head>
-<body onload="init()">
+<body>
+    <div class="start" id="startscreen">
+        <h1>sharky</h1>
+        <button id="start" onclick="startGame(), init()">Starten</button>
+    </div>
     <canvas id="canvas" width="720px" height="480px"></canvas>
     <script src="./scripts/classes/drawable_object.class.js"></script>
     <script src="./scripts/classes/movable_object.class.js"></script>

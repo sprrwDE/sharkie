@@ -119,7 +119,7 @@ class Character extends MovableObject {
             this.slap = false;
             if(this.isDead()) {
                 this.playAnimation(this.IMAGES_DEAD);
-                stopGame()
+                // stopGame()
             } else if (this.isHurt()) {
                 this.playAnimation(this.IMAGES_POISONED);
             } else if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT || this.world.keyboard.UP || this.world.keyboard.DOWN) {
