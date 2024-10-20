@@ -51,6 +51,7 @@ class World {
         }, 150)
     }
 
+    // if !immune (bei finslap immune = true setzen)
     checkCollissions() {
         this.level.enemies.forEach((enemy) => {
             if (this.character.isColliding(enemy)) {
@@ -62,6 +63,13 @@ class World {
 
     checkBubbleThrow() {
         if (this.keyboard.SHOOT) {
+            let bubble = new Bubble(this.character.x, this.character.y, this.character.width, this.character.height, this.character.mirror);
+            this.bubbles.push(bubble);
+        }
+    }
+
+    checkPoisonBubble() { // Keyboard event erstellen, klasse anlegen, bei run ausführen
+        if (this.keyboard.POISON) {
             let bubble = new Bubble(this.character.x, this.character.y, this.character.width, this.character.height, this.character.mirror);
             this.bubbles.push(bubble);
         }

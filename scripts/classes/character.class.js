@@ -48,6 +48,16 @@ class Character extends MovableObject {
         './assets/imgs/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/7.png',
         './assets/imgs/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/8.png'
     ];
+    IMAGES_POISONBUBBLE = [
+        './assets/imgs/1.Sharkie/4.Attack/Bubble trap/For Whale/1.png',
+        './assets/imgs/1.Sharkie/4.Attack/Bubble trap/For Whale/2.png',
+        './assets/imgs/1.Sharkie/4.Attack/Bubble trap/For Whale/3.png',
+        './assets/imgs/1.Sharkie/4.Attack/Bubble trap/For Whale/4.png',
+        './assets/imgs/1.Sharkie/4.Attack/Bubble trap/For Whale/5.png',
+        './assets/imgs/1.Sharkie/4.Attack/Bubble trap/For Whale/6.png',
+        './assets/imgs/1.Sharkie/4.Attack/Bubble trap/For Whale/7.png',
+        './assets/imgs/1.Sharkie/4.Attack/Bubble trap/For Whale/8.png'
+    ]
     IMAGES_POISONED = [ 
         './assets/imgs/1.Sharkie/5.Hurt/1.Poisoned/1.png',
         './assets/imgs/1.Sharkie/5.Hurt/1.Poisoned/2.png',
@@ -86,6 +96,7 @@ class Character extends MovableObject {
         this.loadImages(this.IMAGES_SWIM);
         this.loadImages(this.IMAGES_FINSLAP);
         this.loadImages(this.IMAGES_SHOOTING);
+        this.loadImages(this.IMAGES_POISONBUBBLE);
         this.loadImages(this.IMAGES_POISONED);
         this.loadImages(this.IMAGES_DEAD);
         this.animate();
@@ -129,6 +140,8 @@ class Character extends MovableObject {
                 this.playAnimation(this.IMAGES_FINSLAP);
             } else if (this.world.keyboard.SHOOT) {
                 this.playAnimation(this.IMAGES_SHOOTING);
+            } else if (this.world.keyboard.POISON) {
+                this.playAnimation(this.IMAGES_POISONBUBBLE);
             } else  {
                 this.playAnimation(this.IMAGES_IDLE);
             }

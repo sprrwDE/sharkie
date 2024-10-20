@@ -5,4 +5,5 @@ class Keyboard {
     DOWN = false;
     FIN = false;
     SHOOT = false;
+    POISON = false;
 }

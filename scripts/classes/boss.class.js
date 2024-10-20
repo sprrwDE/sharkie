@@ -43,7 +43,7 @@ class Endboss extends MovableObject {
         this.animate();
     }
 
-    // funktioniert noch nicht, wie auf character zugreifen?
+    // funktioniert noch nicht, wie auf character zugreifen? -> Wirft Consolen Errors
     animate() {
         let i = 0;
         setInterval(()=> {

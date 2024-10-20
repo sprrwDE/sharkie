@@ -27,6 +27,9 @@ document.addEventListener('keydown', (event) => {
     if (event.keyCode == 69) {  // E-Taste
         keyboard.SHOOT = true;
     }
+    if (event.keyCode == 81) { // Q-Taste
+        keyboard.POISON = true;
+    };
     console.log(event);
 });
 
@@ -49,7 +52,10 @@ document.addEventListener('keyup', (event) => {
     }
     if (event.keyCode == 69) {
         keyboard.SHOOT = false;
-    }
+    }     
+    if (event.keyCode == 81) {
+        keyboard.POISON = false;
+    };
 });
 
 function startGame() {
