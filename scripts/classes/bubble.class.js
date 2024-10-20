@@ -28,7 +28,6 @@ class Bubble extends MovableObject {
                 this.x += 20
             }, 25)
         }
-
         this.applyBubbleGravity()
     };
 

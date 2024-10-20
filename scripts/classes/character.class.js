@@ -38,6 +38,16 @@ class Character extends MovableObject {
         './assets/imgs/1.Sharkie/4.Attack/Fin slap/7.png',
         './assets/imgs/1.Sharkie/4.Attack/Fin slap/8.png'
     ]
+    IMAGES_SHOOTING = [
+        './assets/imgs/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/1.png',
+        './assets/imgs/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/2.png',
+        './assets/imgs/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/3.png',
+        './assets/imgs/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/4.png',
+        './assets/imgs/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/5.png',
+        './assets/imgs/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/6.png',
+        './assets/imgs/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/7.png',
+        './assets/imgs/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/8.png'
+    ];
     IMAGES_POISONED = [ 
         './assets/imgs/1.Sharkie/5.Hurt/1.Poisoned/1.png',
         './assets/imgs/1.Sharkie/5.Hurt/1.Poisoned/2.png',
@@ -59,6 +69,7 @@ class Character extends MovableObject {
         './assets/imgs/1.Sharkie/6.dead/1.Poisoned/sin subir/DES 2_00010.png',
         './assets/imgs/1.Sharkie/6.dead/1.Poisoned/sin subir/DES 2_00011.png'
     ]
+    
     world;
     moving;
     moveSpeed = 1;
@@ -70,6 +81,7 @@ class Character extends MovableObject {
         this.loadImages(this.IMAGES_IDLE);
         this.loadImages(this.IMAGES_SWIM);
         this.loadImages(this.IMAGES_FINSLAP);
+        this.loadImages(this.IMAGES_SHOOTING);
         this.loadImages(this.IMAGES_POISONED);
         this.loadImages(this.IMAGES_DEAD);
         this.animate();
@@ -109,6 +121,8 @@ class Character extends MovableObject {
                 this.moving = true;
             } else if (this.world.keyboard.FIN) {
                 this.playAnimation(this.IMAGES_FINSLAP);
+            } else if (this.world.keyboard.SHOOT) {
+                this.playAnimation(this.IMAGES_SHOOTING);
             } else  {
                 this.playAnimation(this.IMAGES_IDLE);
             }
