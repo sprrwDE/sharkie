@@ -34,7 +34,7 @@ class DrawableObject {
             // console.log('broken img src', this.img.src)
         }
     }
-
+ 
     hitbox(ctx) {
         if (this instanceof Character ||
             this instanceof PufferFishGreen ||
@@ -47,6 +47,6 @@ class DrawableObject {
             ctx.rect(this.x + this.offsetLeft , this.y + this.offsetTop , this.width - this.offsetRight , this.height - this.offsetBottom);
             ctx.stroke();
         }
-    }
+    } 
     
 }

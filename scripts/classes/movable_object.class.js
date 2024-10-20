@@ -3,7 +3,6 @@ class MovableObject extends DrawableObject {
     health = 100;
     lastHit = 0;
 
-
     constructor() {
         super()
     }
@@ -15,8 +14,6 @@ class MovableObject extends DrawableObject {
         this.width = this.height;
         this.moveSpeed = 0.15 + Math.random() * 0.45
     }
-
-
 
     isColliding(object) {
         return (this.x + this.width - (this.offsetRight / 2)) >= object.x + object.offsetLeft && 

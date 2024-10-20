@@ -112,11 +112,14 @@ class Character extends MovableObject {
             } 
         })
 
+        // sobald man rechts klickt kann man char nichtmehr steuern
+        // wie angriffs animationen während bewegen abspielen?
         setInterval(() => {
             this.moving = false;
             this.slap = false;
             if(this.isDead()) {
                 this.playAnimation(this.IMAGES_DEAD);
+                stopGame()
             } else if (this.isHurt()) {
                 this.playAnimation(this.IMAGES_POISONED);
             } else if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT || this.world.keyboard.UP || this.world.keyboard.DOWN) {
