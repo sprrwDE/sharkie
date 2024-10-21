@@ -83,14 +83,17 @@ class Character extends MovableObject {
     world;
     moving;
     moveSpeed = 1;
+    // Hitbox
     hitboxColor = 'green';
     offsetLeft = 40;
     offsetRight = 80;
     offsetTop = 90;
     offsetBottom = 130;
-    immune = false;
     health = 1000;
-
+    // Finslap
+    immune = false;
+    finslapActive = false; 
+    immuneDuration = 1000; 
     finslap_sound = new Audio('./assets/sounds/finslap.wav')
 
     constructor() {
@@ -129,29 +132,38 @@ class Character extends MovableObject {
 
         // sobald man rechts klickt kann man char nichtmehr steuern
         // wie angriffs animationen während bewegen abspielen?
-        setInterval(() => {
-            this.moving = false;
-            this.slap = false;
-            if(this.isDead()) {
-                this.playAnimation(this.IMAGES_DEAD);
-                stopGame()
-            } else if (this.isHurt()) {
-                this.playAnimation(this.IMAGES_POISONED);
-            } else if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT || this.world.keyboard.UP || this.world.keyboard.DOWN) {
-                this.playAnimation(this.IMAGES_SWIM);
-                this.moving = true;
-            } else if (this.world.keyboard.FIN) {
-                this.immune = true;                
-                this.playAnimation(this.IMAGES_FINSLAP);
-                this.finslap_sound.play()
-            } else if (this.world.keyboard.SHOOT) {
-                this.playAnimation(this.IMAGES_SHOOTING);
-            } else if (this.world.keyboard.POISON) {
-                this.playAnimation(this.IMAGES_POISONBUBBLE);
-            } else  {
-                this.playAnimation(this.IMAGES_IDLE);
-                this.immune = false;                
-            }
-        }, 150);
-    };
+            setInterval(() => {
+                this.moving = false;
+                this.slap = false;
+                if (this.isDead()) {
+                    this.playAnimation(this.IMAGES_DEAD);
+                    stopGame();
+                } else if (this.isHurt()) {
+                    this.playAnimation(this.IMAGES_POISONED);
+                } else if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT || this.world.keyboard.UP || this.world.keyboard.DOWN) {
+                    this.playAnimation(this.IMAGES_SWIM);
+                    this.moving = true;
+                } else if (this.world.keyboard.FIN && !this.finslapActive) { 
+                    this.activateFinslap();
+                } else if (this.world.keyboard.SHOOT) {
+                    this.playAnimation(this.IMAGES_SHOOTING);
+                } else if (this.world.keyboard.POISON) {
+                    this.playAnimation(this.IMAGES_POISONBUBBLE);
+                } else {
+                    this.playAnimation(this.IMAGES_IDLE);
+                }
+            }, 150);
+        }
+
+    activateFinslap() {
+        this.finslapActive = true;     
+        this.immune = true;
+        this.playAnimation(this.IMAGES_FINSLAP);
+        this.finslap_sound.play();
+        
+        setTimeout(() => {
+            this.immune = false;
+            this.finslapActive = false;
+        }, this.immuneDuration);
+    }
 }
