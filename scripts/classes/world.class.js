@@ -6,10 +6,12 @@ class World {
     camera_x = -2;
     character = new Character();
     level = level_1;
-    statusbar = new Statusbar();
+    statusbar = new Statusbar(50, 20, 200, 60);
     bubbles = []
     collectedBottles = 0;
     collectedCoins = 0;
+    collectables = new Statusbar(50, 20, 200, 60);
+    poisonbar = new Statusbar(50, 120, 200, 60);
 
     constructor(canvas) {
         this.ctx = canvas.getContext('2d');
@@ -38,8 +40,9 @@ class World {
         this.ctx.translate(-this.camera_x, 0); // camera forward
         // fixed
         this.renderToCanvas(this.statusbar);
-        this.drawText(this.collectedBottles, 80, 120);
-        this.drawText(this.collectedCoins, 80, 160);
+        this.drawText(this.collectedBottles, 120, 120);
+        this.drawText(this.collectedCoins, 120, 160);
+
         let self = this;
         requestAnimationFrame(function () {
             self.draw()
@@ -94,7 +97,6 @@ class World {
                 let i = this.level.poison.indexOf(bottle)
                 this.level.poison.splice(i, 1)
                 this.collectedBottles++
-                console.log(this.collectedBottles)
                 // this.statusbar.setPercentage(this.character.health) -> erhöhen
             }
         })

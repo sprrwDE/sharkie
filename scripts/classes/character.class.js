@@ -91,6 +91,8 @@ class Character extends MovableObject {
     immune = false;
     health = 1000;
 
+    finslap_sound = new Audio('./assets/sounds/finslap.wav')
+
     constructor() {
         super()
         this.loadImage('./assets/imgs/1.Sharkie/1.IDLE/1.png')
@@ -141,6 +143,7 @@ class Character extends MovableObject {
             } else if (this.world.keyboard.FIN) {
                 this.immune = true;                
                 this.playAnimation(this.IMAGES_FINSLAP);
+                this.finslap_sound.play()
             } else if (this.world.keyboard.SHOOT) {
                 this.playAnimation(this.IMAGES_SHOOTING);
             } else if (this.world.keyboard.POISON) {
