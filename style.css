@@ -2,11 +2,17 @@
 
 /* Document & Container */
 
+@font-face {
+    font-family: 'Luckiest Guy';
+    src: url('./assets/imgs/5.Font/Luckiest_Guy/LuckiestGuy-Regular.ttf') format('truetype');
+}
+
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
     scroll-behavior: smooth;
+    font-family: 'Luckiest Guy', sans-serif;
 }
 
 html {
@@ -22,7 +28,19 @@ body {
     background-image: url('./assets/imgs/3. Background/background.jpeg');
     background-position: center;
     background-size: cover;
+    font-family: url('./assets/imgs/5.Font/Luckiest_Guy/LuckiestGuy-Regular.ttf')
+}
 
+button {
+    border-radius: 25px;
+    border: none;
+    box-shadow: none;
+    padding: 8px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: yellow;
 }
 
 canvas {
@@ -47,19 +65,41 @@ h5,
 h6 {
     margin-block-start: 0;
     margin-block-end: 0;
+    font-size: 56px;
+}
+
+p {
+    font-size: 20px;
 }
 
 .screen {
-        position: absolute;
-        width: 720px;
-        height: 480px;
-        background-color: blue;
-        border-radius: 10px;
-        box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
+    position: absolute;
+    width: 720px;
+    height: 480px;
+    background-color: blue;
+    border-radius: 10px;
+    box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.start {
+    background-image: url('./assets/imgs/3. Background/Mesa de trabajo 1.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.content {
+    position: relative;
+    top: 25%;
+    left: 20%;
+    gap: 16px;
+    display: flex;
+    flex-direction: column;
+    color: white;
 }
 
 .d-none {

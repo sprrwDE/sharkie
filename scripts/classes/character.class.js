@@ -58,7 +58,7 @@ class Character extends MovableObject {
         './assets/imgs/1.Sharkie/4.Attack/Bubble trap/For Whale/7.png',
         './assets/imgs/1.Sharkie/4.Attack/Bubble trap/For Whale/8.png'
     ]
-    IMAGES_POISONED = [ 
+    IMAGES_POISONED = [
         './assets/imgs/1.Sharkie/5.Hurt/1.Poisoned/1.png',
         './assets/imgs/1.Sharkie/5.Hurt/1.Poisoned/2.png',
         './assets/imgs/1.Sharkie/5.Hurt/1.Poisoned/3.png',
@@ -79,12 +79,13 @@ class Character extends MovableObject {
         './assets/imgs/1.Sharkie/6.dead/1.Poisoned/sin subir/DES 2_00010.png',
         './assets/imgs/1.Sharkie/6.dead/1.Poisoned/sin subir/DES 2_00011.png'
     ]
-    
+
     world;
     moving;
     moveSpeed = 1;
     // Hitbox
     hitboxColor = 'green';
+    // als objekt speichern
     offsetLeft = 40;
     offsetRight = 80;
     offsetTop = 90;
@@ -92,8 +93,8 @@ class Character extends MovableObject {
     health = 1000;
     // Finslap
     immune = false;
-    finslapActive = false; 
-    immuneDuration = 1000; 
+    finslapActive = false;
+    immuneDuration = 1000;
     finslap_sound = new Audio('./assets/sounds/finslap.wav')
 
     constructor() {
@@ -127,43 +128,51 @@ class Character extends MovableObject {
             }
             if (this.world.keyboard.DOWN && this.y < 300) {
                 this.moveDown()
-            } 
+            }
         })
 
         // sobald man rechts klickt kann man char nichtmehr steuern
-        // wie angriffs animationen während bewegen abspielen?
-            setInterval(() => {
-                this.moving = false;
-                this.slap = false;
-                if (this.isDead()) {
-                    this.playAnimation(this.IMAGES_DEAD);
-                    stopGame();
-                } else if (this.isHurt()) {
-                    this.playAnimation(this.IMAGES_POISONED);
-                } else if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT || this.world.keyboard.UP || this.world.keyboard.DOWN) {
-                    this.playAnimation(this.IMAGES_SWIM);
-                    this.moving = true;
-                } else if (this.world.keyboard.FIN && !this.finslapActive) { 
-                    this.activateFinslap();
-                } else if (this.world.keyboard.SHOOT) {
-                    this.playAnimation(this.IMAGES_SHOOTING);
-                } else if (this.world.keyboard.POISON) {
-                    this.playAnimation(this.IMAGES_POISONBUBBLE);
-                } else {
-                    this.playAnimation(this.IMAGES_IDLE);
-                }
-            }, 150);
-        }
+        setInterval(() => {
+            this.moving = false;
+            this.slap = false;
+            if (this.isDead()) {
+                this.playAnimation(this.IMAGES_DEAD);
+                stopGame();
+            } else if (this.isHurt()) {
+                this.playAnimation(this.IMAGES_POISONED);
+            } else if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT || this.world.keyboard.UP || this.world.keyboard.DOWN) {
+                this.playAnimation(this.IMAGES_SWIM);
+                this.moving = true;
+            } else {
+                this.playAnimation(this.IMAGES_IDLE);
+            }
+        }, 150);
+
+
+        setInterval(() => {
+            if (this.world.keyboard.FIN && !this.finslapActive) {
+                this.activateFinslap();
+            }
+            else if (this.world.keyboard.SHOOT) {
+                this.playAnimation(this.IMAGES_SHOOTING);
+            }
+            else if (this.world.keyboard.POISON) {
+                this.playAnimation(this.IMAGES_POISONBUBBLE);
+            } 
+        }, 150)
+    }
 
     activateFinslap() {
-        this.finslapActive = true;     
+        this.finslapActive = true;
         this.immune = true;
         this.playAnimation(this.IMAGES_FINSLAP);
         this.finslap_sound.play();
-        
+
         setTimeout(() => {
             this.immune = false;
             this.finslapActive = false;
+            this.currentImage = 0;
         }, this.immuneDuration);
     }
+
 }

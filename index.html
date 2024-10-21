@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="de">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,17 +9,20 @@
     <title>Kai der Hai</title>
 
 </head>
+
 <body>
-    <div class="screen" id="startscreen">
-        <h1>sharky</h1>
-        <button id="start" onclick="startGame(), init()">Starten</button>
-        <div>Move: WASD<br>Finslap: SPACE<br>Bubble: E<br>Poison Bubble: Q</div>
+    <div class="screen start" id="startscreen">
+        <div class="content">
+            <h1>sharky</h1>
+            <p>Move: WASD<br>Finslap: SPACE<br>Bubble: E<br>Poison Bubble: Q</p>
+            <button id="start" onclick="startGame(), init()">Starten</button>
+        </div>
     </div>
     <canvas id="canvas" width="720px" height="480px"></canvas>
-        <div class="screen d-none" id="endscreen">
-            <h1>Game Over</h1>
-            <button id="start" onclick="startGame(), init()">Restart</button>
-        </div>
+    <div class="screen d-none" id="endscreen">
+        <h1>Game Over</h1>
+        <button id="start" onclick="startGame(), init()">Restart</button>
+    </div>
     <script src="./scripts/classes/drawable_object.class.js"></script>
     <script src="./scripts/classes/movable_object.class.js"></script>
     <script src="./scripts/classes/statusbar.class.js"></script>
@@ -38,6 +42,7 @@
     <script src="./scripts/classes/keyboard.class.js"></script>
     <script src="main.js"></script>
 </body>
+
 </html>
 
 <!-- 
