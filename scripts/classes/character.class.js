@@ -148,7 +148,6 @@ class Character extends MovableObject {
             }
         }, 150);
 
-
         setInterval(() => {
             if (this.world.keyboard.FIN && !this.finslapActive) {
                 this.activateFinslap();

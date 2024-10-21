@@ -60,6 +60,7 @@ document.addEventListener('keyup', (event) => {
 });
 
 function startGame() {
+    createLevel()
     startContainer.classList.add('d-none')
     endContainer.classList.add('d-none');
     cvs.classList.remove('d-none');
