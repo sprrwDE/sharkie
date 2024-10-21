@@ -7,11 +7,15 @@ class DrawableObject {
     currentImage = 0;
     imgCache = {};
     mirror = false;
+    
     // Hitbox
-    offsetTop = 0;
-    offsetBottom = 0;
-    offsetLeft = 0;
-    offsetRight = 0;
+    offset = {
+        'left': 0,
+        'right': 0,
+        'top': 0,
+        'bottom': 0 
+    }
+
 
     loadImage(path) {
         this.img = new Image();
@@ -44,7 +48,7 @@ class DrawableObject {
             ctx.beginPath();
             ctx.lineWidth = '3';
             ctx.strokeStyle = this.hitboxColor;
-            ctx.rect(this.x + this.offsetLeft , this.y + this.offsetTop , this.width - this.offsetRight , this.height - this.offsetBottom);
+            ctx.rect(this.x + this.offset['left'] , this.y + this.offset['top'] , this.width - this.offset['right'] , this.height - this.offset['bottom']);
             ctx.stroke();
         }
     } 

@@ -16,10 +16,10 @@ class MovableObject extends DrawableObject {
     }
 
     isColliding(object) {
-        return (this.x + this.width - (this.offsetRight / 2)) >= object.x + object.offsetLeft && 
-            (this.x + (this.offsetLeft / 2)) <= (object.x + (object.width - object.offsetRight)) &&
-            (this.y + this.height - (this.offsetBottom / 3)) >= object.y + object.offsetTop &&
-            (this.y + (this.offsetTop)) <= (object.y + (object.height - object.offsetBottom))
+        return (this.x + this.width - (this.offset['right'] / 2)) >= object.x + object.offset['left'] && 
+            (this.x + (this.offset['left'] / 2)) <= (object.x + (object.width - object.offset['right'])) &&
+            (this.y + this.height - (this.offset.bottom / 3)) >= object.y + object.offset['top'] &&
+            (this.y + (this.offset['top'])) <= (object.y + (object.height - object.offset['bottom']))
     }
 
     getHit(hp) {

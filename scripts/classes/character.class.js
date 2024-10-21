@@ -85,7 +85,13 @@ class Character extends MovableObject {
     moveSpeed = 1;
     // Hitbox
     hitboxColor = 'green';
-    // als objekt speichern
+    offset = {
+        'left': 40,
+        'right': 80,
+        'top': 90,
+        'bottom': 130 
+    }
+    
     offsetLeft = 40;
     offsetRight = 80;
     offsetTop = 90;

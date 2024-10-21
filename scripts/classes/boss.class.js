@@ -27,6 +27,14 @@ class Endboss extends MovableObject {
         './assets/imgs/2.Enemy/3 Final Enemy/1.Introduce/9.png',
         './assets/imgs/2.Enemy/3 Final Enemy/1.Introduce/10.png',
     ];
+    offset = {
+        'left': 20,
+        'right': 20,
+        'top': 160,
+        'bottom': 240 
+    }
+
+
     contact = false
 
     constructor() {
