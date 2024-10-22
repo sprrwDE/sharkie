@@ -130,7 +130,13 @@ p {
     left: 50px;
 }
 
-.controls {
+svg {
     height: 40px;
     width: 40px;
+    cursor: pointer;
+    fill: white;
+}
+
+svg:hover {
+    fill: yellow;
 }
