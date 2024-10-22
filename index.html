@@ -13,15 +13,23 @@
 <body>
     <div class="screen start" id="startscreen">
         <div class="content">
+            <img class="controls" src="./assets/imgs/favicon.png"  onclick="toggleInfoBox()"></img>
             <h1>Kai der Hai</h1>
-            <p>Move: WASD<br>Finslap: SPACE<br>Bubble: E<br>Poison Bubble: Q</p>
             <button id="start" onclick="startGame(), init()">Starten</button>
+            <div class="infos"> 
+                <a href="./datenschutzerklaerung.html">Datenschutzerklärung</a>
+                <a href="./impressum.html">Impressum</a>
+            </div>
         </div>
     </div>
     <canvas id="canvas" width="720px" height="480px"></canvas>
     <div class="screen d-none" id="endscreen">
         <h1>Game Over</h1>
         <button id="start" onclick="startGame(), init()">Restart</button>
+    </div>
+    <div class="screen ctrls  d-none" id="infobox">
+        <img class="controls" src="./assets/imgs/favicon.png"  onclick="toggleInfoBox()"></img>
+        <p>Move: WASD<br>Finslap: SPACE<br>Bubble: E<br>Poison Bubble: Q</p>
     </div>
     <script src="./scripts/classes/drawable_object.class.js"></script>
     <script src="./scripts/classes/movable_object.class.js"></script>

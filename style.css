@@ -92,6 +92,16 @@ p {
     background-size: cover;
 }
 
+.infos {
+    display: flex;
+    gap: 20px;
+}
+
+.infos a:hover {
+    color: yellow;
+    cursor: pointer;
+}
+
 .content {
     position: relative;
     top: 25%;
@@ -104,4 +114,23 @@ p {
 
 .d-none {
     display: none !important;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+.icon {
+    height: 40px;
+    width: 40px;
+    position: fixed;
+    top: 50px;
+    left: 50px;
+}
+
+.controls {
+    height: 40px;
+    width: 40px;
 }
