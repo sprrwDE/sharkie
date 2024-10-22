@@ -10,8 +10,8 @@ class World {
     bubbles = []
     collectedBottles = 0;
     collectedCoins = 0;
-    collectables = new Statusbar(50, 20, 200, 60);
-    poisonbar = new Statusbar(50, 120, 200, 60);
+    // collectables = new Statusbar(50, 20, 200, 60);
+    // poisonbar = new Statusbar(50, 120, 200, 60);
 
     constructor(canvas) {
         this.ctx = canvas.getContext('2d');
@@ -84,6 +84,7 @@ class World {
             if (this.character.isColliding(coin)) {
                 let i = this.level.coins.indexOf(coin)
                 this.level.coins.splice(i, 1)
+                coin.coin_sound.play()
                 this.collectedCoins++
                 console.log(this.collectedCoins)
                 // this.statusbar.setPercentage(this.character.health) -> erhöhen
@@ -96,6 +97,7 @@ class World {
             if (this.character.isColliding(bottle)) {
                 let i = this.level.poison.indexOf(bottle)
                 this.level.poison.splice(i, 1)
+                bottle.bottle_sound.play()
                 this.collectedBottles++
                 // this.statusbar.setPercentage(this.character.health) -> erhöhen
             }
@@ -112,7 +114,7 @@ class World {
         }
     }
 
-    checkPoisonBubble() { // Keyboard event erstellen, klasse anlegen, bei run ausführen
+    checkPoisonBubble() { 
         if (this.keyboard.POISON) {
             let bubble = new Bubble(this.character.x, this.character.y, this.character.width, this.character.height, this.character.mirror);
             this.bubbles.push(bubble);

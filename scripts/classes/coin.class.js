@@ -3,8 +3,10 @@ class Coin extends MovableObject {
         './assets/imgs/4. Marcadores/1. Coins/1.png',
         './assets/imgs/4. Marcadores/1. Coins/2.png',
         './assets/imgs/4. Marcadores/1. Coins/3.png',
-        './assets/imgs/4. Marcadores/1. Coins/4.png',
+        './assets/imgs/4. Marcadores/1. Coins/4.png'
     ]
+    coin_sound = new Audio('./assets/sounds/finslap.wav')
+
     constructor(x, y) {
         super();
         this.loadImages(this.IMAGES_COIN);

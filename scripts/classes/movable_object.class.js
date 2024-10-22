@@ -18,7 +18,7 @@ class MovableObject extends DrawableObject {
     isColliding(object) {
         return (this.x + this.width - (this.offset['right'] / 2)) >= object.x + object.offset['left'] && 
             (this.x + (this.offset['left'] / 2)) <= (object.x + (object.width - object.offset['right'])) &&
-            (this.y + this.height - (this.offset.bottom / 3)) >= object.y + object.offset['top'] &&
+            (this.y + this.height - (this.offset['bottom'] / 3)) >= object.y + object.offset['top'] &&
             (this.y + (this.offset['top'])) <= (object.y + (object.height - object.offset['bottom']))
     }
 

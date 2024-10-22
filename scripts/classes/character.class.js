@@ -91,12 +91,6 @@ class Character extends MovableObject {
         'top': 90,
         'bottom': 130 
     }
-    
-    offsetLeft = 40;
-    offsetRight = 80;
-    offsetTop = 90;
-    offsetBottom = 130;
-    health = 1000;
     // Finslap
     immune = false;
     finslapActive = false;

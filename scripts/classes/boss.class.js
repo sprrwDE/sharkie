@@ -74,7 +74,6 @@ class Endboss extends MovableObject {
     };    */
 
     animate() {
-        let i = 0;
         setInterval(()=> {
                 this.playAnimation(this.IMAGES_SWIMMING);
             }, 180);
