@@ -102,16 +102,6 @@ class World {
         this.level.enemies.splice(i, 1)
     }
 
-    checkBubbleHit() {
-        this.bubbles.forEach((bubble) => {
-            this.level.enemies.forEach((enemy) => {
-                if (bubble.isColliding(enemy)) {
-                    this.killJellyfish(enemy)
-                }
-            })
-        })
-    }
-
     checkBubbleThrow() {
         if (this.keyboard.SHOOT) {
             let bubble = new Bubble(this.character.x, this.character.y, this.character.width, this.character.height, this.character.mirror, './assets/imgs/1.Sharkie/4.Attack/Bubble trap/Bubble.png');
@@ -122,9 +112,22 @@ class World {
         }
     }
 
-    killJellyfish(enemy) {
+    checkBubbleHit() {
+        this.bubbles.forEach((bubble) => {
+            this.level.enemies.forEach((enemy) => {
+                if (bubble.isColliding(enemy)) {
+                    this.killJellyfish(enemy)
+
+                }
+            })
+        })
+    }
+
+    killJellyfish(enemy, bubble) {
         if (enemy.type == 'jellyfish' && !enemy.hit) {
             enemy.hit = true;
+            let n = this.bubbles.indexOf(bubble)
+            this.bubbles.splice(n, 1)
             setTimeout(() => {
                 let i = this.level.enemies.indexOf(enemy)
                 this.level.enemies.splice(i, 1)
