@@ -65,6 +65,11 @@ class Character extends MovableObject {
         './assets/imgs/1.Sharkie/5.Hurt/1.Poisoned/4.png',
         './assets/imgs/1.Sharkie/5.Hurt/1.Poisoned/5.png'
     ]
+    IMAGES_SHOCK = [
+        './assets/imgs/1.Sharkie/5.Hurt/2.Electric shock/1.png',
+        './assets/imgs/1.Sharkie/5.Hurt/2.Electric shock/2.png',
+        './assets/imgs/1.Sharkie/5.Hurt/2.Electric shock/3.png',
+    ]
     IMAGES_DEAD = [ // Change to specific death
         './assets/imgs/1.Sharkie/6.dead/1.Poisoned/sin subir/DES 2_00000.png',
         './assets/imgs/1.Sharkie/6.dead/1.Poisoned/sin subir/DES 2_00001.png',
@@ -89,7 +94,7 @@ class Character extends MovableObject {
         'left': 40,
         'right': 80,
         'top': 90,
-        'bottom': 130 
+        'bottom': 130
     }
     // Finslap
     immune = false;
@@ -107,12 +112,13 @@ class Character extends MovableObject {
         this.loadImages(this.IMAGES_POISONBUBBLE);
         this.loadImages(this.IMAGES_POISONED);
         this.loadImages(this.IMAGES_DEAD);
+        this.loadImages(this.IMAGES_SHOCK);
         this.animate();
     }
 
     checkEnemyType() {
         this.world.level.enemies.forEach((enemy) => {
-            if (this.isNear(enemy)) {  
+            if (this.isNear(enemy)) {
                 if (enemy.type === 'pufferfish') {
                     return 'pufferfish'
                 } else if (enemy.type === 'jellyfish') {
@@ -127,7 +133,7 @@ class Character extends MovableObject {
     isNear(enemy) {
         const distanceX = Math.abs(this.x - enemy.x);
         const distanceY = Math.abs(this.y - enemy.y);
-        return distanceX < 10 && distanceY < 20; 
+        return distanceX < 10 && distanceY < 20;
     }
 
     animate() {
@@ -160,6 +166,8 @@ class Character extends MovableObject {
                 stopGame();
             } else if (this.isHurt() && this.world.enemyType === 'pufferfish') {
                 this.playAnimation(this.IMAGES_POISONED);
+            } else if (this.isHurt() && this.world.enemyType === 'jellyfish') {
+                this.playAnimation(this.IMAGES_SHOCK);
             } else if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT || this.world.keyboard.UP || this.world.keyboard.DOWN) {
                 this.playAnimation(this.IMAGES_SWIM);
                 this.moving = true;
@@ -177,7 +185,7 @@ class Character extends MovableObject {
             }
             else if (this.world.keyboard.POISON) {
                 this.playAnimation(this.IMAGES_POISONBUBBLE);
-            } 
+            }
         }, 150)
     }
 
