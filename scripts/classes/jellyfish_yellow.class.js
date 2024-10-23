@@ -13,6 +13,12 @@ class JellyFishYellow extends MovableObject {
         './assets/imgs/2.Enemy/2 Jelly fish/S｣per dangerous/Green 3.png',
         './assets/imgs/2.Enemy/2 Jelly fish/S｣per dangerous/Green 4.png'
     ]
+    IMAGES_HIT = [
+        './assets/imgs/2.Enemy/2 Jelly fish/Dead/Yellow/y1.png',
+        './assets/imgs/2.Enemy/2 Jelly fish/Dead/Yellow/y2.png',
+        './assets/imgs/2.Enemy/2 Jelly fish/Dead/Yellow/y3.png',
+        './assets/imgs/2.Enemy/2 Jelly fish/Dead/Yellow/y4.png'
+    ]
     type = 'jellyfish'
     danger = false;
     hit = false;
@@ -23,6 +29,7 @@ class JellyFishYellow extends MovableObject {
         this.setEnemyCharacteristics();
         this.loadImages(this.IMAGES_SWIMMING);
         this.loadImages(this.IMAGES_DANGER);
+        this.loadImages(this.IMAGES_HIT);
         this.checkDanger();
         this.animate();
     }
@@ -35,9 +42,12 @@ class JellyFishYellow extends MovableObject {
 
     animate() {
         setInterval(() => {
-            if (this.danger) {
+            if (this.hit) {
+                this.playAnimation(this.IMAGES_HIT);
+            } else if (this.danger) {
                 this.playAnimation(this.IMAGES_DANGER);
-            } else {
+            } 
+            else {
                 this.playAnimation(this.IMAGES_SWIMMING);
             }
         }, 200);

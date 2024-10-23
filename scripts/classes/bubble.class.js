@@ -1,6 +1,7 @@
 class Bubble extends MovableObject {
     gravitySpeed = 0.5;
     acceleration = 0.3;
+    hitboxColor = 'blue'
 
     constructor(x, y, width, height, mirror, image) {
         super();

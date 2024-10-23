@@ -44,7 +44,8 @@ class DrawableObject {
             this instanceof PufferFishGreen ||
             this instanceof JellyFishYellow ||
             this instanceof JellyFishPurple ||
-            this instanceof Endboss) {
+            this instanceof Endboss || 
+            this instanceof Bubble) {
             ctx.beginPath();
             ctx.lineWidth = '3';
             ctx.strokeStyle = this.hitboxColor;
