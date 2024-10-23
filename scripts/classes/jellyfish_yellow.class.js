@@ -15,6 +15,7 @@ class JellyFishYellow extends MovableObject {
     ]
     type = 'jellyfish'
     danger = false;
+    hit = false;
 
     constructor() {
         super();

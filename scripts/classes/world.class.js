@@ -81,10 +81,13 @@ class World {
         })
     }
 
-    hitByBubble(enemy) {
-        if (enemy.type == 'jellyfish') {
-            let i = this.level.enemies.indexOf(enemy)
-            this.level.enemies.splice(i, 1)
+    checkEnemyType(enemy) {
+        if (enemy.type === 'pufferfish') {
+            return 'pufferfish'
+        } else if (enemy.type === 'jellyfish') {
+            return 'jellyfish'
+        } else if (enemy.type === 'endboss') {
+            return 'endboss'
         }
     }
 
@@ -99,45 +102,9 @@ class World {
         this.bubbles.forEach((bubble) => {
             this.level.enemies.forEach((enemy) => {
                 if (bubble.isColliding(enemy)) {
-                    this.enemyType = this.checkEnemyType(enemy)
-                    this.hitByBubble(enemy)
+                    this.killJellyfish(enemy)
                 }
             })
-         })
-    }
-
-    checkEnemyType(enemy) {
-        if (enemy.type === 'pufferfish') {
-            return 'pufferfish'
-        } else if (enemy.type === 'jellyfish') {
-            return 'jellyfish'
-        } else if (enemy.type === 'endboss') {
-            return 'endboss'
-        }
-    }
-
-    collectBottle() {
-        this.level.coins.forEach((coin) => {
-            if (this.character.isColliding(coin)) {
-                let i = this.level.coins.indexOf(coin)
-                this.level.coins.splice(i, 1)
-                coin.coin_sound.play()
-                this.collectedCoins++
-                console.log(this.collectedCoins)
-                // this.statusbar.setPercentage(this.character.health) -> erhöhen
-            }
-        })
-    }
-
-    collectCoin() {
-        this.level.poison.forEach((bottle) => {
-            if (this.character.isColliding(bottle)) {
-                let i = this.level.poison.indexOf(bottle)
-                this.level.poison.splice(i, 1)
-                bottle.bottle_sound.play()
-                this.collectedBottles++
-                // this.statusbar.setPercentage(this.character.health) -> erhöhen
-            }
         })
     }
 
@@ -152,45 +119,72 @@ class World {
         }
     }
 
-
-
-
-
-    checkPoisonBubble() {
-        if (this.keyboard.POISON) {
-            let bubble = new Bubble(this.character.x, this.character.y, this.character.width, this.character.height, this.character.mirror);
-            this.bubbles.push(bubble);
+    killJellyfish(enemy) {
+        if (enemy.type == 'jellyfish') {
+            enemy.hit = true;
+            let i = this.level.enemies.indexOf(enemy)
+            setTimeout(() => {
+                this.level.enemies.splice(i, 1)
+            }, 500)
         }
     }
 
-    addObjectToMap(objects) {
-        objects.forEach(object => {
-            this.renderToCanvas(object)
-        });
-    };
-
-    renderToCanvas(object) {
-        if (object.mirror) {
-            this.mirror(object);
+collectBottle() {
+    this.level.coins.forEach((coin) => {
+        if (this.character.isColliding(coin)) {
+            let i = this.level.coins.indexOf(coin)
+            this.level.coins.splice(i, 1)
+            coin.coin_sound.play()
+            this.collectedCoins++
+            console.log(this.collectedCoins)
+            // this.statusbar.setPercentage(this.character.health) -> erhöhen
         }
+    })
+}
 
-        object.draw(this.ctx)
-        object.hitbox(this.ctx)
-
-        if (object.mirror) {
-            this.restoreDirection(object);
+collectCoin() {
+    this.level.poison.forEach((bottle) => {
+        if (this.character.isColliding(bottle)) {
+            let i = this.level.poison.indexOf(bottle)
+            this.level.poison.splice(i, 1)
+            bottle.bottle_sound.play()
+            this.collectedBottles++
+            // this.statusbar.setPercentage(this.character.health) -> erhöhen
         }
-    };
+    })
+}
 
-    mirror(object) {
-        this.ctx.save();
-        this.ctx.translate(object.width, 0);
-        this.ctx.scale(-1, 1);
-        object.x = object.x * -1;
+
+
+
+addObjectToMap(objects) {
+    objects.forEach(object => {
+        this.renderToCanvas(object)
+    });
+};
+
+renderToCanvas(object) {
+    if (object.mirror) {
+        this.mirror(object);
     }
 
-    restoreDirection(object) {
-        object.x = object.x * -1;
-        this.ctx.restore();
+    object.draw(this.ctx)
+    object.hitbox(this.ctx)
+
+    if (object.mirror) {
+        this.restoreDirection(object);
     }
+};
+
+mirror(object) {
+    this.ctx.save();
+    this.ctx.translate(object.width, 0);
+    this.ctx.scale(-1, 1);
+    object.x = object.x * -1;
+}
+
+restoreDirection(object) {
+    object.x = object.x * -1;
+    this.ctx.restore();
+}
 }
