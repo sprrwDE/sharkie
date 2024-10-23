@@ -76,16 +76,38 @@ class World {
                 this.statusbar.setPercentage(this.character.health)
                 this.enemyType = this.checkEnemyType(enemy)
             } else if ((this.character.isColliding(enemy) && this.character.immune)) {
-                // funktion in movableObjekt definieren, animation abspielen, enemy.kill(), eventuell super klasse erstellen /// Instance of Pufferfish
-                let i = this.level.enemies.indexOf(enemy)
-                this.level.enemies.splice(i, 1)
-                this.enemyType = this.checkEnemyType(enemy)
+                this.hitByFinslap(enemy);
             }
         })
     }
 
+    hitByBubble(enemy) {
+        if (enemy.type == 'jellyfish') {
+            let i = this.level.enemies.indexOf(enemy)
+            this.level.enemies.splice(i, 1)
+        }
+    }
+
+    hitByFinslap(enemy) {
+        // funktion in movableObjekt definieren, animation abspielen, enemy.kill(), eventuell super klasse erstellen /// Instance of Pufferfish
+        let i = this.level.enemies.indexOf(enemy)
+        this.enemyType = this.checkEnemyType(enemy)
+        this.level.enemies.splice(i, 1)
+    }
+
+    checkBubbleHit() {
+        this.bubbles.forEach((bubble) => {
+            this.level.enemies.forEach((enemy) => {
+                if (bubble.isColliding(enemy)) {
+                    this.enemyType = this.checkEnemyType(enemy)
+                    this.hitByBubble(enemy)
+                }
+            })
+         })
+    }
+
     checkEnemyType(enemy) {
-        if(enemy.type === 'pufferfish') {
+        if (enemy.type === 'pufferfish') {
             return 'pufferfish'
         } else if (enemy.type === 'jellyfish') {
             return 'jellyfish'
@@ -123,13 +145,18 @@ class World {
         if (this.keyboard.SHOOT) {
             let bubble = new Bubble(this.character.x, this.character.y, this.character.width, this.character.height, this.character.mirror, './assets/imgs/1.Sharkie/4.Attack/Bubble trap/Bubble.png');
             this.bubbles.push(bubble);
+            this.checkBubbleHit(bubble)
         } if (this.keyboard.POISON) {
             let poison = new Bubble(this.character.x, this.character.y, this.character.width, this.character.height, this.character.mirror, './assets/imgs/1.Sharkie/4.Attack/Bubble trap/Poisoned Bubble.png');
             this.bubbles.push(poison);
         }
     }
 
-    checkPoisonBubble() { 
+
+
+
+
+    checkPoisonBubble() {
         if (this.keyboard.POISON) {
             let bubble = new Bubble(this.character.x, this.character.y, this.character.width, this.character.height, this.character.mirror);
             this.bubbles.push(bubble);

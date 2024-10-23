@@ -137,7 +137,6 @@ class Character extends MovableObject {
             }
         })
 
-        // sobald man rechts klickt kann man char nichtmehr steuern
         setInterval(() => {
             this.moving = false;
             this.slap = false;
@@ -153,7 +152,7 @@ class Character extends MovableObject {
                 this.moving = true;
             } else {
                 this.playAnimation(this.IMAGES_IDLE);
-            }
+            } // wie snooze animation?
         }, 150);
 
         setInterval(() => {
