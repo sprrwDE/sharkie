@@ -8,24 +8,62 @@ class PufferFishGreen extends MovableObject {
         './assets/imgs/2.Enemy/1.Puffer fish (3 color options)/1.Swim/1.swim4.png',
         './assets/imgs/2.Enemy/1.Puffer fish (3 color options)/1.Swim/1.swim5.png'
     ]
+    IMAGES_TRANSITION = [
+        './assets/imgs/2.Enemy/1.Puffer fish (3 color options)/2.transition/1.transition1.png',
+        './assets/imgs/2.Enemy/1.Puffer fish (3 color options)/2.transition/1.transition2.png',
+        './assets/imgs/2.Enemy/1.Puffer fish (3 color options)/2.transition/1.transition3.png',
+        './assets/imgs/2.Enemy/1.Puffer fish (3 color options)/2.transition/1.transition4.png',
+        './assets/imgs/2.Enemy/1.Puffer fish (3 color options)/2.transition/1.transition5.png'
+    ]
+    /* IMAGES_TRANSITION_REVERSE = [
+        './assets/imgs/2.Enemy/1.Puffer fish (3 color options)/2.transition/1.transition5.png',
+        './assets/imgs/2.Enemy/1.Puffer fish (3 color options)/2.transition/1.transition4.png',
+        './assets/imgs/2.Enemy/1.Puffer fish (3 color options)/2.transition/1.transition3.png',
+        './assets/imgs/2.Enemy/1.Puffer fish (3 color options)/2.transition/1.transition2.png',
+        './assets/imgs/2.Enemy/1.Puffer fish (3 color options)/2.transition/1.transition1.png'
+    ] */
+    IMAGES_DANGER = [
+        './assets/imgs/2.Enemy/1.Puffer fish (3 color options)/3.Bubbleeswim/1.bubbleswim1.png',
+        './assets/imgs/2.Enemy/1.Puffer fish (3 color options)/3.Bubbleeswim/1.bubbleswim2.png',
+        './assets/imgs/2.Enemy/1.Puffer fish (3 color options)/3.Bubbleeswim/1.bubbleswim3.png',
+        './assets/imgs/2.Enemy/1.Puffer fish (3 color options)/3.Bubbleeswim/1.bubbleswim4.png',
+        './assets/imgs/2.Enemy/1.Puffer fish (3 color options)/3.Bubbleeswim/1.bubbleswim5.png'
+    ]
     offset = {
         'left': 0,
         'right': 0,
         'top': 0,
         'bottom': 20 
     }
+    type = 'pufferfish'
+    danger = false; // wenn danger darf man nicht finslappen, transition einfügen
     
     constructor() {
         super()
         this.loadImage('./assets/imgs/2.Enemy/1.Puffer fish (3 color options)/1.Swim/1.swim1.png')
         this.setEnemyCharacteristics()
         this.loadImages(this.IMAGES_SWIMMING);
+        this.loadImages(this.IMAGES_TRANSITION);
+        // this.loadImages(this.IMAGES_TRANSITION_REVERSE);
+        this.loadImages(this.IMAGES_DANGER);
+        this.checkDanger()
         this.animate();
     }
 
+    checkDanger() {
+        setInterval(() => {
+            this.danger = !this.danger;
+        }, 5000 + (3000 * Math.random()));
+    }
+
     animate() {
-        setInterval( () => {
-            this.playAnimation(this.IMAGES_SWIMMING)
+        setInterval(() => {
+            if (this.danger) {
+                this.playAnimation(this.IMAGES_TRANSITION);
+                this.playAnimation(this.IMAGES_DANGER);
+            } else {
+                this.playAnimation(this.IMAGES_SWIMMING);
+            }
         }, 200);
 
         setInterval(() => {

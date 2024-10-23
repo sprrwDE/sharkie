@@ -14,7 +14,7 @@ class JellyFishPurple extends MovableObject {
         './assets/imgs/2.Enemy/2 Jelly fish/S｣per dangerous/Pink 3.png',
         './assets/imgs/2.Enemy/2 Jelly fish/S｣per dangerous/Pink 4.png'
     ];
-
+    type = 'jellyfish'
     danger = false;
 
     constructor() {
@@ -30,7 +30,7 @@ class JellyFishPurple extends MovableObject {
     checkDanger() {
         setInterval(() => {
             this.danger = !this.danger;
-        }, 5000);
+        }, 5000 + (5000 * Math.random()));
     }
 
     animate() {
