@@ -6,8 +6,8 @@ class World {
     camera_x = -2;
     character = new Character();
     level = level_1;
-    statusbar = new Statusbar(50, 20, 200, 60);
-    bossbar = new Statusbar(480, 20, 200, 60)
+    statusbar = new Statusbar(50, 20, 200, 60, 'char');
+    bossbar = new Statusbar(480, 20, 200, 60, 'boss')
     bubbles = []
     collectedBottles = 0;
     collectedCoins = 0;
