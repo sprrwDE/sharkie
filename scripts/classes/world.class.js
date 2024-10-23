@@ -123,71 +123,71 @@ class World {
     }
 
     killJellyfish(enemy) {
-        if (enemy.type == 'jellyfish') {
+        if (enemy.type == 'jellyfish' && !enemy.hit) {
             enemy.hit = true;
-            let i = this.level.enemies.indexOf(enemy)
             setTimeout(() => {
+                let i = this.level.enemies.indexOf(enemy)
                 this.level.enemies.splice(i, 1)
             }, 1000)
         }
     }
 
-collectBottle() {
-    this.level.coins.forEach((coin) => {
-        if (this.character.isColliding(coin)) {
-            let i = this.level.coins.indexOf(coin)
-            this.level.coins.splice(i, 1)
-            coin.coin_sound.play()
-            this.collectedCoins++
-            console.log(this.collectedCoins)
-            // this.statusbar.setPercentage(this.character.health) -> erhöhen
-        }
-    })
-}
-
-collectCoin() {
-    this.level.poison.forEach((bottle) => {
-        if (this.character.isColliding(bottle)) {
-            let i = this.level.poison.indexOf(bottle)
-            this.level.poison.splice(i, 1)
-            bottle.bottle_sound.play()
-            this.collectedBottles++
-            // this.statusbar.setPercentage(this.character.health) -> erhöhen
-        }
-    })
-}
-
-
-
-
-addObjectToMap(objects) {
-    objects.forEach(object => {
-        this.renderToCanvas(object)
-    });
-};
-
-renderToCanvas(object) {
-    if (object.mirror) {
-        this.mirror(object);
+    collectBottle() {
+        this.level.coins.forEach((coin) => {
+            if (this.character.isColliding(coin)) {
+                let i = this.level.coins.indexOf(coin)
+                this.level.coins.splice(i, 1)
+                coin.coin_sound.play()
+                this.collectedCoins++
+                console.log(this.collectedCoins)
+                // this.statusbar.setPercentage(this.character.health) -> erhöhen
+            }
+        })
     }
 
-    object.draw(this.ctx)
-    object.hitbox(this.ctx)
-
-    if (object.mirror) {
-        this.restoreDirection(object);
+    collectCoin() {
+        this.level.poison.forEach((bottle) => {
+            if (this.character.isColliding(bottle)) {
+                let i = this.level.poison.indexOf(bottle)
+                this.level.poison.splice(i, 1)
+                bottle.bottle_sound.play()
+                this.collectedBottles++
+                // this.statusbar.setPercentage(this.character.health) -> erhöhen
+            }
+        })
     }
-};
 
-mirror(object) {
-    this.ctx.save();
-    this.ctx.translate(object.width, 0);
-    this.ctx.scale(-1, 1);
-    object.x = object.x * -1;
-}
 
-restoreDirection(object) {
-    object.x = object.x * -1;
-    this.ctx.restore();
-}
+
+
+    addObjectToMap(objects) {
+        objects.forEach(object => {
+            this.renderToCanvas(object)
+        });
+    };
+
+    renderToCanvas(object) {
+        if (object.mirror) {
+            this.mirror(object);
+        }
+
+        object.draw(this.ctx)
+        object.hitbox(this.ctx)
+
+        if (object.mirror) {
+            this.restoreDirection(object);
+        }
+    };
+
+    mirror(object) {
+        this.ctx.save();
+        this.ctx.translate(object.width, 0);
+        this.ctx.scale(-1, 1);
+        object.x = object.x * -1;
+    }
+
+    restoreDirection(object) {
+        object.x = object.x * -1;
+        this.ctx.restore();
+    }
 }
