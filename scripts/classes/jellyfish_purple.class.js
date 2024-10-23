@@ -16,6 +16,7 @@ class JellyFishPurple extends MovableObject {
     ];
     type = 'jellyfish'
     danger = false;
+    pufferfish = false
 
     constructor() {
         super();

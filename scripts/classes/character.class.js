@@ -110,6 +110,26 @@ class Character extends MovableObject {
         this.animate();
     }
 
+    checkEnemyType() {
+        this.world.level.enemies.forEach((enemy) => {
+            if (this.isNear(enemy)) {  
+                if (enemy.type === 'pufferfish') {
+                    return 'pufferfish'
+                } else if (enemy.type === 'jellyfish') {
+                    return 'jellyfish'
+                } else if (enemy.type === 'endboss') {
+                    return 'endboss'
+                }
+            }
+        });
+    }
+
+    isNear(enemy) {
+        const distanceX = Math.abs(this.x - enemy.x);
+        const distanceY = Math.abs(this.y - enemy.y);
+        return distanceX < 10 && distanceY < 20; 
+    }
+
     animate() {
 
         setInterval(() => {
@@ -138,7 +158,7 @@ class Character extends MovableObject {
             if (this.isDead()) {
                 this.playAnimation(this.IMAGES_DEAD);
                 stopGame();
-            } else if (this.isHurt()) {
+            } else if (this.isHurt() && this.world.enemyType === 'pufferfish') {
                 this.playAnimation(this.IMAGES_POISONED);
             } else if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT || this.world.keyboard.UP || this.world.keyboard.DOWN) {
                 this.playAnimation(this.IMAGES_SWIM);

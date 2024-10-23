@@ -33,7 +33,7 @@ class Endboss extends MovableObject {
         'top': 160,
         'bottom': 240 
     }
-
+    type = 'endboss'
 
     contact = false
 

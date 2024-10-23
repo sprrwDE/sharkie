@@ -11,6 +11,7 @@ class World {
     bubbles = []
     collectedBottles = 0;
     collectedCoins = 0;
+    enemyType;
     // collectables = new Statusbar(50, 20, 200, 60);
     // poisonbar = new Statusbar(50, 120, 200, 60);
 
@@ -73,12 +74,24 @@ class World {
             if (this.character.isColliding(enemy) && !this.character.immune) {
                 this.character.getHit(5);
                 this.statusbar.setPercentage(this.character.health)
+                this.enemyType = this.checkEnemyType(enemy)
             } else if ((this.character.isColliding(enemy) && this.character.immune)) {
                 // funktion in movableObjekt definieren, animation abspielen, enemy.kill(), eventuell super klasse erstellen /// Instance of Pufferfish
                 let i = this.level.enemies.indexOf(enemy)
                 this.level.enemies.splice(i, 1)
+                this.enemyType = this.checkEnemyType(enemy)
             }
         })
+    }
+
+    checkEnemyType(enemy) {
+        if(enemy.type === 'pufferfish') {
+            return 'pufferfish'
+        } else if (enemy.type === 'jellyfish') {
+            return 'jellyfish'
+        } else if (enemy.type === 'endboss') {
+            return 'endboss'
+        }
     }
 
     collectBottle() {
