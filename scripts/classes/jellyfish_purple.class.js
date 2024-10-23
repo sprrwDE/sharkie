@@ -9,10 +9,10 @@ class JellyFishPurple extends MovableObject {
     ];
 
     IMAGES_DANGER = [
-        './assets/imgs/2.Enemy/2 Jelly fish/Super dangerous/Pink 1.png',
-        './assets/imgs/2.Enemy/2 Jelly fish/Super dangerous/Pink 2.png',
-        './assets/imgs/2.Enemy/2 Jelly fish/Super dangerous/Pink 3.png',
-        './assets/imgs/2.Enemy/2 Jelly fish/Super dangerous/Pink 4.png',
+        './assets/imgs/2.Enemy/2 Jelly fish/S｣per dangerous/Pink 1.png',
+        './assets/imgs/2.Enemy/2 Jelly fish/S｣per dangerous/Pink 2.png',
+        './assets/imgs/2.Enemy/2 Jelly fish/S｣per dangerous/Pink 3.png',
+        './assets/imgs/2.Enemy/2 Jelly fish/S｣per dangerous/Pink 4.png'
     ];
 
     danger = false;
@@ -29,7 +29,7 @@ class JellyFishPurple extends MovableObject {
 
     checkDanger() {
         setInterval(() => {
-            this.danger = !this.danger; // Wechsle den Zustand von Gefahr alle 5 Sekunden
+            this.danger = !this.danger;
         }, 5000);
     }
 
