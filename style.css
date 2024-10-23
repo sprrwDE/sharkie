@@ -53,6 +53,7 @@ canvas {
 
 a {
     text-decoration: none;
+    color: white;
 }
 
 /* Headlines */
@@ -109,6 +110,7 @@ p {
     gap: 16px;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     color: white;
 }
 

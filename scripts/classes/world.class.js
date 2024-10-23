@@ -7,6 +7,7 @@ class World {
     character = new Character();
     level = level_1;
     statusbar = new Statusbar(50, 20, 200, 60);
+    bossbar = new Statusbar(480, 20, 200, 60)
     bubbles = []
     collectedBottles = 0;
     collectedCoins = 0;
@@ -40,6 +41,7 @@ class World {
         this.ctx.translate(-this.camera_x, 0); // camera forward
         // fixed
         this.renderToCanvas(this.statusbar);
+        this.renderToCanvas(this.bossbar);
         this.drawText(this.collectedBottles, 120, 120);
         this.drawText(this.collectedCoins, 120, 160);
 
