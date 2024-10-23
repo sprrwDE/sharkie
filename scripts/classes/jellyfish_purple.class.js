@@ -7,6 +7,9 @@ class JellyFishPurple extends MovableObject {
         './assets/imgs/2.Enemy/2 Jelly fish/Regular damage/Lila 3.png',
         './assets/imgs/2.Enemy/2 Jelly fish/Regular damage/Lila 4.png'
     ]
+    IMAGES_DANGER = [
+        
+    ]
 
     constructor(){
         super()
