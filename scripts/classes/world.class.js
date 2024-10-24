@@ -108,13 +108,23 @@ class World {
 
     checkBubbleThrow() {
         if (this.keyboard.SHOOT) {
-            let bubble = new Bubble(this.character.x, this.character.y, this.character.width, this.character.height, this.character.mirror, './assets/imgs/1.Sharkie/4.Attack/Bubble trap/Bubble.png');
-            this.bubbles.push(bubble);
+            this.throwAirBubble()
         } if (this.keyboard.POISON && this.collectedBottles > 0) {
-            let poison = new Bubble(this.character.x, this.character.y, this.character.width, this.character.height, this.character.mirror, './assets/imgs/1.Sharkie/4.Attack/Bubble trap/Poisoned Bubble.png');
-            this.bubbles.push(poison);
-            this.collectedBottles--
+            this.throwToxicBubble()
         }
+    }
+
+    throwAirBubble() {
+        let air = './assets/imgs/1.Sharkie/4.Attack/Bubble trap/Bubble.png'
+        let bubble = new Bubble(this.character.x, this.character.y, this.character.width, this.character.height, this.character.mirror, air);
+        this.bubbles.push(bubble);
+    }
+
+    throwToxicBubble() {
+        let toxic = './assets/imgs/1.Sharkie/4.Attack/Bubble trap/Poisoned Bubble.png'
+        let poison = new Bubble(this.character.x, this.character.y, this.character.width, this.character.height, this.character.mirror, toxic);
+        this.bubbles.push(poison);
+        this.collectedBottles --
     }
 
     checkBubbleHit() {
@@ -157,8 +167,11 @@ class World {
             this.bossbar.setPercentage(boss.health)
         } 
         if (boss.health <= 0) {
-            this.level.enemies.splice((this.level.enemies.length - 1), 1)
-            showEndScreen() // eventuell win screen hinzufügen
+            setTimeout(() => {
+                this.level.enemies.splice((this.level.enemies.length - 1), 1)
+                showEndScreen()
+            }, 800)
+            // eventuell win screen hinzufügen
             // interval für sterbeanimation hinzufügen
         }
         setTimeout(() => {

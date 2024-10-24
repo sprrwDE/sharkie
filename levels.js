@@ -41,7 +41,12 @@ function createLevel() {
         ],
         [
             new Poison(300, 300),
-            new Poison(400, 300)
+            new Poison(400, 300),
+            new Poison(500, 300),
+            new Poison(600, 300),
+            new Poison(700, 300),
+            new Poison(800, 300),
+            new Poison(900, 300)
         ],
         [
             new Coin(300, 200),

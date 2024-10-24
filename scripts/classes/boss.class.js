@@ -27,6 +27,19 @@ class Endboss extends MovableObject {
         './assets/imgs/2.Enemy/3 Final Enemy/1.Introduce/9.png',
         './assets/imgs/2.Enemy/3 Final Enemy/1.Introduce/10.png',
     ];
+    IMAGES_HURT = [
+        './assets/imgs/2.Enemy/3 Final Enemy/Hurt/1.png',
+        './assets/imgs/2.Enemy/3 Final Enemy/Hurt/2.png',
+        './assets/imgs/2.Enemy/3 Final Enemy/Hurt/3.png',
+        './assets/imgs/2.Enemy/3 Final Enemy/Hurt/4.png'
+    ]
+    IMAGES_DEAD = [
+        './assets/imgs/2.Enemy/3 Final Enemy/Dead/Mesa de trabajo 2 copia 6.png',
+        './assets/imgs/2.Enemy/3 Final Enemy/Dead/Mesa de trabajo 2 copia 7.png',
+        './assets/imgs/2.Enemy/3 Final Enemy/Dead/Mesa de trabajo 2 copia 8.png',
+        './assets/imgs/2.Enemy/3 Final Enemy/Dead/Mesa de trabajo 2 copia 9.png',
+        './assets/imgs/2.Enemy/3 Final Enemy/Dead/Mesa de trabajo 2 copia 10.png'
+    ]
     /* offset = {
         'left': 20,
         'right': 20,
@@ -49,6 +62,8 @@ class Endboss extends MovableObject {
         this.moveSpeed = 0.15 + Math.random() * 0.45
         this.loadImages(this.IMAGES_SWIMMING);
         this.loadImages(this.IMAGES_SPAWNING);
+        this.loadImages(this.IMAGES_HURT);
+        this.loadImages(this.IMAGES_DEAD);
         this.animate();
     }
 
@@ -75,13 +90,19 @@ class Endboss extends MovableObject {
     };    */
 
     animate() {
-        setInterval(()=> {
+        setInterval(() => {
+            if (this.health == 0) {
+                this.playAnimation(this.IMAGES_DEAD);
+            } else if (this.immune) {
+                this.playAnimation(this.IMAGES_HURT);
+            } else {
                 this.playAnimation(this.IMAGES_SWIMMING);
-            }, 180);
+            }
+        }, 180);
 
         setInterval(() => {
             this.moveLeft();
-        }, 1000 / 60);   
-    }; 
+        }, 1000 / 60);
+    };
 
 }
