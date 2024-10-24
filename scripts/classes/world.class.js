@@ -19,9 +19,9 @@ class World {
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
         this.keyboard = keyboard;
-        this.draw();
         this.setWorld();
         this.run()
+        this.draw();
     }
 
     setWorld() {
@@ -62,13 +62,14 @@ class World {
     run() {
         setInterval(() => {
             this.checkCollissions();
-            this.checkBubbleHit()
+            this.checkBubbleHit();
             this.collectBottle();
             this.collectCoin();
         }, 50)
 
         setInterval(() => {
             this.checkBubbleThrow();
+            this.checkEndbossHit();
         }, 500)
     }
 
@@ -85,6 +86,8 @@ class World {
         })
     }
 
+    // enemy.deadly = true / false für schaden zufügen bzw cancellen in todesanimation
+
     checkEnemyType(enemy) {
         if (enemy.type === 'pufferfish') {
             return 'pufferfish'
@@ -99,6 +102,7 @@ class World {
         // funktion in movableObjekt definieren, animation abspielen, enemy.kill(), eventuell super klasse erstellen /// Instance of Pufferfish
         let i = this.level.enemies.indexOf(enemy)
         this.enemyType = this.checkEnemyType(enemy)
+        // setTimeout(() => {}, 1000) -> wie umsetzen dass nicht alles splices, wie animationen einmalig ausführen
         this.level.enemies.splice(i, 1)
     }
 
@@ -117,7 +121,6 @@ class World {
             this.level.enemies.forEach((enemy) => {
                 if (bubble.isColliding(enemy)) {
                     this.killJellyfish(enemy)
-
                 }
             })
         })
@@ -135,6 +138,29 @@ class World {
         }
     }
 
+    checkEndbossHit() {
+        this.bubbles.forEach((bubble) => {
+            const bossEnemy = this.level.enemies[this.level.enemies.length - 1]
+            if (bubble.isColliding(bossEnemy)) {
+                this.damageEndboss(bossEnemy, bubble)
+            }
+        })
+    }
+
+    damageEndboss(boss, bubble) {
+        if (boss.type == 'endboss' && !boss.immune) {
+            boss.immune = true;
+            let n = this.bubbles.indexOf(bubble)
+            this.bubbles.splice(n, 1)
+            boss.getHit(5);
+            this.bossbar.setPercentage(boss.health)
+            console.log(boss.health)
+        } 
+        setTimeout(() => {
+            boss.immune = false
+        }, 300)
+    } // noch fehlerhaft
+
     collectBottle() {
         this.level.coins.forEach((coin) => {
             if (this.character.isColliding(coin)) {
@@ -143,7 +169,6 @@ class World {
                 coin.coin_sound.play()
                 this.collectedCoins++
                 console.log(this.collectedCoins)
-                // this.statusbar.setPercentage(this.character.health) -> erhöhen
             }
         })
     }
@@ -155,13 +180,9 @@ class World {
                 this.level.poison.splice(i, 1)
                 bottle.bottle_sound.play()
                 this.collectedBottles++
-                // this.statusbar.setPercentage(this.character.health) -> erhöhen
             }
         })
     }
-
-
-
 
     addObjectToMap(objects) {
         objects.forEach(object => {

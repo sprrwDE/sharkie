@@ -55,4 +55,7 @@ class JellyFishPurple extends MovableObject {
         this.enemyUpAndDown();
     }
 
+    // wenn getroffen stehen bleiben und hochmoven
+    
+
 }

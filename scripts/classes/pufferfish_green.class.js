@@ -22,6 +22,11 @@ class PufferFishGreen extends MovableObject {
         './assets/imgs/2.Enemy/1.Puffer fish (3 color options)/2.transition/1.transition2.png',
         './assets/imgs/2.Enemy/1.Puffer fish (3 color options)/2.transition/1.transition1.png'
     ] */
+    IMAGES_HIT = [
+        './assets/imgs/2.Enemy/1.Puffer fish (3 color options)/4.DIE/1.Dead 1 (can animate by going up).png',
+        './assets/imgs/2.Enemy/1.Puffer fish (3 color options)/4.DIE/1.Dead 2 (can animate by going up).png',
+        './assets/imgs/2.Enemy/1.Puffer fish (3 color options)/4.DIE/1.Dead 3 (can animate by going up).png',
+    ]
     IMAGES_DANGER = [
         './assets/imgs/2.Enemy/1.Puffer fish (3 color options)/3.Bubbleeswim/1.bubbleswim1.png',
         './assets/imgs/2.Enemy/1.Puffer fish (3 color options)/3.Bubbleeswim/1.bubbleswim2.png',
@@ -46,6 +51,7 @@ class PufferFishGreen extends MovableObject {
         this.loadImages(this.IMAGES_TRANSITION);
         // this.loadImages(this.IMAGES_TRANSITION_REVERSE);
         this.loadImages(this.IMAGES_DANGER);
+        this.loadImages(this.IMAGES_HIT);
         this.checkDanger()
         this.animate();
     }
@@ -61,6 +67,8 @@ class PufferFishGreen extends MovableObject {
             if (this.danger) {
                 this.playAnimation(this.IMAGES_TRANSITION);
                 this.playAnimation(this.IMAGES_DANGER);
+            } else if (this.hit) {
+                this.playAnimation(this.IMAGES_HIT);
             } else {
                 this.playAnimation(this.IMAGES_SWIMMING);
             }
@@ -71,3 +79,5 @@ class PufferFishGreen extends MovableObject {
         }, 1000 / 60);
     };
 }
+
+// timeout beenden animation wenn hit
