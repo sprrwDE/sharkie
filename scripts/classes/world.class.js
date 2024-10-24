@@ -110,9 +110,10 @@ class World {
         if (this.keyboard.SHOOT) {
             let bubble = new Bubble(this.character.x, this.character.y, this.character.width, this.character.height, this.character.mirror, './assets/imgs/1.Sharkie/4.Attack/Bubble trap/Bubble.png');
             this.bubbles.push(bubble);
-        } if (this.keyboard.POISON) {
+        } if (this.keyboard.POISON && this.collectedBottles > 0) {
             let poison = new Bubble(this.character.x, this.character.y, this.character.width, this.character.height, this.character.mirror, './assets/imgs/1.Sharkie/4.Attack/Bubble trap/Poisoned Bubble.png');
             this.bubbles.push(poison);
+            this.collectedBottles--
         }
     }
 
