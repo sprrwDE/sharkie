@@ -35,7 +35,7 @@ class Endboss extends MovableObject {
     } */
     type = 'endboss'
     immune = false;
-
+    // machen
     contact = false
 
     constructor() {

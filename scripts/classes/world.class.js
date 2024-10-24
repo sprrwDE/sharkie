@@ -65,11 +65,11 @@ class World {
             this.checkBubbleHit();
             this.collectBottle();
             this.collectCoin();
+            this.checkEndbossHit();
         }, 50)
 
         setInterval(() => {
             this.checkBubbleThrow();
-            this.checkEndbossHit();
         }, 500)
     }
 
@@ -152,13 +152,17 @@ class World {
             boss.immune = true;
             let n = this.bubbles.indexOf(bubble)
             this.bubbles.splice(n, 1)
-            boss.getHit(5);
+            boss.getHit(15);
             this.bossbar.setPercentage(boss.health)
-            console.log(boss.health)
         } 
+        if (boss.health <= 0) {
+            this.level.enemies.splice((this.level.enemies.length - 1), 1)
+            showEndScreen() // eventuell win screen hinzufügen
+            // interval für sterbeanimation hinzufügen
+        }
         setTimeout(() => {
             boss.immune = false
-        }, 300)
+        }, 400)
     } // noch fehlerhaft
 
     collectBottle() {
