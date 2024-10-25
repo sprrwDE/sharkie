@@ -93,7 +93,7 @@ class World {
                 this.damageCharacter()
             } else if ((this.character.isColliding(enemy) && this.character.immune && enemy.type == 'pufferfish')) {
                 this.killPufferfish(enemy);
-            } 
+            }
         })
     }
 
@@ -111,13 +111,16 @@ class World {
         } else if (enemy.type === 'endboss') {
             return 'endboss'
         }
-    } 
+    }
 
     killPufferfish(enemy) {
         // funktion in movableObjekt definieren, animation abspielen, enemy.kill(), eventuell 
-        let i = this.level.enemies.indexOf(enemy)
         this.enemyType = this.checkEnemyType(enemy)
-        this.level.enemies.splice(i, 1)
+        enemy.hit = true;
+        setTimeout(() => { 
+            // Filtert enemy aus array heraus
+            this.level.enemies = this.level.enemies.filter(e => e !== enemy);
+        }, 800)
 
     }
 
