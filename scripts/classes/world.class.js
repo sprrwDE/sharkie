@@ -138,7 +138,7 @@ class World {
     checkBubbleHit() {
         this.bubbles.forEach((bubble) => {
             this.level.enemies.forEach((enemy) => {
-                if (bubble.isColliding(enemy)) {
+                if (bubble.isColliding(enemy) && bubble.air == true) {
                     this.killJellyfish(enemy)
                 }
             })
