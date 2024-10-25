@@ -32,12 +32,7 @@ class World {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         this.drawMirroredObjects();
         this.drawFixedObjects();
-        // was tut es?
-        let self = this;
-        requestAnimationFrame(function () {
-            self.draw()
-        }
-        );
+        this.update()
     };
 
     drawMirroredObjects() {
@@ -57,6 +52,14 @@ class World {
         this.renderToCanvas(this.bossbar);
         this.drawText(this.collectedBottles, 120, 120);
         this.drawText(this.collectedCoins, 120, 160);
+    }
+
+    update() {
+        let self = this;
+        requestAnimationFrame(function () {
+            self.draw()
+        }
+        );
     }
 
     drawText(item, x, y) {
@@ -83,16 +86,22 @@ class World {
     checkCollissions() {
         this.level.enemies.forEach((enemy) => {
             if (this.character.isColliding(enemy) && !this.character.immune) {
-                this.character.getHit(5);
-                this.statusbar.setPercentage(this.character.health)
-                this.enemyType = this.checkEnemyType(enemy)
-            } else if ((this.character.isColliding(enemy) && this.character.immune)) {
-                this.hitByFinslap(enemy);
-            }
+                this.damageCharacter()
+            } else if ((this.character.isColliding(enemy) && this.character.immune && enemy.type == 'jellyfish')) {
+                this.damageCharacter()
+            } else if ((this.character.isColliding(enemy) && this.character.immune && enemy.type == 'endboss')) {
+                this.damageCharacter()
+            } else if ((this.character.isColliding(enemy) && this.character.immune && enemy.type == 'pufferfish')) {
+                this.killPufferfish(enemy);
+            } 
         })
     }
 
-    // enemy.deadly = true / false für schaden zufügen bzw cancellen in todesanimation
+    damageCharacter() {
+        this.character.getHit(5);
+        this.statusbar.setPercentage(this.character.health)
+        this.enemyType = this.checkEnemyType()
+    }
 
     checkEnemyType(enemy) {
         if (enemy.type === 'pufferfish') {
@@ -102,14 +111,14 @@ class World {
         } else if (enemy.type === 'endboss') {
             return 'endboss'
         }
-    }
+    } 
 
-    hitByFinslap(enemy) {
-        // funktion in movableObjekt definieren, animation abspielen, enemy.kill(), eventuell super klasse erstellen /// Instance of Pufferfish
+    killPufferfish(enemy) {
+        // funktion in movableObjekt definieren, animation abspielen, enemy.kill(), eventuell 
         let i = this.level.enemies.indexOf(enemy)
         this.enemyType = this.checkEnemyType(enemy)
-        // setTimeout(() => {}, 1000) -> wie umsetzen dass nicht alles splices, wie animationen einmalig ausführen
         this.level.enemies.splice(i, 1)
+
     }
 
     checkBubbleThrow() {
@@ -132,7 +141,7 @@ class World {
         let poison = new Bubble(this.character.x, this.character.y, this.character.width, this.character.height, this.character.mirror, toxicIMG);
         poison.toxic = true
         this.bubbles.push(poison);
-        this.collectedBottles --
+        this.collectedBottles--
     }
 
     checkBubbleHit() {
@@ -154,7 +163,7 @@ class World {
                 let i = this.level.enemies.indexOf(enemy)
                 this.level.enemies.splice(i, 1)
             }, 1000)
-        } 
+        }
     }
 
     checkEndbossHit() {
@@ -173,7 +182,7 @@ class World {
             this.bubbles.splice(n, 1)
             boss.getHit(15);
             this.bossbar.setPercentage(boss.health)
-        } 
+        }
         if (boss.health <= 0) {
             setTimeout(() => {
                 this.level.enemies.splice((this.level.enemies.length - 1), 1)
@@ -185,7 +194,7 @@ class World {
         setTimeout(() => {
             boss.immune = false
         }, 400)
-    } 
+    }
 
     collectBottle() {
         this.level.coins.forEach((coin) => {
@@ -240,4 +249,6 @@ class World {
         object.x = object.x * -1;
         this.ctx.restore();
     }
+
+
 }
