@@ -1,6 +1,4 @@
-class PufferFishGreen extends MovableObject {
-    hitboxColor = 'red';
-
+class PufferFishGreen extends Enemy {
     IMAGES_SWIMMING = [
         './assets/imgs/2.Enemy/1.Puffer fish (3 color options)/1.Swim/1.swim1.png',
         './assets/imgs/2.Enemy/1.Puffer fish (3 color options)/1.Swim/1.swim2.png',
@@ -41,8 +39,6 @@ class PufferFishGreen extends MovableObject {
         'bottom': 20 
     }
     type = 'pufferfish'
-    danger = false; // wenn danger darf man nicht finslappen, transition einfügen ?
-    hit = false;
     
     constructor() {
         super()

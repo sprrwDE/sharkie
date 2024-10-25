@@ -1,6 +1,4 @@
-class JellyFishPurple extends MovableObject {
-    hitboxColor = 'red';
-
+class JellyFishPurple extends Enemy {
     IMAGES_SWIMMING = [
         './assets/imgs/2.Enemy/2 Jelly fish/Regular damage/Lila 1.png',
         './assets/imgs/2.Enemy/2 Jelly fish/Regular damage/Lila 2.png',
@@ -21,8 +19,6 @@ class JellyFishPurple extends MovableObject {
         './assets/imgs/2.Enemy/2 Jelly fish/Dead/Lila/L4.png'
     ]
     type = 'jellyfish'
-    danger = false;
-    pufferfish = false
 
     constructor() {
         super();
@@ -33,12 +29,6 @@ class JellyFishPurple extends MovableObject {
         this.loadImages(this.IMAGES_HIT);
         this.checkDanger();
         this.animate();
-    }
-
-    checkDanger() {
-        setInterval(() => {
-            this.danger = !this.danger;
-        }, 5000 + (5000 * Math.random()));
     }
 
     animate() {
