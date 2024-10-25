@@ -22,7 +22,7 @@ class JellyFishPurple extends Enemy {
 
     constructor() {
         super();
-        this.loadImage('./assets/imgs/2.Enemy/2 Jelly fish/Regular damage/Lila 1.png'); 
+        this.loadImage(this.IMAGES_SWIMMING[0]); 
         this.setEnemyCharacteristics();
         this.loadImages(this.IMAGES_SWIMMING);
         this.loadImages(this.IMAGES_DANGER);

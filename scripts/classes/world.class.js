@@ -1,5 +1,4 @@
 class World {
-
     canvas;
     ctx;
     keyboard;
@@ -9,11 +8,11 @@ class World {
     statusbar = new Statusbar(50, 20, 200, 60, 'char');
     bossbar = new Statusbar(480, 20, 200, 60, 'boss')
     bubbles = []
+    bottleIcon = new StatusIcon(55, 80, 40, 40, 'bottle')
     collectedBottles = 0;
+    coinIcon = new StatusIcon(60, 130, 30, 30, 'coin')
     collectedCoins = 0;
     enemyType;
-    // collectables = new Statusbar(50, 20, 200, 60);
-    // poisonbar = new Statusbar(50, 120, 200, 60);
 
     constructor(canvas) {
         this.ctx = canvas.getContext('2d');
@@ -50,6 +49,8 @@ class World {
     drawFixedObjects() {
         this.renderToCanvas(this.statusbar);
         this.renderToCanvas(this.bossbar);
+        this.renderToCanvas(this.bottleIcon);
+        this.renderToCanvas(this.coinIcon);
         this.drawText(this.collectedBottles, 120, 120);
         this.drawText(this.collectedCoins, 120, 160);
     }
@@ -79,28 +80,30 @@ class World {
 
         setInterval(() => {
             this.checkBubbleThrow();
-        }, 500)
+        }, 600)
     }
 
     // if !immune (bei finslap immune = true setzen)
     checkCollissions() {
         this.level.enemies.forEach((enemy) => {
-            if (this.character.isColliding(enemy) && !this.character.immune) {
-                this.damageCharacter()
+            if (this.character.isColliding(enemy) && !this.character.immune && !enemy.hit) {
+                this.damageCharacter(enemy)
             } else if ((this.character.isColliding(enemy) && this.character.immune && enemy.type == 'jellyfish')) {
-                this.damageCharacter()
+                this.damageCharacter(enemy)
             } else if ((this.character.isColliding(enemy) && this.character.immune && enemy.type == 'endboss')) {
-                this.damageCharacter()
+                this.damageCharacter(enemy)
+            } else if (this.character.isColliding(enemy) && enemy.type == 'pufferfish' && enemy.danger) {
+                this.damageCharacter(enemy)
             } else if ((this.character.isColliding(enemy) && this.character.immune && enemy.type == 'pufferfish')) {
                 this.killPufferfish(enemy);
-            } 
+            }
         })
     }
 
-    damageCharacter() {
+    damageCharacter(enemy) {
         this.character.getHit(5);
         this.statusbar.setPercentage(this.character.health)
-        this.enemyType = this.checkEnemyType()
+        this.enemyType = this.checkEnemyType(enemy)
     }
 
     checkEnemyType(enemy) {
@@ -117,7 +120,7 @@ class World {
         // funktion in movableObjekt definieren, animation abspielen, enemy.kill(), eventuell 
         this.enemyType = this.checkEnemyType(enemy)
         enemy.hit = true;
-        setTimeout(() => { 
+        setTimeout(() => {
             // Filtert enemy aus array heraus
             this.level.enemies = this.level.enemies.filter(e => e !== enemy);
         }, 800)

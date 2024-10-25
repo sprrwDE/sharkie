@@ -14,9 +14,7 @@ class Bubble extends MovableObject {
         this.height = 25;
         this.throw(x, y, width, height, mirror)
     }
-
-    // spiegeln (mit offset character width arbeiten, if(mirrored), else)
-
+    
     throw(x, y, width, height, mirror) {
         if (mirror) {
             this.x = x; 

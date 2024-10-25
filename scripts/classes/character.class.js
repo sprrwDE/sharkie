@@ -1,5 +1,4 @@
 class Character extends MovableObject {
-
     IMAGES_IDLE = [
         './assets/imgs/1.Sharkie/1.IDLE/1.png',
         './assets/imgs/1.Sharkie/1.IDLE/2.png',

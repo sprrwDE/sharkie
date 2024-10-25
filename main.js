@@ -87,3 +87,6 @@ function toggleInfoBox() {
     infobox.classList.toggle('d-none')
 }
 
+/* function toggleMuteAllSounds() {
+    moin
+} */
