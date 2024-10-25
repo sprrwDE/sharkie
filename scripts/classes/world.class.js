@@ -65,7 +65,8 @@ class World {
 
     drawText(item, x, y) {
         const ctx = document.getElementById("canvas").getContext("2d");
-        ctx.font = "48px sans-serif";
+        ctx.fillStyle = "white";
+        ctx.font = "40px Luckiest Guy";
         ctx.fillText(item, x, y);
     }
 
