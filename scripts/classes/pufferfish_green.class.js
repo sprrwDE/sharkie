@@ -24,13 +24,8 @@ class PufferFishGreen extends MovableObject {
     ] */
     IMAGES_HIT = [
         './assets/imgs/2.Enemy/1.Puffer fish (3 color options)/4.DIE/1.Dead 1 (can animate by going up).png',
-        './assets/imgs/2.Enemy/1.Puffer fish (3 color options)/4.DIE/1.Dead 2 (can animate by going up).png',
-        './assets/imgs/2.Enemy/1.Puffer fish (3 color options)/4.DIE/1.Dead 3 (can animate by going up).png',
-    ]
-    IMAGES_HURT = [
-        './assets/imgs/2.Enemy/1.Puffer fish (3 color options)/4.DIE/1.Dead 1 (can animate by going up).png',
-        './assets/imgs/2.Enemy/1.Puffer fish (3 color options)/4.DIE/1.Dead 2 (can animate by going up).png',
-        './assets/imgs/2.Enemy/1.Puffer fish (3 color options)/4.DIE/1.Dead 3 (can animate by going up).png',
+        './assets/imgs/2.Enemy/1.Puffer fish (3 color options)/4.DIE/1.Dead 2 (can animate by going down to the floor after the Fin Slap attack).png',
+        './assets/imgs/2.Enemy/1.Puffer fish (3 color options)/4.DIE/1.Dead 3 (can animate by going down to the floor after the Fin Slap attack).png'
     ]
     IMAGES_DANGER = [
         './assets/imgs/2.Enemy/1.Puffer fish (3 color options)/3.Bubbleeswim/1.bubbleswim1.png',
@@ -57,7 +52,6 @@ class PufferFishGreen extends MovableObject {
         this.loadImages(this.IMAGES_TRANSITION);
         // this.loadImages(this.IMAGES_TRANSITION_REVERSE);
         this.loadImages(this.IMAGES_DANGER);
-        this.loadImages(this.IMAGES_HURT);
         this.loadImages(this.IMAGES_HIT);
         this.checkDanger()
         this.animate();

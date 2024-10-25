@@ -93,7 +93,7 @@ class World {
                 this.damageCharacter()
             } else if ((this.character.isColliding(enemy) && this.character.immune && enemy.type == 'pufferfish')) {
                 this.killPufferfish(enemy);
-            }
+            } 
         })
     }
 
