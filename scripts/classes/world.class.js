@@ -30,6 +30,17 @@ class World {
 
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        this.drawMirroredObjects();
+        this.drawFixedObjects();
+        // was tut es?
+        let self = this;
+        requestAnimationFrame(function () {
+            self.draw()
+        }
+        );
+    };
+
+    drawMirroredObjects() {
         this.ctx.translate(this.camera_x, 0); // camera back
         this.addObjectToMap(this.level.backgroundObects);
         this.addObjectToMap(this.level.light)
@@ -38,20 +49,15 @@ class World {
         this.addObjectToMap(this.level.coins);
         this.renderToCanvas(this.character);
         this.addObjectToMap(this.bubbles);
+        this.ctx.translate(-this.camera_x, 0);
+    }
 
-        this.ctx.translate(-this.camera_x, 0); // camera forward
-        // fixed
+    drawFixedObjects() {
         this.renderToCanvas(this.statusbar);
         this.renderToCanvas(this.bossbar);
         this.drawText(this.collectedBottles, 120, 120);
         this.drawText(this.collectedCoins, 120, 160);
-
-        let self = this;
-        requestAnimationFrame(function () {
-            self.draw()
-        }
-        );
-    };
+    }
 
     drawText(item, x, y) {
         const ctx = document.getElementById("canvas").getContext("2d");
@@ -117,12 +123,14 @@ class World {
     throwAirBubble() {
         let air = './assets/imgs/1.Sharkie/4.Attack/Bubble trap/Bubble.png'
         let bubble = new Bubble(this.character.x, this.character.y, this.character.width, this.character.height, this.character.mirror, air);
+        bubble.air = true
         this.bubbles.push(bubble);
     }
 
     throwToxicBubble() {
-        let toxic = './assets/imgs/1.Sharkie/4.Attack/Bubble trap/Poisoned Bubble.png'
-        let poison = new Bubble(this.character.x, this.character.y, this.character.width, this.character.height, this.character.mirror, toxic);
+        let toxicIMG = './assets/imgs/1.Sharkie/4.Attack/Bubble trap/Poisoned Bubble.png'
+        let poison = new Bubble(this.character.x, this.character.y, this.character.width, this.character.height, this.character.mirror, toxicIMG);
+        poison.toxic = true
         this.bubbles.push(poison);
         this.collectedBottles --
     }
@@ -146,13 +154,13 @@ class World {
                 let i = this.level.enemies.indexOf(enemy)
                 this.level.enemies.splice(i, 1)
             }, 1000)
-        }
+        } 
     }
 
     checkEndbossHit() {
         this.bubbles.forEach((bubble) => {
             const bossEnemy = this.level.enemies[this.level.enemies.length - 1]
-            if (bubble.isColliding(bossEnemy)) {
+            if (bubble.isColliding(bossEnemy) && bubble.toxic == true) {
                 this.damageEndboss(bossEnemy, bubble)
             }
         })
@@ -171,13 +179,13 @@ class World {
                 this.level.enemies.splice((this.level.enemies.length - 1), 1)
                 showEndScreen()
             }, 800)
-            // eventuell win screen hinzufügen
+            // win screen hinzufügen
             // interval für sterbeanimation hinzufügen
         }
         setTimeout(() => {
             boss.immune = false
         }, 400)
-    } // noch fehlerhaft
+    } 
 
     collectBottle() {
         this.level.coins.forEach((coin) => {
