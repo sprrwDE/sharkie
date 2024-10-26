@@ -84,22 +84,28 @@ class World {
         }, 600)
     }
 
+    playSoundObject(object) {
+        if (!mute) {
+            object.sound.play()
+        }
+    }
+
     // if !immune (bei finslap immune = true setzen) -> Enemy AI quasi
     checkCollissions() {
         this.level.enemies.forEach((enemy) => {
             if (this.character.isColliding(enemy) && !this.character.immune && !enemy.hit) {
                 enemy.hit = false;
-                enemy.sound.play()
-                this.damageCharacter(enemy)
+                this.playSoundObject(enemy);
+                this.damageCharacter(enemy);
             } else if ((this.character.isColliding(enemy) && this.character.immune && enemy.type == 'jellyfish')) {
                 this.damageCharacter(enemy)
-                enemy.sound.play()
+                this.playSoundObject(enemy);
             } else if ((this.character.isColliding(enemy) && this.character.immune && enemy.type == 'endboss')) {
                 this.damageCharacter(enemy)
-                enemy.sound.play()
+                this.playSoundObject(enemy);
             } else if (this.character.isColliding(enemy) && enemy.type == 'pufferfish' && enemy.danger) {
                 this.damageCharacter(enemy)
-                enemy.sound.play()
+                this.playSoundObject(enemy);
             } else if ((this.character.isColliding(enemy) && this.character.immune && enemy.type == 'pufferfish')) {
                 this.killPufferfish(enemy);
             }
@@ -144,7 +150,7 @@ class World {
     throwAirBubble() {
         let air = './assets/imgs/1.Sharkie/4.Attack/Bubble trap/Bubble.png'
         let bubble = new Bubble(this.character.x, this.character.y, this.character.width, this.character.height, this.character.mirror, air);
-        bubble.bubble_sound.play()
+        this.playSoundObject(bubble);
         bubble.air = true
         this.bubbles.push(bubble);
     }
@@ -153,7 +159,7 @@ class World {
         let toxicIMG = './assets/imgs/1.Sharkie/4.Attack/Bubble trap/Poisoned Bubble.png'
         let poison = new Bubble(this.character.x, this.character.y, this.character.width, this.character.height, this.character.mirror, toxicIMG);
         poison.toxic = true
-        poison.bubble_sound.play()
+        this.playSoundObject(bubble);
         this.bubbles.push(poison);
         this.collectedBottles--
     }
@@ -195,7 +201,7 @@ class World {
             let n = this.bubbles.indexOf(bubble)
             this.bubbles.splice(n, 1)
             boss.getHit(15);
-            boss.boss_sound.play()
+            this.playSoundObject(boss);
             this.bossbar.setPercentage(boss.health)
         }
         if (boss.health <= 0) {
@@ -216,7 +222,7 @@ class World {
             if (this.character.isColliding(coin)) {
                 let i = this.level.coins.indexOf(coin)
                 this.level.coins.splice(i, 1)
-                coin.coin_sound.play()
+                this.playSoundObject(coin);
                 this.collectedCoins++
                 console.log(this.collectedCoins)
             }
@@ -228,7 +234,7 @@ class World {
             if (this.character.isColliding(bottle)) {
                 let i = this.level.poison.indexOf(bottle)
                 this.level.poison.splice(i, 1)
-                bottle.bottle_sound.play()
+                this.playSoundObject(bottle);
                 this.collectedBottles++
             }
         })

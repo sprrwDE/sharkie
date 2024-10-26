@@ -100,6 +100,8 @@ class Character extends MovableObject {
     finslapActive = false;
     immuneDuration = 1000;
     finslap_sound = new Audio('./assets/sounds/finslap.wav')
+    death_sound;
+    snore_sound;
 
     constructor() {
         super()
@@ -140,6 +142,7 @@ class Character extends MovableObject {
             this.moving = false;
             this.slap = false;
             if (this.isDead()) {
+                // this.playSoundCharacter(this.death_sound);
                 this.playAnimation(this.IMAGES_DEAD);
                 stopGame();
             } else if (this.isHurt() && this.world.enemyType === 'pufferfish') {
@@ -151,6 +154,8 @@ class Character extends MovableObject {
                 this.moving = true;
             } else {
                 this.playAnimation(this.IMAGES_IDLE);
+                // this.playSoundCharacter(this.snore_sound);
+
             } // wie snooze animation?
         }, 150);
 
@@ -171,13 +176,19 @@ class Character extends MovableObject {
         this.finslapActive = true;
         this.immune = true;
         this.playAnimation(this.IMAGES_FINSLAP);
-        this.finslap_sound.play();
+        this.playSoundCharacter(this.finslap_sound);
 
         setTimeout(() => {
             this.immune = false;
             this.finslapActive = false;
             this.currentImage = 0;
         }, this.immuneDuration);
+    }
+
+    playSoundCharacter(soundelement) {
+        if (!mute) {
+            soundelement.play()
+        }   
     }
 
 }

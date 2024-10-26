@@ -5,7 +5,7 @@ class Coin extends MovableObject {
         './assets/imgs/4. Marcadores/1. Coins/3.png',
         './assets/imgs/4. Marcadores/1. Coins/4.png'
     ]
-    coin_sound = new Audio('./assets/sounds/coin.wav')
+    sound = new Audio('./assets/sounds/coin.wav')
 
     constructor(x, y) {
         super();

@@ -5,6 +5,7 @@ let endContainer = document.getElementById('endscreen');
 let startButton = document.getElementById('start');
 let infobox = document.getElementById('infobox');
 let cvs = document.getElementById('canvas');
+let mute = false;
 
 function init() {
     world = new World(canvas, keyboard);
@@ -87,6 +88,7 @@ function toggleInfoBox() {
     infobox.classList.toggle('d-none')
 }
 
-/* function toggleMuteAllSounds() {
-    moin
-} */
+function toggleMuteAllSounds() {
+    mute = !mute
+    console.log(mute)
+}

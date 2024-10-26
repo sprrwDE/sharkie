@@ -99,12 +99,18 @@ class Endboss extends MovableObject {
                 this.playAnimation(this.IMAGES_HURT);
             } else {
                 this.playAnimation(this.IMAGES_SWIMMING);
-            }
+            } // death
         }, 180);
 
         setInterval(() => {
             this.moveLeft();
         }, 1000 / 60);
     };
+
+    playSoundBoss(soundelement) {
+        if (!mute) {
+            soundelement.play()
+        }   
+    }
 
 }
