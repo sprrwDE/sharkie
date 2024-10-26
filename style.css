@@ -73,6 +73,27 @@ p {
     font-size: 20px;
 }
 
+.text {
+    color: white;
+}
+
+.text a {
+    color: yellow;
+    cursor: pointer;
+}
+
+.container {
+    margin: 0 auto;
+    width: 100%;
+    max-width: 1440px;
+    margin-top: 80px;
+    margin-bottom: 80px;
+    background: black; opacity: 0.75;
+    padding: 60px;
+    border-radius: 20px;
+    line-height: 1.5;
+}
+
 .screen {
     position: absolute;
     width: 720px;

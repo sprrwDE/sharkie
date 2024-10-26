@@ -56,16 +56,25 @@ class PufferFishGreen extends Enemy {
     checkDanger() {
         setInterval(() => {
             this.danger = !this.danger;
+            if (this.danger) {
+                this.offset['bottom'] = 0
+            } else if (!this.danger) {
+                this.offset['bottom'] = 20
+            }
         }, 5000 + (3000 * Math.random()));
     }
 
     animate() {
         setInterval(() => {
             if (this.danger) {
+                // als array abspielen -> machen
                 this.playAnimation(this.IMAGES_TRANSITION);
                 this.playAnimation(this.IMAGES_DANGER);
             } else if (this.hit) {
                 this.playAnimation(this.IMAGES_HIT);
+                setTimeout(() => {
+                    this.hit = false;
+                }, 600)
             } else {
                 this.playAnimation(this.IMAGES_SWIMMING);
             }

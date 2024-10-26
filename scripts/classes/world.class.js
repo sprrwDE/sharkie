@@ -77,17 +77,18 @@ class World {
             this.collectBottle();
             this.collectCoin();
             this.checkEndbossHit();
-        }, 50)
+        }, 150)
 
         setInterval(() => {
             this.checkBubbleThrow();
         }, 600)
     }
 
-    // if !immune (bei finslap immune = true setzen)
+    // if !immune (bei finslap immune = true setzen) -> Enemy AI quasi
     checkCollissions() {
         this.level.enemies.forEach((enemy) => {
             if (this.character.isColliding(enemy) && !this.character.immune && !enemy.hit) {
+                enemy.hit = false;
                 this.damageCharacter(enemy)
             } else if ((this.character.isColliding(enemy) && this.character.immune && enemy.type == 'jellyfish')) {
                 this.damageCharacter(enemy)
@@ -238,7 +239,7 @@ class World {
         }
 
         object.draw(this.ctx)
-        object.hitbox(this.ctx)
+        // object.hitbox(this.ctx) <-- Hitbox anzeigen
 
         if (object.mirror) {
             this.restoreDirection(object);
