@@ -68,7 +68,7 @@ function startGame() {
     startContainer.classList.add('d-none')
     endContainer.classList.add('d-none');
     cvs.classList.remove('d-none');
-    bgSound.play()
+    toggleBgSound()
 }
 
 function stopGame() {
@@ -87,16 +87,21 @@ function showEndScreen() {
     cvs.classList.add('d-none');
 }
 
+function showHomeScreen() {
+    startContainer.classList.remove('d-none')
+    endContainer.classList.add('d-none')
+}
+
 function toggleInfoBox() {
     infobox.classList.toggle('d-none')
 }   
 
 function toggleMuteAllSounds() {
     mute = !mute
-    muteBgSound()
+    toggleBgSound()
 }
 
-function muteBgSound() {
+function toggleBgSound() {
     if (mute) {
         bgSound.pause()
     } else {
@@ -106,17 +111,24 @@ function muteBgSound() {
 
 function resetGame() {
     clearAllIntervals();
+    setFlexibleValues()
+    toggleBgSound()
+}
 
+function restartGame() {
+    resetGame();
+    startGame();
+    init()
+}
+
+function setFlexibleValues() {
     world.collectedBottles = 0;
     world.collectedCoins = 0;
     world.character.health = 100;
     world.boss.health = 100;
     world.boss.visible = false;
     world.boss.contact = false;
-
     world.character.x = 0;
     world.boss.x = 700 * 3;
     world.boss.index = 0;
-
-    startGame();
 }
