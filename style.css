@@ -115,6 +115,11 @@ p {
     z-index: 1;
 }
 
+.end {
+    background-image: url('./assets/imgs/3. Background/Mesa de trabajo 1.png');
+    z-index: 1;
+}
+
 .infos {
     display: flex;
     gap: 20px;
@@ -170,11 +175,13 @@ svg:hover {
 }
 
 .ctrls {
+    background-image: url('./assets/imgs/3. Background/Mesa de trabajo 1.png');
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 20px;
+    z-index: 1;
 }
 
 .pinned {

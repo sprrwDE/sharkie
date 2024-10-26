@@ -5,6 +5,8 @@ let endContainer = document.getElementById('endscreen');
 let startButton = document.getElementById('start');
 let infobox = document.getElementById('infobox');
 let cvs = document.getElementById('canvas');
+let bgSound = new Audio('./assets/sounds/bg_sound.mp3')
+
 let mute = false;
 
 function init() {
@@ -66,6 +68,7 @@ function startGame() {
     startContainer.classList.add('d-none')
     endContainer.classList.add('d-none');
     cvs.classList.remove('d-none');
+    bgSound.play()
 }
 
 function stopGame() {
@@ -86,9 +89,14 @@ function showEndScreen() {
 
 function toggleInfoBox() {
     infobox.classList.toggle('d-none')
-}
+}   
 
 function toggleMuteAllSounds() {
     mute = !mute
-    console.log(mute)
+    if (mute) {
+        bgSound.play()
+    } else {
+        bgSound.pause()
+    }
 }
+
