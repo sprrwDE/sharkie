@@ -98,13 +98,13 @@ p {
     position: absolute;
     width: 720px;
     height: 480px;
-    background-color: blue;
     border-radius: 10px;
     box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    z-index: 0;
 }
 
 .start {
@@ -112,11 +112,13 @@ p {
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    z-index: 1;
 }
 
 .infos {
     display: flex;
     gap: 20px;
+    z-index: 1;
 }
 
 .infos a:hover {
@@ -184,6 +186,10 @@ svg:hover {
 .test {
     position: absolute;
     z-index: 9999;
-    top: 26%;
-    right: 32%;
+    bottom: 15%;
+    left: 10%;
+}
+
+.mute {
+    z-index: 0;
 }

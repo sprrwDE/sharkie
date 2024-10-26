@@ -49,6 +49,9 @@ class Endboss extends MovableObject {
     immune = false;
     // machen
     contact = false
+    sound = new Audio('./assets/sounds/autsch.wav')
+    boss_sound = new Audio('./assets/sounds/boss.wav')
+
 
     constructor() {
         super();

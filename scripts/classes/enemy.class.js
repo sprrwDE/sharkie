@@ -2,6 +2,7 @@ class Enemy extends MovableObject {
     hitboxColor = 'red';
     danger = false;
     hit = false;
+    sound;
 
     constructor() {
         super()

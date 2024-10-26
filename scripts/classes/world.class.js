@@ -89,13 +89,17 @@ class World {
         this.level.enemies.forEach((enemy) => {
             if (this.character.isColliding(enemy) && !this.character.immune && !enemy.hit) {
                 enemy.hit = false;
+                enemy.sound.play()
                 this.damageCharacter(enemy)
             } else if ((this.character.isColliding(enemy) && this.character.immune && enemy.type == 'jellyfish')) {
                 this.damageCharacter(enemy)
+                enemy.sound.play()
             } else if ((this.character.isColliding(enemy) && this.character.immune && enemy.type == 'endboss')) {
                 this.damageCharacter(enemy)
+                enemy.sound.play()
             } else if (this.character.isColliding(enemy) && enemy.type == 'pufferfish' && enemy.danger) {
                 this.damageCharacter(enemy)
+                enemy.sound.play()
             } else if ((this.character.isColliding(enemy) && this.character.immune && enemy.type == 'pufferfish')) {
                 this.killPufferfish(enemy);
             }
@@ -191,6 +195,7 @@ class World {
             let n = this.bubbles.indexOf(bubble)
             this.bubbles.splice(n, 1)
             boss.getHit(15);
+            boss.boss_sound.play()
             this.bossbar.setPercentage(boss.health)
         }
         if (boss.health <= 0) {

@@ -18,6 +18,7 @@ class JellyFishYellow extends Enemy {
         './assets/imgs/2.Enemy/2 Jelly fish/Dead/Yellow/y4.png'
     ]
     type = 'jellyfish'
+    sound = new Audio('./assets/sounds/shock.wav')
 
     constructor() {
         super();

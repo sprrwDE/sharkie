@@ -39,6 +39,7 @@ class PufferFishGreen extends Enemy {
         'bottom': 20 
     }
     type = 'pufferfish'
+    sound = new Audio('./assets/sounds/autsch.wav')
     
     constructor() {
         super()
