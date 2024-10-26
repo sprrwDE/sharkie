@@ -51,7 +51,12 @@ class World {
         this.renderToCanvas(this.coinIcon);
         this.drawText(this.collectedBottles, 120, 120);
         this.drawText(this.collectedCoins, 120, 160);
+        const boss = this.level.enemies[this.level.enemies.length - 1];
+        if (boss.visible) {
+            this.renderToCanvas(this.bossbar);
+        }
     }
+    
 
     update() {
         let self = this;
@@ -278,9 +283,7 @@ class World {
         if (this.character.x > (boss.x - 300) && !boss.contact) {
             boss.contact = true;
             boss.visible = true;
-            this.renderToCanvas(this.bossbar)
             boss.index = 0
         }
     }
-
 }

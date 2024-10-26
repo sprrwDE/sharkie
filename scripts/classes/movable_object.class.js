@@ -4,7 +4,6 @@ class MovableObject extends DrawableObject {
     lastHit = 0;
     finslapActive = false;
     finslapInProgress = false; // Neue Variable zum Überwachen des Animationsstatus
-    visible = true;
     
     constructor() {
         super()
@@ -84,39 +83,5 @@ class MovableObject extends DrawableObject {
             }
         }, 1000 / 60);
     };
-
-    /* noch Fehlerhaft
-
-    enemyLeftAndRight() {
-        setInterval(() => {
-            if (this.movingLeft) {
-                this.x += this.moveSpeed; 
-                if (this.x>= 720*3) { 
-                    this.movingLeft = false;
-                    mirror(this.enemy)
-                }
-            } else {
-                this.x -= this.moveSpeed; 
-                if (this.x - this.width <= 0) { 
-                    this.movingLeft = true;
-                    mirror(this.enemy)
-                }
-            }
-        }, 1000 / 60);
-
-    Fische Spiegeln
-    mirror(object) {
-        this.ctx.save();
-        this.ctx.translate(object.width, 0);
-        this.ctx.scale(-1, 1);
-        object.x = object.x * -1;
-    }
-
-    }; 
-    
-    */
-
-
-
 
 }
