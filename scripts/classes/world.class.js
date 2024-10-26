@@ -140,6 +140,7 @@ class World {
     throwAirBubble() {
         let air = './assets/imgs/1.Sharkie/4.Attack/Bubble trap/Bubble.png'
         let bubble = new Bubble(this.character.x, this.character.y, this.character.width, this.character.height, this.character.mirror, air);
+        bubble.bubble_sound.play()
         bubble.air = true
         this.bubbles.push(bubble);
     }
@@ -148,6 +149,7 @@ class World {
         let toxicIMG = './assets/imgs/1.Sharkie/4.Attack/Bubble trap/Poisoned Bubble.png'
         let poison = new Bubble(this.character.x, this.character.y, this.character.width, this.character.height, this.character.mirror, toxicIMG);
         poison.toxic = true
+        poison.bubble_sound.play()
         this.bubbles.push(poison);
         this.collectedBottles--
     }

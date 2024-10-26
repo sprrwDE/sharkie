@@ -4,6 +4,7 @@ class Bubble extends MovableObject {
     hitboxColor = 'blue'
     toxic = false;
     air = false;
+    bubble_sound = new Audio('./assets/sounds/bubble.wav')
 
     constructor(x, y, width, height, mirror, image) {
         super();
