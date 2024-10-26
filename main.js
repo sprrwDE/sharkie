@@ -104,3 +104,19 @@ function muteBgSound() {
     }
 }
 
+function resetGame() {
+    clearAllIntervals();
+
+    world.collectedBottles = 0;
+    world.collectedCoins = 0;
+    world.character.health = 100;
+    world.boss.health = 100;
+    world.boss.visible = false;
+    world.boss.contact = false;
+
+    world.character.x = 0;
+    world.boss.x = 700 * 3;
+    world.boss.index = 0;
+
+    startGame();
+}

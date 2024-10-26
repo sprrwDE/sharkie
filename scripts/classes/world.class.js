@@ -5,6 +5,7 @@ class World {
     camera_x = -2;
     character = new Character();
     level = level_1;
+    boss;
     statusbar = new Statusbar(50, 20, 200, 60, 'char');
     bossbar = new Statusbar(480, 20, 200, 60, 'boss')
     bottleIcon = new StatusIcon(55, 80, 40, 40, 'bottle')
@@ -16,6 +17,7 @@ class World {
 
     constructor(canvas) {
         this.ctx = canvas.getContext('2d');
+        this.boss = this.level.enemies[this.level.enemies.length - 1];
         this.canvas = canvas;
         this.keyboard = keyboard;
         this.setWorld();
@@ -51,8 +53,7 @@ class World {
         this.renderToCanvas(this.coinIcon);
         this.drawText(this.collectedBottles, 120, 120);
         this.drawText(this.collectedCoins, 120, 160);
-        const boss = this.level.enemies[this.level.enemies.length - 1];
-        if (boss.visible) {
+        if (this.boss.visible) {
             this.renderToCanvas(this.bossbar);
         }
     }
@@ -193,9 +194,8 @@ class World {
 
     checkEndbossHit() {
         this.bubbles.forEach((bubble) => {
-            const bossEnemy = this.level.enemies[this.level.enemies.length - 1]
-            if (bubble.isColliding(bossEnemy) && bubble.toxic == true) {
-                this.damageEndboss(bossEnemy, bubble)
+            if (bubble.isColliding(this.boss) && bubble.toxic == true) {
+                this.damageEndboss(this.boss, bubble)
             }
         })
     }
@@ -211,7 +211,8 @@ class World {
         }
         if (boss.health <= 0) {
             setTimeout(() => {
-                this.level.enemies.splice((this.level.enemies.length - 1), 1)
+                boss.visible = false;
+                this.level.enemies.splice((this.boss), 1)
                 showEndScreen()
             }, 800)
             // win screen hinzufügen
@@ -279,11 +280,10 @@ class World {
     }
 
     checkEndbossContact() {
-        let boss = this.level.enemies[this.level.enemies.length - 1];
-        if (this.character.x > (boss.x - 300) && !boss.contact) {
-            boss.contact = true;
-            boss.visible = true;
-            boss.index = 0
+        if (this.character.x > (this.boss.x - 300) && !this.boss.contact) {
+            this.boss.contact = true;
+            this.boss.visible = true;
+            this.boss.index = 0
         }
     }
 }
