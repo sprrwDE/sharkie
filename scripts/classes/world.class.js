@@ -7,10 +7,10 @@ class World {
     level = level_1;
     statusbar = new Statusbar(50, 20, 200, 60, 'char');
     bossbar = new Statusbar(480, 20, 200, 60, 'boss')
-    bubbles = []
     bottleIcon = new StatusIcon(55, 80, 40, 40, 'bottle')
-    collectedBottles = 0;
     coinIcon = new StatusIcon(60, 130, 30, 30, 'coin')
+    bubbles = []
+    collectedBottles = 0;
     collectedCoins = 0;
     enemyType;
 
@@ -20,7 +20,6 @@ class World {
         this.keyboard = keyboard;
         this.setWorld();
         this.run()
-        this.draw();
     }
 
     setWorld() {
@@ -48,7 +47,6 @@ class World {
 
     drawFixedObjects() {
         this.renderToCanvas(this.statusbar);
-        this.renderToCanvas(this.bossbar);
         this.renderToCanvas(this.bottleIcon);
         this.renderToCanvas(this.coinIcon);
         this.drawText(this.collectedBottles, 120, 120);
@@ -77,6 +75,8 @@ class World {
             this.collectBottle();
             this.collectCoin();
             this.checkEndbossHit();
+            this.checkEndbossContact()
+            this.draw();
         }, 150)
 
         setInterval(() => {
@@ -159,7 +159,7 @@ class World {
         let toxicIMG = './assets/imgs/1.Sharkie/4.Attack/Bubble trap/Poisoned Bubble.png'
         let poison = new Bubble(this.character.x, this.character.y, this.character.width, this.character.height, this.character.mirror, toxicIMG);
         poison.toxic = true
-        this.playSoundObject(bubble);
+        this.playSoundObject(poison);
         this.bubbles.push(poison);
         this.collectedBottles--
     }
@@ -224,7 +224,6 @@ class World {
                 this.level.coins.splice(i, 1)
                 this.playSoundObject(coin);
                 this.collectedCoins++
-                console.log(this.collectedCoins)
             }
         })
     }
@@ -251,8 +250,11 @@ class World {
             this.mirror(object);
         }
 
-        object.draw(this.ctx)
-        // object.hitbox(this.ctx) <-- Hitbox anzeigen
+        if (object.visible) {
+            object.draw(this.ctx)
+            object.hitbox(this.ctx)
+        }
+
 
         if (object.mirror) {
             this.restoreDirection(object);
@@ -271,5 +273,14 @@ class World {
         this.ctx.restore();
     }
 
+    checkEndbossContact() {
+        let boss = this.level.enemies[this.level.enemies.length - 1];
+        if (this.character.x > (boss.x - 300) && !boss.contact) {
+            boss.contact = true;
+            boss.visible = true;
+            this.renderToCanvas(this.bossbar)
+            boss.index = 0
+        }
+    }
 
 }

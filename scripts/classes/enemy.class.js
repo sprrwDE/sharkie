@@ -3,7 +3,6 @@ class Enemy extends MovableObject {
     danger = false;
     hit = false;
     sound;
-
     constructor() {
         super()
     }

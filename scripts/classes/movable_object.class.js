@@ -4,7 +4,8 @@ class MovableObject extends DrawableObject {
     lastHit = 0;
     finslapActive = false;
     finslapInProgress = false; // Neue Variable zum Überwachen des Animationsstatus
-
+    visible = true;
+    
     constructor() {
         super()
     }

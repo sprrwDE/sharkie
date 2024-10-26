@@ -102,6 +102,7 @@ class Character extends MovableObject {
     finslap_sound = new Audio('./assets/sounds/finslap.wav')
     death_sound;
     snore_sound;
+    health = 10000;
 
     constructor() {
         super()

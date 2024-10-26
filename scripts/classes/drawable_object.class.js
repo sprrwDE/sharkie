@@ -8,6 +8,7 @@ class DrawableObject {
     imgCache = {};
     mirror = false;
     totalImages = 0
+    visible = true;
     
     // Hitbox
     offset = {

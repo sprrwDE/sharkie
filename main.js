@@ -93,10 +93,14 @@ function toggleInfoBox() {
 
 function toggleMuteAllSounds() {
     mute = !mute
+    muteBgSound()
+}
+
+function muteBgSound() {
     if (mute) {
-        bgSound.play()
-    } else {
         bgSound.pause()
+    } else {
+        bgSound.play()
     }
 }
 

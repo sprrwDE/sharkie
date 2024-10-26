@@ -47,11 +47,11 @@ class Endboss extends MovableObject {
     } */
     type = 'endboss'
     immune = false;
-    // machen
     contact = false
     sound = new Audio('./assets/sounds/autsch.wav')
     boss_sound = new Audio('./assets/sounds/boss.wav')
-
+    index = 0;
+    visible = false
 
     constructor() {
         super();
@@ -61,6 +61,7 @@ class Endboss extends MovableObject {
         this.height = 400;
         this.width = this.height;
 
+
         this.moveSpeed = 0.15 + Math.random() * 0.45
         this.loadImages(this.IMAGES_SWIMMING);
         this.loadImages(this.IMAGES_SPAWNING);
@@ -69,43 +70,23 @@ class Endboss extends MovableObject {
         this.animate();
     }
 
-    /* funktioniert noch nicht, wie auf character zugreifen? -> Wirft Consolen Errors
     animate() {
-        let i = 0;
         setInterval(()=> {
-            if (i < 10) {
+            if (this.index < this.IMAGES_SPAWNING.length) {
                 this.playAnimation(this.IMAGES_SPAWNING);
             } else { 
                 this.playAnimation(this.IMAGES_SWIMMING);
             }
-            i++
-            if (this.character.x > this.x && !contact) {
-                i = 0;
-                this.contact = true;
+            this.index ++
+
+        }, 180);
+
+        setInterval(() => {
+            if (this.contact) { 
+                this.moveLeft();
             }
-        }, 180);
-
-
-        setInterval(() => {
-            this.moveLeft();
-        }, 1000 / 60);   
-    };    */
-
-    animate() {
-        setInterval(() => {
-            if (this.health == 0) {
-                this.playAnimation(this.IMAGES_DEAD);
-            } else if (this.immune) {
-                this.playAnimation(this.IMAGES_HURT);
-            } else {
-                this.playAnimation(this.IMAGES_SWIMMING);
-            } // death
-        }, 180);
-
-        setInterval(() => {
-            this.moveLeft();
-        }, 1000 / 60);
-    };
+        }, 1000 / 60); 
+    }; 
 
     playSoundBoss(soundelement) {
         if (!mute) {
