@@ -130,6 +130,7 @@ class Character extends MovableObject {
     finslap_sound = new Audio('./assets/sounds/finslap.wav')
     death_sound = new Audio('./assets/sounds/char_dying.wav')
     snore_sound = new Audio('./assets/sounds/snoring.wav')
+    swim_sound = new Audio('./assets/sounds/swimming.wav')
     health = 1000;
     lastMovement = 0;
 
@@ -195,19 +196,21 @@ class Character extends MovableObject {
             } else if (this.isHurt() && this.world.enemyType === 'jellyfish') {
                 this.playAnimation(this.IMAGES_SHOCK);
             } else if (this.buttonPressed()) {
-                this.characterSwimming();
+                this.characterSwimmingLogic();
             } else if (this.checkSnooze()) {
                 this.snoozeLogic();
             } else {
                 this.playAnimation(this.IMAGES_IDLE);
+                this.swim_sound.pause();
             }
         }, 150);
     }
 
-    characterSwimming() {
+    characterSwimmingLogic() {
         this.playAnimation(this.IMAGES_SWIM);
         this.moving = true;
         this.lastMovement = new Date().getTime();
+        this.playSoundCharacter(this.swim_sound);
     }
 
     checkSnooze() {
@@ -231,7 +234,7 @@ class Character extends MovableObject {
             this.playAnimation(this.IMAGES_DEAD);
         }
         this.playSoundCharacter(this.death_sound);
-        stopGame();
+        showEndScreen()
     }
 
     animationLogicFighting() {

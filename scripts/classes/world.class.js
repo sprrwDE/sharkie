@@ -96,7 +96,6 @@ class World {
         }
     }
 
-    // if !immune (bei finslap immune = true setzen) -> Enemy AI quasi
     checkCollissions() {
         this.level.enemies.forEach((enemy) => {
             if (this.character.isColliding(enemy) && !this.character.immune && !enemy.hit) {
@@ -135,11 +134,9 @@ class World {
     }
 
     killPufferfish(enemy) {
-        // funktion in movableObjekt definieren, animation abspielen, enemy.kill(), eventuell 
         this.enemyType = this.checkEnemyType(enemy)
         enemy.hit = true;
         setTimeout(() => {
-            // Filtert enemy aus array heraus
             this.level.enemies = this.level.enemies.filter(e => e !== enemy);
         }, 800)
 
@@ -214,7 +211,6 @@ class World {
                 boss.visible = false;
                 this.level.enemies.splice((this.boss), 1)
                 showWinScreen()
-                resetGame()
             }, 800)
             // win screen hinzufügen
             // interval für sterbeanimation hinzufügen

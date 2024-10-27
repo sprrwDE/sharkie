@@ -48,8 +48,8 @@ class Endboss extends MovableObject {
     type = 'endboss'
     immune = false;
     contact = false
-    sound = new Audio('./assets/sounds/autsch.wav')
-    boss_sound = new Audio('./assets/sounds/boss.wav')
+    sound = new Audio('./assets/sounds/boss.wav')
+    death_sound = new Audio('./assets/sounds/boss_dying.wav')
     index = 0;
     visible = false
 
@@ -81,6 +81,9 @@ class Endboss extends MovableObject {
                 this.playAnimation(this.IMAGES_SWIMMING);
             } if (this.immune) {
                 this.playAnimation(this.IMAGES_HURT);
+            } if (this.health <= 0) {
+                this.playAnimation(this.IMAGES_DEAD);
+                this.playSoundBoss(this.death_sound) 
             }
             this.index ++
 

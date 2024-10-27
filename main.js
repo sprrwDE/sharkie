@@ -58,7 +58,7 @@ document.addEventListener('keyup', (event) => {
     }
     if (event.keyCode == 69) {
         keyboard.SHOOT = false;
-    }     
+    }
     if (event.keyCode == 81) {
         keyboard.POISON = false;
     };
@@ -73,45 +73,44 @@ function startGame() {
     toggleBgSound()
 }
 
-function stopGame() {
-    clearAllIntervals()
-    setTimeout(() => {
-        showEndScreen();
-    }, 500)
-}
-
 function clearAllIntervals() {
     for (let i = 1; i < 9999; i++) window.clearInterval(i);
 }
 
 function showEndScreen() {
-    endContainer.classList.remove('d-none')
-    cvs.classList.add('d-none');
+    resetGame()
+    setTimeout(() => {
+        endContainer.classList.remove('d-none')
+        cvs.classList.add('d-none');
+    }, 500)
+
 }
 
 function showWinScreen() {
+    resetGame()
     winContainer.classList.remove('d-none')
     cvs.classList.add('d-none');
 }
 
 function showHomeScreen() {
-    startContainer.classList.remove('d-none')
-    endContainer.classList.add('d-none')
+    startContainer.classList.remove('d-none');
+    endContainer.classList.add('d-none');
 }
 
 function toggleInfoBox() {
     infobox.classList.toggle('d-none')
-}   
+}
 
 function toggleMuteAllSounds() {
     mute = !mute
     toggleBgSound()
-    world.character.snore_sound.pause()
 }
 
 function toggleBgSound() {
     if (mute) {
         bgSound.pause()
+        world.character.snore_sound.pause()
+        world.character.swim_sound.pause()
     } else {
         bgSound.play()
     }
@@ -120,11 +119,11 @@ function toggleBgSound() {
 function resetGame() {
     clearAllIntervals();
     setFlexibleValues()
-    toggleBgSound()
 }
 
 function restartGame() {
     resetGame();
+    toggleBgSound()
     startGame();
     init()
 }
