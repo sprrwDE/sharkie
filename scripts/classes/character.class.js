@@ -234,7 +234,12 @@ class Character extends MovableObject {
             this.playAnimation(this.IMAGES_DEAD);
         }
         this.playSoundCharacter(this.death_sound);
-        showEndScreen()
+        setTimeout(() => {
+
+            bgSound.pause()
+            showEndScreen()
+        }, 500)
+
     }
 
     animationLogicFighting() {

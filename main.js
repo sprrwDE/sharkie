@@ -79,11 +79,8 @@ function clearAllIntervals() {
 
 function showEndScreen() {
     resetGame()
-    setTimeout(() => {
-        endContainer.classList.remove('d-none')
-        cvs.classList.add('d-none');
-    }, 500)
-
+    endContainer.classList.remove('d-none')
+    cvs.classList.add('d-none');
 }
 
 function showWinScreen() {

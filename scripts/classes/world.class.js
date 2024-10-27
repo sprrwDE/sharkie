@@ -211,6 +211,7 @@ class World {
                 boss.visible = false;
                 this.level.enemies.splice((this.boss), 1)
                 showWinScreen()
+                bgSound.pause()
             }, 800)
             // win screen hinzufügen
             // interval für sterbeanimation hinzufügen
