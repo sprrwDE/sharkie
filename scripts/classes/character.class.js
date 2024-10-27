@@ -175,7 +175,6 @@ class Character extends MovableObject {
                 this.moving = true;
             } else {
                 this.playAnimation(this.IMAGES_IDLE);
-
             } 
             // wie snooze animation?
             // this.playSoundCharacter(this.snore_sound);

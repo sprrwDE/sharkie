@@ -22,7 +22,7 @@ class JellyFishYellow extends Enemy {
 
     constructor() {
         super();
-        this.loadImage(this.IMAGES_SWIMMING[0]); 
+        this.loadImage(this.IMAGES_SWIMMING[0]);
         this.setEnemyCharacteristics();
         this.loadImages(this.IMAGES_SWIMMING);
         this.loadImages(this.IMAGES_DANGER);
@@ -32,18 +32,8 @@ class JellyFishYellow extends Enemy {
     }
 
     animate() {
-        setInterval(() => {
-            if (this.hit) {
-                this.playAnimation(this.IMAGES_HIT);
-            } else if (this.danger) {
-                this.playAnimation(this.IMAGES_DANGER);
-            } 
-            else {
-                this.playAnimation(this.IMAGES_SWIMMING);
-            }
-        }, 200);
+        this.animationLogic()
         this.enemyUpAndDown();
     }
 
 }
-

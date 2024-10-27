@@ -13,5 +13,18 @@ class Enemy extends MovableObject {
         }, 5000 + (5000 * Math.random()));
     }
 
+    animationLogic() {
+        setInterval(() => {
+            if (this.hit) {
+                this.playAnimation(this.IMAGES_HIT);
+            } else if (this.danger) {
+                this.playAnimation(this.IMAGES_DANGER);
+            }
+            else {
+                this.playAnimation(this.IMAGES_SWIMMING);
+            }
+        }, 200);
+    }
+
 }
 

@@ -33,20 +33,9 @@ class JellyFishPurple extends Enemy {
     }
 
     animate() {
-        setInterval(() => {
-            if (this.hit) {
-                this.playAnimation(this.IMAGES_HIT);
-            } else if (this.danger) {
-                this.playAnimation(this.IMAGES_DANGER);
-            } 
-            else {
-                this.playAnimation(this.IMAGES_SWIMMING);
-            }
-        }, 200);
+        this.animationLogic();
         this.enemyUpAndDown();
+        // wenn getroffen stehen bleiben und hochmoven
     }
-
-    // wenn getroffen stehen bleiben und hochmoven
-    
 
 }

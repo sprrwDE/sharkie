@@ -30,6 +30,7 @@ class DrawableObject {
             let img = new Image();
             img.src = path;
             this.imgCache[path] = img;
+            ////// LOADINGSCREEN
             // this.img.onload -> globale variable wie viele bilder geladen wurden (console log checken)
             // am anfang images loaded = 0 -> hochzählen foreach(img) images loaded ++
             // if imagesLoaded = totalImages
