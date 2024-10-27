@@ -19,6 +19,22 @@ class Character extends MovableObject {
         './assets/imgs/1.Sharkie/1.IDLE/17.png',
         './assets/imgs/1.Sharkie/1.IDLE/18.png'
     ];
+    IMAGES_SNOOZE = [
+        './assets/imgs/1.Sharkie/2.Long_IDLE/i1.png',
+        './assets/imgs/1.Sharkie/2.Long_IDLE/I2.png',
+        './assets/imgs/1.Sharkie/2.Long_IDLE/I3.png',
+        './assets/imgs/1.Sharkie/2.Long_IDLE/I4.png',
+        './assets/imgs/1.Sharkie/2.Long_IDLE/I5.png',
+        './assets/imgs/1.Sharkie/2.Long_IDLE/I6.png',
+        './assets/imgs/1.Sharkie/2.Long_IDLE/I7.png',
+        './assets/imgs/1.Sharkie/2.Long_IDLE/I8.png',
+        './assets/imgs/1.Sharkie/2.Long_IDLE/I9.png',
+        './assets/imgs/1.Sharkie/2.Long_IDLE/I10.png',
+        './assets/imgs/1.Sharkie/2.Long_IDLE/I11.png',
+        './assets/imgs/1.Sharkie/2.Long_IDLE/I12.png',
+        './assets/imgs/1.Sharkie/2.Long_IDLE/I13.png',
+        './assets/imgs/1.Sharkie/2.Long_IDLE/I14.png'
+    ];
     IMAGES_SWIM = [
         './assets/imgs/1.Sharkie/3.Swim/1.png',
         './assets/imgs/1.Sharkie/3.Swim/2.png',
@@ -121,6 +137,7 @@ class Character extends MovableObject {
         super()
         this.loadImage('./assets/imgs/1.Sharkie/1.IDLE/1.png')
         this.loadImages(this.IMAGES_IDLE);
+        this.loadImages(this.IMAGES_SNOOZE);
         this.loadImages(this.IMAGES_SWIM);
         this.loadImages(this.IMAGES_FINSLAP);
         this.loadImages(this.IMAGES_SHOOTING);
@@ -160,6 +177,11 @@ class Character extends MovableObject {
         })
     }
 
+    buttonPressed() {
+        this.checkSnooze()
+        return this.world.keyboard.UP || this.world.keyboard.DOWN || this.world.keyboard.LEFT || this.world.keyboard.RIGHT
+    }
+
     animationLogicMoving() {
         setInterval(() => {
             this.moving = false;
@@ -182,11 +204,6 @@ class Character extends MovableObject {
         }, 150);
     }
 
-    buttonPressed() {
-        this.checkSnooze()
-        return this.world.keyboard.UP || this.world.keyboard.DOWN || this.world.keyboard.LEFT || this.world.keyboard.RIGHT
-    }
-
     characterSwimming() {
         this.playAnimation(this.IMAGES_SWIM);
         this.moving = true;
@@ -202,6 +219,8 @@ class Character extends MovableObject {
     }
 
     snoozeLogic() {
+        this.playAnimation(this.IMAGES_SNOOZE);
+        // this.playSoundCharacter(this.snore_sound);
         console.log('15 sec diggi')
     }
 
