@@ -213,7 +213,7 @@ class World {
             setTimeout(() => {
                 boss.visible = false;
                 this.level.enemies.splice((this.boss), 1)
-                showEndScreen()
+                showWinScreen()
                 resetGame()
             }, 800)
             // win screen hinzufügen

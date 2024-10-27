@@ -118,6 +118,12 @@ p {
 .end {
     background-image: url('./assets/imgs/3. Background/Mesa de trabajo 1.png');
     z-index: 1;
+    color: white;
+}
+
+.restart {
+    display: flex;
+    gap: 8px;
 }
 
 .infos {

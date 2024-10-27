@@ -2,6 +2,7 @@ let world;
 let keyboard = new Keyboard();
 let startContainer = document.getElementById('startscreen');
 let endContainer = document.getElementById('endscreen');
+let winContainer = document.getElementById('win');
 let startButton = document.getElementById('start');
 let infobox = document.getElementById('infobox');
 let cvs = document.getElementById('canvas');
@@ -67,6 +68,7 @@ function startGame() {
     createLevel()
     startContainer.classList.add('d-none')
     endContainer.classList.add('d-none');
+    winContainer.classList.add('d-none');
     cvs.classList.remove('d-none');
     toggleBgSound()
 }
@@ -84,6 +86,11 @@ function clearAllIntervals() {
 
 function showEndScreen() {
     endContainer.classList.remove('d-none')
+    cvs.classList.add('d-none');
+}
+
+function showWinScreen() {
+    winContainer.classList.remove('d-none')
     cvs.classList.add('d-none');
 }
 
