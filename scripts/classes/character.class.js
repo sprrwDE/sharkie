@@ -83,6 +83,18 @@ class Character extends MovableObject {
         './assets/imgs/1.Sharkie/6.dead/1.Poisoned/sin subir/DES 2_00010.png',
         './assets/imgs/1.Sharkie/6.dead/1.Poisoned/sin subir/DES 2_00011.png'
     ]
+    IMAGES_DEAD_SHOCK = [
+        './assets/imgs/1.Sharkie/6.dead/2.Electro_shock/1.png',
+        './assets/imgs/1.Sharkie/6.dead/2.Electro_shock/2.png',
+        './assets/imgs/1.Sharkie/6.dead/2.Electro_shock/3.png',
+        './assets/imgs/1.Sharkie/6.dead/2.Electro_shock/4.png',
+        './assets/imgs/1.Sharkie/6.dead/2.Electro_shock/5.png',
+        './assets/imgs/1.Sharkie/6.dead/2.Electro_shock/6.png',
+        './assets/imgs/1.Sharkie/6.dead/2.Electro_shock/7.png',
+        './assets/imgs/1.Sharkie/6.dead/2.Electro_shock/8.png',
+        './assets/imgs/1.Sharkie/6.dead/2.Electro_shock/9.png',
+        './assets/imgs/1.Sharkie/6.dead/2.Electro_shock/10.png'
+    ]
 
     world;
     moving;
@@ -102,7 +114,7 @@ class Character extends MovableObject {
     finslap_sound = new Audio('./assets/sounds/finslap.wav')
     death_sound;
     snore_sound;
-    health = 10000;
+    health = 1000;
 
     constructor() {
         super()
@@ -114,6 +126,7 @@ class Character extends MovableObject {
         this.loadImages(this.IMAGES_POISONBUBBLE);
         this.loadImages(this.IMAGES_POISONED);
         this.loadImages(this.IMAGES_DEAD);
+        this.loadImages(this.IMAGES_DEAD_SHOCK);
         this.loadImages(this.IMAGES_SHOCK);
         this.animate();
     }
@@ -150,9 +163,7 @@ class Character extends MovableObject {
             this.moving = false;
             this.slap = false;
             if (this.isDead()) {
-                // this.playSoundCharacter(this.death_sound);
-                this.playAnimation(this.IMAGES_DEAD);
-                stopGame();
+                this.animationLogicDeath()
             } else if (this.isHurt() && this.world.enemyType === ('pufferfish')) {
                 this.playAnimation(this.IMAGES_POISONED);
             } else if (this.isHurt() && this.world.enemyType === ('endboss')) {
@@ -170,6 +181,16 @@ class Character extends MovableObject {
             // this.playSoundCharacter(this.snore_sound);
 
         }, 150);
+    }
+
+    animationLogicDeath() {
+        if (this.isDead() && this.world.enemyType === ('jellyfish')) {
+            this.playAnimation(this.IMAGES_DEAD_SHOCK);
+        } else {
+            this.playAnimation(this.IMAGES_DEAD);
+        }
+        // this.playSoundCharacter(this.death_sound);
+        stopGame();
     }
 
     animationLogicFighting() {
