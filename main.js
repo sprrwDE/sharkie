@@ -106,6 +106,7 @@ function toggleInfoBox() {
 function toggleMuteAllSounds() {
     mute = !mute
     toggleBgSound()
+    world.character.snore_sound.pause()
 }
 
 function toggleBgSound() {

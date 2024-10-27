@@ -128,8 +128,8 @@ class Character extends MovableObject {
     finslapActive = false;
     immuneDuration = 1000;
     finslap_sound = new Audio('./assets/sounds/finslap.wav')
-    death_sound;
-    snore_sound;
+    death_sound = new Audio('./assets/sounds/char_dying.wav')
+    snore_sound = new Audio('./assets/sounds/snoring.wav')
     health = 1000;
     lastMovement = 0;
 
@@ -220,8 +220,8 @@ class Character extends MovableObject {
 
     snoozeLogic() {
         this.playAnimation(this.IMAGES_SNOOZE);
-        // this.playSoundCharacter(this.snore_sound);
-        console.log('15 sec diggi')
+        this.playSoundCharacter(this.snore_sound);
+        // absinken lassen
     }
 
     animationLogicDeath() {
@@ -230,7 +230,7 @@ class Character extends MovableObject {
         } else {
             this.playAnimation(this.IMAGES_DEAD);
         }
-        // this.playSoundCharacter(this.death_sound);
+        this.playSoundCharacter(this.death_sound);
         stopGame();
     }
 
