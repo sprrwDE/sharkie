@@ -119,7 +119,12 @@ class Character extends MovableObject {
     }
 
     animate() {
+        this.movementLogic();
+        this.animationLogicMoving();
+        this.animationLogicFighting();
+    }
 
+    movementLogic() {
         setInterval(() => {
             if (this.world.keyboard.RIGHT && this.x < this.world.level.levelEndX) {
                 this.world.camera_x = -this.x + 100
@@ -138,7 +143,9 @@ class Character extends MovableObject {
                 this.moveDown()
             }
         })
+    }
 
+    animationLogicMoving() {
         setInterval(() => {
             this.moving = false;
             this.slap = false;
@@ -146,7 +153,9 @@ class Character extends MovableObject {
                 // this.playSoundCharacter(this.death_sound);
                 this.playAnimation(this.IMAGES_DEAD);
                 stopGame();
-            } else if (this.isHurt() && this.world.enemyType === 'pufferfish') {
+            } else if (this.isHurt() && this.world.enemyType === ('pufferfish')) {
+                this.playAnimation(this.IMAGES_POISONED);
+            } else if (this.isHurt() && this.world.enemyType === ('endboss')) {
                 this.playAnimation(this.IMAGES_POISONED);
             } else if (this.isHurt() && this.world.enemyType === 'jellyfish') {
                 this.playAnimation(this.IMAGES_SHOCK);
@@ -155,11 +164,15 @@ class Character extends MovableObject {
                 this.moving = true;
             } else {
                 this.playAnimation(this.IMAGES_IDLE);
-                // this.playSoundCharacter(this.snore_sound);
 
-            } // wie snooze animation?
+            } 
+            // wie snooze animation?
+            // this.playSoundCharacter(this.snore_sound);
+
         }, 150);
+    }
 
+    animationLogicFighting() {
         setInterval(() => {
             if (this.world.keyboard.FIN && !this.finslapActive) {
                 this.activateFinslap();

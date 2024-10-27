@@ -60,8 +60,6 @@ class Endboss extends MovableObject {
         this.x = 700 * 3;
         this.height = 400;
         this.width = this.height;
-
-
         this.moveSpeed = 0.15 + Math.random() * 0.45
         this.loadImages(this.IMAGES_SWIMMING);
         this.loadImages(this.IMAGES_SPAWNING);
@@ -71,27 +69,35 @@ class Endboss extends MovableObject {
     }
 
     animate() {
+        this.animationLogic()
+        this.movementLogic()
+    }; 
+
+    animationLogic() {
         setInterval(()=> {
             if (this.index < this.IMAGES_SPAWNING.length) {
                 this.playAnimation(this.IMAGES_SPAWNING);
             } else { 
                 this.playAnimation(this.IMAGES_SWIMMING);
+            } if (this.immune) {
+                this.playAnimation(this.IMAGES_HURT);
             }
             this.index ++
 
         }, 180);
+    }
 
+    movementLogic() {
         setInterval(() => {
             if (this.contact) { 
                 this.moveLeft();
             }
         }, 1000 / 60); 
-    }; 
-
+    }
+    
     playSoundBoss(soundelement) {
         if (!mute) {
             soundelement.play()
         }   
     }
-
 }
