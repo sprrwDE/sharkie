@@ -91,4 +91,22 @@ class MovableObject extends DrawableObject {
             this.movingUp = true;
         }
     }
+
+    applyGravity(grav, acc) {
+        let gravitySpeed = grav;
+        let acceleration = acc;
+        setInterval(() => {
+                this.y += gravitySpeed;
+                this.gravitySpeed += acceleration;
+        }, 1000 / 25)
+    } 
+
+    applyUpstream(up, acc) {
+        let upstreamSpeed = up;
+        let acceleration = acc;
+        setInterval(() => {
+                this.y -= upstreamSpeed;
+                this.upstreamSpeed += acceleration;
+        }, 1000 / 25)
+    } 
 }

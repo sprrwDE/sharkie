@@ -131,7 +131,7 @@ class Character extends MovableObject {
     death_sound = new Audio('./assets/sounds/char_dying.wav')
     snore_sound = new Audio('./assets/sounds/snoring.wav')
     swim_sound = new Audio('./assets/sounds/swimming.wav')
-    health = 1000;
+    health = 100;
     lastMovement = 0;
 
     constructor() {
@@ -234,8 +234,8 @@ class Character extends MovableObject {
             this.playAnimation(this.IMAGES_DEAD);
         }
         this.playSoundCharacter(this.death_sound);
+        this.applyGravity(1, 0.1) // char moved nach unten, wie bewegung stoppen?
         setTimeout(() => {
-
             bgSound.pause()
             showEndScreen()
         }, 500)

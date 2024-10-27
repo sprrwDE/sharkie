@@ -78,9 +78,10 @@ class PufferFishGreen extends Enemy {
                 this.playAnimation(this.IMAGES_DANGER);
             } else if (this.hit) {
                 this.playAnimation(this.IMAGES_HIT);
+                this.applyUpstream(2, 1)
                 setTimeout(() => {
                     this.hit = false;
-                }, 600)
+                }, 400)
             } else {
                 this.playAnimation(this.IMAGES_SWIMMING);
             }
