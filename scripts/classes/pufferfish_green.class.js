@@ -47,7 +47,7 @@ class PufferFishGreen extends Enemy {
         this.setEnemyCharacteristics()
         this.loadImages(this.IMAGES_SWIMMING);
         this.loadImages(this.IMAGES_TRANSITION);
-        // this.loadImages(this.IMAGES_TRANSITION_REVERSE);
+        // this.loadImages(this.IMAGES_TRANSITION_REVERSE); ???
         this.loadImages(this.IMAGES_DANGER);
         this.loadImages(this.IMAGES_HIT);
         this.checkDanger()
@@ -66,6 +66,11 @@ class PufferFishGreen extends Enemy {
     }
 
     animate() {
+        this.animationLogic();
+        this.enemyLeft();
+    };
+
+    animationLogic() {
         setInterval(() => {
             if (this.danger) {
                 // als array abspielen -> machen
@@ -80,11 +85,13 @@ class PufferFishGreen extends Enemy {
                 this.playAnimation(this.IMAGES_SWIMMING);
             }
         }, 200);
+    }
 
+    enemyLeft() {
         setInterval(() => {
             this.moveLeft();
         }, 1000 / 60);
-    };
+    }
 }
 
 // timeout beenden animation wenn hit

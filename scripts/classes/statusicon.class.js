@@ -16,6 +16,7 @@ class StatusIcon extends MovableObject {
         './assets/imgs/4. Marcadores/1. Coins/4.png'
     ]
     barType;
+
     constructor(x, y, width, height, icon) {
         super()
         this.x = x;
@@ -30,8 +31,7 @@ class StatusIcon extends MovableObject {
         if (icon === "coin") {
             this.loadImages(this.IMAGES_COIN);
             this.barType = 'coin';
-        }
-        if (icon === "bottle") {
+        } if (icon === "bottle") {
             this.loadImages(this.IMAGES_BOTTLE);
             this.barType = 'bottle';
         }
@@ -46,6 +46,5 @@ class StatusIcon extends MovableObject {
             }
         }, 200);
     }
-
 
 }

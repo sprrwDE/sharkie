@@ -31,16 +31,18 @@ class Statusbar extends DrawableObject {
     }
 
     setPercentage(pctg) {
-        let path;
         this.percentage = pctg;
-
-        if (this.barType === 'char') {
-            path = this.IMAGES_HP[this.resolveImageIndex(this.percentage)];
-        } else if (this.barType === 'boss') {
-            path = this.IMAGES_ENDBOSS[this.resolveImageIndex(this.percentage)];
-        }
-
+        const path = this.setPath();
         this.img = this.imgCache[path];
+    }
+
+    setPath() {
+        let path;
+        if (this.barType === 'char') {
+            return path = this.IMAGES_HP[this.resolveImageIndex(this.percentage)];
+        } else if (this.barType === 'boss') {
+            return path = this.IMAGES_ENDBOSS[this.resolveImageIndex(this.percentage)];
+        }
     }
 
     resolveImageIndex(pctg) {
@@ -61,15 +63,23 @@ class Statusbar extends DrawableObject {
 
     defineBar(bar) {
         if (bar === "char") {
-            this.loadImages(this.IMAGES_HP);
-            this.barType = 'char';
-            this.setPercentage(100);
+            this.setCharacterBar();
         }
         if (bar === "boss") {
-            this.loadImages(this.IMAGES_ENDBOSS);
-            this.barType = 'boss';
-            this.setPercentage(100);
+            this.setBossBar();
         }
+    }
+
+    setCharacterBar() {
+        this.loadImages(this.IMAGES_HP);
+        this.barType = 'char';
+        this.setPercentage(100);
+    }
+
+    setBossBar() {
+        this.loadImages(this.IMAGES_ENDBOSS);
+        this.barType = 'boss';
+        this.setPercentage(100);
     }
 }
 

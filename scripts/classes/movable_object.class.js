@@ -4,7 +4,7 @@ class MovableObject extends DrawableObject {
     lastHit = 0;
     finslapActive = false;
     finslapInProgress = false; // Neue Variable zum Überwachen des Animationsstatus
-    
+
     constructor() {
         super()
     }
@@ -18,7 +18,7 @@ class MovableObject extends DrawableObject {
     }
 
     isColliding(object) {
-        return (this.x + this.width - (this.offset['right'] / 2)) >= object.x + object.offset['left'] && 
+        return (this.x + this.width - (this.offset['right'] / 2)) >= object.x + object.offset['left'] &&
             (this.x + (this.offset['left'] / 2)) <= (object.x + (object.width - object.offset['right'])) &&
             (this.y + this.height - (this.offset['bottom'] / 3)) >= object.y + object.offset['top'] &&
             (this.y + (this.offset['top'])) <= (object.y + (object.height - object.offset['bottom']))
@@ -37,7 +37,7 @@ class MovableObject extends DrawableObject {
         let timespan = new Date() - this.lastHit; // differenz in ms
         timespan = timespan / 1000 // differenz in s
         return timespan < 0.3;
-    } 
+    }
 
     isDead() {
         return this.health == 0;
@@ -71,17 +71,24 @@ class MovableObject extends DrawableObject {
     enemyUpAndDown() {
         setInterval(() => {
             if (this.movingUp) {
-                this.y -= this.moveSpeed;
-                if (this.y <= 0) {
-                    this.movingUp = false;
-                }
+                this.enemyUp();
             } else {
-                this.y += this.moveSpeed;
-                if (this.y + this.height >= 480) {
-                    this.movingUp = true;
-                }
+                this.enemyDown();
             }
         }, 1000 / 60);
     };
 
+    enemyUp() {
+        this.moveUp();
+        if (this.y <= 0) {
+            this.movingUp = false;
+        }
+    }
+
+    enemyDown() {
+        this.moveDown();
+        if (this.y + this.height >= 480) {
+            this.movingUp = true;
+        }
+    }
 }
