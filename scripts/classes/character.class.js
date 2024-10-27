@@ -173,7 +173,7 @@ class Character extends MovableObject {
             } else if (this.isHurt() && this.world.enemyType === 'jellyfish') {
                 this.playAnimation(this.IMAGES_SHOCK);
             } else if (this.buttonPressed()) {
-                this.movementLogic();
+                this.characterSwimming();
             } else if (this.checkSnooze()) {
                 this.snoozeLogic();
             } else {
@@ -187,18 +187,18 @@ class Character extends MovableObject {
         return this.world.keyboard.UP || this.world.keyboard.DOWN || this.world.keyboard.LEFT || this.world.keyboard.RIGHT
     }
 
-    movementLogic() {
+    characterSwimming() {
         this.playAnimation(this.IMAGES_SWIM);
         this.moving = true;
-        this.lastMovement = new Date().getTime(); 
+        this.lastMovement = new Date().getTime();
     }
 
     checkSnooze() {
         if (!this.lastMovement) {
             this.lastMovement = new Date().getTime();
         }
-        let timespan = (new Date().getTime() - this.lastMovement) / 1000; 
-        return timespan > 5; 
+        let timespan = (new Date().getTime() - this.lastMovement) / 1000;
+        return timespan > 5;
     }
 
     snoozeLogic() {
