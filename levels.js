@@ -51,7 +51,19 @@ function createLevel() {
         [
             new Coin(300, 200),
             new Coin(400, 200),
+            new Coin(600, 100),
+            new Coin(700, 100),
+            new Coin(1000, 250),
+            new Coin(1000, 300),
+            new Coin(1200, 150),
+            new Coin(1200, 200),
+            new Coin(1400, 250),
+            new Coin(1400, 300),
+            new Coin(1600, 200),
+            new Coin(1700, 250),
+            new Coin(1800, 300),
+            new Coin(1900, 250),
+            new Coin(2000, 200)
         ]
-
     );
 }

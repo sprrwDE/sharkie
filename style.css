@@ -47,6 +47,7 @@ canvas {
     background-color: black;
     border-radius: 10px;
     box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+    display: block;
 }
 
 /* Link Styling */
@@ -205,4 +206,63 @@ svg:hover {
 
 .mute {
     z-index: 0;
+}
+
+.portrait {
+    display: none;
+}
+
+/* Smartphone Landscape */
+@media only screen and (max-width: 720px) {
+    canvas {
+        width: 100%;
+    }
+
+    .screen {
+        width: 100%;
+    }
+
+    .start {
+        width: 100%;
+    }
+
+    .win {
+        width: 100%;
+    }
+
+    .end {
+        width: 100%;
+    }
+}
+
+/* Smartphone Portrait */
+@media only screen and (max-width: 480px) {
+    canvas {
+        height: 100vh;
+    }
+
+    .screen {
+        width: 100%;
+    }
+
+    .portrait {
+        position: absolute;
+        display: flex;
+        height: 100vh;
+        width: 100%;
+        background-color: black;
+        color: white;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+        text-align: center;
+    }
+
+    .start {
+        display: none;
+    }
+
+    .canvas {
+        display: none;
+    }
 }
