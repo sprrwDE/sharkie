@@ -115,6 +115,7 @@ class Character extends MovableObject {
     death_sound;
     snore_sound;
     health = 1000;
+    lastMovement = 0;
 
     constructor() {
         super()
@@ -129,6 +130,7 @@ class Character extends MovableObject {
         this.loadImages(this.IMAGES_DEAD_SHOCK);
         this.loadImages(this.IMAGES_SHOCK);
         this.animate();
+        this.checkSnooze()
     }
 
     animate() {
@@ -170,16 +172,37 @@ class Character extends MovableObject {
                 this.playAnimation(this.IMAGES_POISONED);
             } else if (this.isHurt() && this.world.enemyType === 'jellyfish') {
                 this.playAnimation(this.IMAGES_SHOCK);
-            } else if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT || this.world.keyboard.UP || this.world.keyboard.DOWN) {
-                this.playAnimation(this.IMAGES_SWIM);
-                this.moving = true;
+            } else if (this.buttonPressed()) {
+                this.movementLogic();
+            } else if (this.checkSnooze()) {
+                this.snoozeLogic();
             } else {
                 this.playAnimation(this.IMAGES_IDLE);
-            } 
-            // wie snooze animation?
-            // this.playSoundCharacter(this.snore_sound);
-
+            }
         }, 150);
+    }
+
+    buttonPressed() {
+        this.checkSnooze()
+        return this.world.keyboard.UP || this.world.keyboard.DOWN || this.world.keyboard.LEFT || this.world.keyboard.RIGHT
+    }
+
+    movementLogic() {
+        this.playAnimation(this.IMAGES_SWIM);
+        this.moving = true;
+        this.lastMovement = new Date().getTime(); 
+    }
+
+    checkSnooze() {
+        if (!this.lastMovement) {
+            this.lastMovement = new Date().getTime();
+        }
+        let timespan = (new Date().getTime() - this.lastMovement) / 1000; 
+        return timespan > 5; 
+    }
+
+    snoozeLogic() {
+        console.log('15 sec diggi')
     }
 
     animationLogicDeath() {
@@ -222,7 +245,7 @@ class Character extends MovableObject {
     playSoundCharacter(soundelement) {
         if (!mute) {
             soundelement.play()
-        }   
+        }
     }
 
 }
