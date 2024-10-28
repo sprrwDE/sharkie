@@ -182,7 +182,7 @@ class Character extends MovableObject {
             }
             if (this.world.keyboard.DOWN && this.y < 300) {
                 this.moveDown()
-            } 
+            }
             /* else if (!this.world.keyboard.UP && !this.world.keyboard.DOWN && !this.world.keyboard.LEFT && !this.world.keyboard.RIGHT) {
                 this.moving = false
                 this.stopMovement();
@@ -206,24 +206,30 @@ class Character extends MovableObject {
     }
 
     animationLogicMoving() {
-            this.moving = false;
-            this.slap = false;
-            if (this.isDead()) {
-                this.animationLogicDeath()
-            } else if (this.isHurt() && this.world.enemyType === ('pufferfish')) {
-                this.playAnimation(this.IMAGES_POISONED);
-            } else if (this.isHurt() && this.world.enemyType === ('endboss')) {
-                this.playAnimation(this.IMAGES_POISONED);
-            } else if (this.isHurt() && this.world.enemyType === 'jellyfish') {
-                this.playAnimation(this.IMAGES_SHOCK);
-            } else if (this.buttonPressed()) {
-                this.characterSwimmingLogic();
-            } else if (this.checkSnooze()) {
-                this.snoozeLogic();
-            } else {
-                this.playAnimation(this.IMAGES_IDLE);
-                this.swim_sound.pause();
-            }
+        this.moving = false;
+        this.slap = false;
+        if (this.isDead()) {
+            this.animationLogicDeath()
+        } else if (this.isHurt()) {
+            this.hurtByEnemy();
+        } else if (this.buttonPressed()) {
+            this.characterSwimmingLogic();
+        } else if (this.checkSnooze()) {
+            this.snoozeLogic();
+        } else {
+            this.playAnimation(this.IMAGES_IDLE);
+            this.swim_sound.pause();
+        }
+    }
+
+    hurtByEnemy() {
+        if (this.world.enemyType === ('pufferfish')) {
+            this.playAnimation(this.IMAGES_POISONED);
+        } else if (this.world.enemyType === ('endboss')) {
+            this.playAnimation(this.IMAGES_POISONED);
+        } else if (this.world.enemyType === 'jellyfish') {
+            this.playAnimation(this.IMAGES_SHOCK);
+        }
     }
 
     characterSwimmingLogic() {
@@ -258,7 +264,7 @@ class Character extends MovableObject {
             this.playAnimation(this.IMAGES_DEAD);
         }
         this.playSoundCharacter(this.death_sound);
-        this.applyGravity(1, 0.1) // char moved nach unten, wie bewegung stoppen?
+        this.applyGravity(1, 0.1)
         setTimeout(() => {
             bgSound.pause()
             showEndScreen()
@@ -266,27 +272,27 @@ class Character extends MovableObject {
     }
 
     animationLogicFighting() {
-            if (this.world.keyboard.FIN && !this.finslapActive) {
-                this.activateFinslap();
-            }
-            else if (this.world.keyboard.SHOOT) {
-                this.playAnimation(this.IMAGES_SHOOTING);
-            }
-            else if (this.world.keyboard.POISON) {
-                this.playAnimation(this.IMAGES_POISONBUBBLE);
-            }
+        if (this.world.keyboard.FIN && !this.finslapActive) {
+            this.activateFinslap();
+        }
+        else if (this.world.keyboard.SHOOT) {
+            this.playAnimation(this.IMAGES_SHOOTING);
+        }
+        else if (this.world.keyboard.POISON) {
+            this.playAnimation(this.IMAGES_POISONBUBBLE);
+        }
     }
 
     activateFinslap() {
         this.finslapActive = true;
         this.immune = true;
+        this.currentIndex = 0;
         this.playAnimation(this.IMAGES_FINSLAP);
         this.playSoundCharacter(this.finslap_sound);
 
         setTimeout(() => {
             this.immune = false;
             this.finslapActive = false;
-            this.currentImage = 0;
         }, this.immuneDuration);
     }
 
