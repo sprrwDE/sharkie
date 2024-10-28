@@ -224,7 +224,11 @@ class Character extends MovableObject {
     snoozeLogic() {
         this.playAnimation(this.IMAGES_SNOOZE);
         this.playSoundCharacter(this.snore_sound);
-        // absinken lassen
+        if (this.y < this.world.canvas.height - 50) {
+            this.applyGravity(1, 0.5)
+        } else {
+            this.y = this.world.canvas.height - this.height; 
+        }
     }
 
     animationLogicDeath() {

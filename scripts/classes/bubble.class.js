@@ -40,3 +40,5 @@ class Bubble extends MovableObject {
         }, 1000 / 25)
     } 
 }
+
+// bubble interval killen nach y > 0

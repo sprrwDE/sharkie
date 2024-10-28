@@ -3,18 +3,22 @@ class Enemy extends MovableObject {
     danger = false;
     hit = false;
     sound;
+    dangerInterval;
+    animationInterval;
+    movingInterval;
+
     constructor() {
         super()
     }
 
     checkDanger() {
-        setInterval(() => {
+        this.dangerIntverval = setInterval(() => {
             this.danger = !this.danger;
         }, 5000 + (5000 * Math.random()));
     }
 
     animationLogic() {
-        setInterval(() => {
+        this.animationInterval = setInterval(() => {
             if (this.hit) {
                 this.playAnimation(this.IMAGES_HIT);
                 this.applyUpstream(2, 1)
@@ -25,6 +29,5 @@ class Enemy extends MovableObject {
             }
         }, 200);
     }
-
 }
 

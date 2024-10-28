@@ -115,6 +115,7 @@ function toggleBgSound() {
 
 function resetGame() {
     clearAllIntervals();
+    console.log('all intervals cleared')
     setFlexibleValues()
 }
 

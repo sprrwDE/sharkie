@@ -137,6 +137,7 @@ class World {
         this.enemyType = this.checkEnemyType(enemy)
         enemy.hit = true;
         setTimeout(() => {
+            this.clearEnemyIntervals(enemy);
             this.level.enemies = this.level.enemies.filter(e => e !== enemy);
         }, 800)
 
@@ -183,6 +184,8 @@ class World {
             let n = this.bubbles.indexOf(bubble)
             this.bubbles.splice(n, 1)
             setTimeout(() => {
+                this.clearEnemyIntervals(enemy);
+                clearInterval(enemy.jellyfishMovement);    
                 let i = this.level.enemies.indexOf(enemy)
                 this.level.enemies.splice(i, 1)
             }, 1000)
@@ -199,46 +202,54 @@ class World {
 
     damageEndboss(boss, bubble) {
         if (boss.type == 'endboss' && !boss.immune) {
-            boss.immune = true;
-            let n = this.bubbles.indexOf(bubble)
-            this.bubbles.splice(n, 1)
-            boss.getHit(15);
-            this.playSoundObject(boss);
-            this.bossbar.setPercentage(boss.health)
+            this.hitBoss(boss, bubble);
         }
         if (boss.health <= 0) {
-            setTimeout(() => {
-                boss.visible = false;
-                this.level.enemies.splice((this.boss), 1)
-                showWinScreen()
-                bgSound.pause()
-            }, 800)
-            // win screen hinzufügen
-            // interval für sterbeanimation hinzufügen
+            this.killBoss(boss);
         }
         setTimeout(() => {
             boss.immune = false
         }, 400)
     }
 
-    collectBottle() {
+    hitBoss(boss, bubble) {
+        boss.immune = true;
+        let n = this.bubbles.indexOf(bubble)
+        this.bubbles.splice(n, 1)
+        boss.getHit(15);
+        this.playSoundObject(boss);
+        this.bossbar.setPercentage(boss.health)
+    }
+
+    killBoss(boss) {
+        setTimeout(() => {
+            boss.visible = false;
+            this.level.enemies.splice((this.boss), 1)
+            showWinScreen()
+            bgSound.pause()
+        }, 800)
+    }
+
+    collectCoin() {
         this.level.coins.forEach((coin) => {
             if (this.character.isColliding(coin)) {
                 let i = this.level.coins.indexOf(coin)
                 this.level.coins.splice(i, 1)
                 this.playSoundObject(coin);
                 this.collectedCoins++
+                this.clearCollectableIntervals(coin);
             }
         })
     }
 
-    collectCoin() {
+    collectBottle() {
         this.level.poison.forEach((bottle) => {
             if (this.character.isColliding(bottle)) {
                 let i = this.level.poison.indexOf(bottle)
                 this.level.poison.splice(i, 1)
                 this.playSoundObject(bottle);
                 this.collectedBottles++
+                this.clearCollectableIntervals(bottle);
             }
         })
     }
@@ -282,5 +293,19 @@ class World {
             this.boss.visible = true;
             this.boss.index = 0
         }
+    }
+
+    clearEnemyIntervals(enemy) {
+        clearInterval(enemy.animationInterval);
+        clearInterval(enemy.dangerInterval);
+        if(enemy.movingInterval) {
+            clearInterval(enemy.movingInterval);
+        }
+        console.log('enemy intervals cleared')
+    }
+
+    clearCollectableIntervals(object) {
+        clearInterval(object.animationInterval);
+        console.log('interval cleared')
     }
 }

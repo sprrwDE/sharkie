@@ -5,7 +5,8 @@ class Coin extends MovableObject {
         './assets/imgs/4. Marcadores/1. Coins/3.png',
         './assets/imgs/4. Marcadores/1. Coins/4.png'
     ]
-    sound = new Audio('./assets/sounds/coin.wav')
+    sound = new Audio('./assets/sounds/coin.wav');
+    animationInterval;
 
     constructor(x, y) {
         super();
@@ -18,7 +19,7 @@ class Coin extends MovableObject {
     }
 
     animate() {
-        setInterval(() => {
+        this.animationInterval = setInterval(() => {
             this.playAnimation(this.IMAGES_COIN)
         }, 200);
     }

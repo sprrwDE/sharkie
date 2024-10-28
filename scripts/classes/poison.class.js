@@ -10,6 +10,7 @@ class Poison extends MovableObject {
         './assets/imgs/4. Marcadores/Posion/Animada/8.png'
     ]
     sound = new Audio('./assets/sounds/bottle.mp3')
+    animationInterval;
 
     constructor(x, y) {
         super();
@@ -22,7 +23,7 @@ class Poison extends MovableObject {
     };
 
     animate() {
-        setInterval(() => {
+        this.animationInterval = setInterval(() => {
             this.playAnimation(this.IMAGES_BOTTLE)
         }, 200);
     }

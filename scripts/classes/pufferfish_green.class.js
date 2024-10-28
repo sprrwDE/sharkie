@@ -71,9 +71,9 @@ class PufferFishGreen extends Enemy {
     };
 
     animationLogic() {
-        setInterval(() => {
+        this.animationInterval = setInterval(() => {
             if (this.danger) {
-                // als array abspielen -> machen
+                // als array abspielen? -> machen
                 this.playAnimation(this.IMAGES_TRANSITION);
                 this.playAnimation(this.IMAGES_DANGER);
             } else if (this.hit) {
@@ -89,7 +89,7 @@ class PufferFishGreen extends Enemy {
     }
 
     enemyLeft() {
-        setInterval(() => {
+        this.movingInterval = setInterval(() => {
             this.moveLeft();
         }, 1000 / 60);
     }

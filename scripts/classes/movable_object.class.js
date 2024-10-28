@@ -4,6 +4,8 @@ class MovableObject extends DrawableObject {
     lastHit = 0;
     finslapActive = false;
     finslapInProgress = false; // Neue Variable zum Überwachen des Animationsstatus
+    movementIntervalJellyfish;
+    upstream;
 
     constructor() {
         super()
@@ -69,7 +71,7 @@ class MovableObject extends DrawableObject {
     };
 
     enemyUpAndDown() {
-        setInterval(() => {
+        this.movementIntervalJellyfish = setInterval(() => {
             if (this.movingUp) {
                 this.enemyUp();
             } else {
@@ -77,6 +79,10 @@ class MovableObject extends DrawableObject {
             }
         }, 1000 / 60);
     };
+
+    clearJellyfishMovement() {
+        
+    }
 
     enemyUp() {
         this.moveUp();
@@ -93,20 +99,14 @@ class MovableObject extends DrawableObject {
     }
 
     applyGravity(grav, acc) {
-        let gravitySpeed = grav;
-        let acceleration = acc;
-        setInterval(() => {
-                this.y += gravitySpeed;
-                this.gravitySpeed += acceleration;
-        }, 1000 / 25)
+                this.y += grav;
+                grav += acc;
     } 
 
     applyUpstream(up, acc) {
-        let upstreamSpeed = up;
-        let acceleration = acc;
-        setInterval(() => {
-                this.y -= upstreamSpeed;
-                this.upstreamSpeed += acceleration;
+        this.upstream = setInterval(() => {
+                this.y -= up;
+                up += acc;
         }, 1000 / 25)
     } 
 }

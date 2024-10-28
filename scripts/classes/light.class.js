@@ -11,8 +11,6 @@ class Light extends MovableObject {
         this.animate()
     }
 
-    // wie hin und her animieren? stop interval? reset, andere richtung 
-    // -> siehe txt / chatgpt
     animate() {
         setInterval(() => {
             this.moveLeft();
