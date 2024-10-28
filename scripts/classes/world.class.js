@@ -136,7 +136,6 @@ class World {
             this.clearEnemyIntervals(enemy);
             this.level.enemies = this.level.enemies.filter(e => e !== enemy);
         }, 800)
-
     }
 
     checkBubbleThrow() {

@@ -113,8 +113,8 @@ class Character extends MovableObject {
     ]
 
     world;
-    moving;
-    moveSpeed = 5;
+    moving = false;
+    moveSpeed = 4;
     // Hitbox
     hitboxColor = 'green';
     offset = {
@@ -154,12 +154,19 @@ class Character extends MovableObject {
 
     animate() {
         this.movementLogic();
-        this.animationLogicMoving();
-        this.animationLogicFighting();
+
+        this.animationLogic()
+    }
+
+    animationLogic() {
+        setInterval(() => {
+            this.animationLogicMoving();
+            this.animationLogicFighting();
+        }, 150)
     }
 
     movementLogic() {
-        setInterval(() => {
+        this.movementInterval = setInterval(() => {
             if (this.world.keyboard.RIGHT && this.x < this.world.level.levelEndX) {
                 this.world.camera_x = -this.x + 100
                 this.mirror = false;
@@ -175,11 +182,23 @@ class Character extends MovableObject {
             }
             if (this.world.keyboard.DOWN && this.y < 300) {
                 this.moveDown()
-            }
+            } 
+            /* else if (!this.world.keyboard.UP && !this.world.keyboard.DOWN && !this.world.keyboard.LEFT && !this.world.keyboard.RIGHT) {
+                this.moving = false
+                this.stopMovement();
+            } */
+
             console.log('movement interval started')
-        }, 20)
+        }, 1000 / 60)
     }
-    
+
+    stopMovement() {
+        clearInterval(this.movementInterval);
+        console.log('movement interval stopped')
+        if (!this.moving) {
+            this.movementLogic();
+        }
+    }
 
     buttonPressed() {
         this.checkSnooze()
@@ -187,7 +206,6 @@ class Character extends MovableObject {
     }
 
     animationLogicMoving() {
-        setInterval(() => {
             this.moving = false;
             this.slap = false;
             if (this.isDead()) {
@@ -206,7 +224,6 @@ class Character extends MovableObject {
                 this.playAnimation(this.IMAGES_IDLE);
                 this.swim_sound.pause();
             }
-        }, 150);
     }
 
     characterSwimmingLogic() {
@@ -230,7 +247,7 @@ class Character extends MovableObject {
         if (this.y < this.world.canvas.height - 50) {
             this.applyGravity(1, 0.5)
         } else {
-            this.y = this.world.canvas.height - this.height; 
+            this.y = this.world.canvas.height - this.height;
         }
     }
 
@@ -246,11 +263,9 @@ class Character extends MovableObject {
             bgSound.pause()
             showEndScreen()
         }, 500)
-
     }
 
     animationLogicFighting() {
-        setInterval(() => {
             if (this.world.keyboard.FIN && !this.finslapActive) {
                 this.activateFinslap();
             }
@@ -260,7 +275,6 @@ class Character extends MovableObject {
             else if (this.world.keyboard.POISON) {
                 this.playAnimation(this.IMAGES_POISONBUBBLE);
             }
-        }, 150)
     }
 
     activateFinslap() {
