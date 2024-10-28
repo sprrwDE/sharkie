@@ -81,7 +81,7 @@ class MovableObject extends DrawableObject {
     };
 
     clearJellyfishMovement() {
-        
+
     }
 
     enemyUp() {
@@ -99,14 +99,15 @@ class MovableObject extends DrawableObject {
     }
 
     applyGravity(grav, acc) {
-                this.y += grav;
-                grav += acc;
-    } 
+        if (this.y + this.height <= 440) {
+            this.y += grav;
+            grav += acc; }
+    }
 
     applyUpstream(up, acc) {
         this.upstream = setInterval(() => {
-                this.y -= up;
-                up += acc;
+            this.y -= up;
+            up += acc;
         }, 1000 / 25)
-    } 
+    }
 }

@@ -52,6 +52,7 @@ class Endboss extends MovableObject {
     death_sound = new Audio('./assets/sounds/boss_dying.wav')
     index = 0;
     visible = false
+    world;
 
     constructor() {
         super();

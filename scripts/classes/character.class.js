@@ -114,7 +114,7 @@ class Character extends MovableObject {
 
     world;
     moving;
-    moveSpeed = 1;
+    moveSpeed = 5;
     // Hitbox
     hitboxColor = 'green';
     offset = {
@@ -134,8 +134,9 @@ class Character extends MovableObject {
     health = 100;
     lastMovement = 0;
 
-    constructor() {
+    constructor(world) {
         super()
+        this.world = world;
         this.loadImage('./assets/imgs/1.Sharkie/1.IDLE/1.png')
         this.loadImages(this.IMAGES_IDLE);
         this.loadImages(this.IMAGES_SNOOZE);
@@ -175,8 +176,10 @@ class Character extends MovableObject {
             if (this.world.keyboard.DOWN && this.y < 300) {
                 this.moveDown()
             }
-        })
+            console.log('movement interval started')
+        }, 20)
     }
+    
 
     buttonPressed() {
         this.checkSnooze()

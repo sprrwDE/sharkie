@@ -3,7 +3,7 @@ class World {
     ctx;
     keyboard;
     camera_x = -2;
-    character = new Character();
+    character = new Character(this);
     level = level_1;
     boss;
     statusbar = new Statusbar(50, 20, 200, 60, 'char');
@@ -20,12 +20,7 @@ class World {
         this.boss = this.level.enemies[this.level.enemies.length - 1];
         this.canvas = canvas;
         this.keyboard = keyboard;
-        this.setWorld();
         this.run()
-    }
-
-    setWorld() {
-        this.character.world = this;
     }
 
     draw() {
@@ -57,7 +52,6 @@ class World {
             this.renderToCanvas(this.bossbar);
         }
     }
-    
 
     update() {
         let self = this;
