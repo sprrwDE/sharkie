@@ -4,6 +4,7 @@ let startContainer = document.getElementById('startscreen');
 let endContainer = document.getElementById('endscreen');
 let winContainer = document.getElementById('win');
 let startButton = document.getElementById('start');
+let dynamicContentRef = document.getElementById('dyn');
 let infobox = document.getElementById('infobox');
 let cvs = document.getElementById('canvas');
 let bgSound = new Audio('./assets/sounds/bg_sound.mp3')
@@ -84,9 +85,11 @@ function showEndScreen() {
 }
 
 function showWinScreen() {
+    dynamic();
     resetGame()
     winContainer.classList.remove('d-none')
     cvs.classList.add('d-none');
+    console.log(world.killedEnemies)
 }
 
 function showHomeScreen() {
@@ -136,4 +139,13 @@ function setFlexibleValues() {
     world.character.x = 0;
     world.boss.x = 700 * 3;
     world.boss.index = 0;
+}
+
+function dynamic() {
+    dynamicContentRef.innerHTML = dynamicTemplate()
+}
+
+function dynamicTemplate() {
+    return `<p>Enemies Killed: ${world.killedEnemies}</p>
+    <p>Coins Collected: ${world.collectedCoins}</p>`
 }

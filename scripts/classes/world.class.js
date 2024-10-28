@@ -13,6 +13,7 @@ class World {
     bubbles = []
     collectedBottles = 0;
     collectedCoins = 0;
+    killedEnemies = 0;
     enemyType;
 
     constructor(canvas) {
@@ -132,6 +133,7 @@ class World {
     killPufferfish(enemy) {
         this.enemyType = this.checkEnemyType(enemy)
         enemy.hit = true;
+        this.killedEnemies++
         setTimeout(() => {
             this.clearEnemyIntervals(enemy);
             this.level.enemies = this.level.enemies.filter(e => e !== enemy);
@@ -181,6 +183,7 @@ class World {
             enemy.hit = true;
             let n = this.bubbles.indexOf(bubble)
             this.bubbles.splice(n, 1)
+            this.killedEnemies++
             setTimeout(() => {
                 this.clearEnemyIntervals(enemy);
                 clearInterval(enemy.jellyfishMovement);    

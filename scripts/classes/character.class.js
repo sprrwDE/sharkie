@@ -85,7 +85,7 @@ class Character extends MovableObject {
         './assets/imgs/1.Sharkie/5.Hurt/2.Electric shock/2.png',
         './assets/imgs/1.Sharkie/5.Hurt/2.Electric shock/3.png',
     ]
-    IMAGES_DEAD = [ // Change to specific death
+    IMAGES_DEAD = [ 
         './assets/imgs/1.Sharkie/6.dead/1.Poisoned/sin subir/DES 2_00000.png',
         './assets/imgs/1.Sharkie/6.dead/1.Poisoned/sin subir/DES 2_00001.png',
         './assets/imgs/1.Sharkie/6.dead/1.Poisoned/sin subir/DES 2_00002.png',
@@ -154,7 +154,6 @@ class Character extends MovableObject {
 
     animate() {
         this.movementLogic();
-
         this.animationLogic()
     }
 
@@ -166,38 +165,29 @@ class Character extends MovableObject {
     }
 
     movementLogic() {
+        this.moving = false
         this.movementInterval = setInterval(() => {
             if (this.world.keyboard.RIGHT && this.x < this.world.level.levelEndX) {
                 this.world.camera_x = -this.x + 100
                 this.mirror = false;
+                this.moving = true;
                 this.moveRight();
             }
             if (this.world.keyboard.LEFT && this.x > 0) {
                 this.world.camera_x = -this.x + 100
                 this.mirror = true;
+                this.moving = true;
                 this.moveLeft();
             }
             if (this.world.keyboard.UP && this.y > -80) {
                 this.moveUp()
+                this.moving = true;
             }
             if (this.world.keyboard.DOWN && this.y < 300) {
                 this.moveDown()
-            }
-            /* else if (!this.world.keyboard.UP && !this.world.keyboard.DOWN && !this.world.keyboard.LEFT && !this.world.keyboard.RIGHT) {
-                this.moving = false
-                this.stopMovement();
-            } */
-
-            console.log('movement interval started')
+                this.moving = true;
+            } 
         }, 1000 / 60)
-    }
-
-    stopMovement() {
-        clearInterval(this.movementInterval);
-        console.log('movement interval stopped')
-        if (!this.moving) {
-            this.movementLogic();
-        }
     }
 
     buttonPressed() {
@@ -301,5 +291,4 @@ class Character extends MovableObject {
             soundelement.play()
         }
     }
-
 }
