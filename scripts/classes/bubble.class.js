@@ -33,7 +33,7 @@ class Bubble extends MovableObject {
             this.y = y + (height / 2);
             this.bubbleMovement = setInterval(() => {
                 this.x += 20
-                if (this.x > this.world.canvas.width) {
+                if (this.x > (-this.world.camera_x + this.world.canvas.width)) {
                     this.clearBubbleIntervals();
                 }
             }, 25)
@@ -56,9 +56,11 @@ class Bubble extends MovableObject {
         clearInterval(this.bubbleGravity);
         clearInterval(this.bubbleMovement);
         const index = this.world.bubbles.indexOf(this);
-        if (index > -1) {
-            this.world.bubbles.splice(index, 1);
+        if (this.world) {
+            const index = this.world.bubbles.indexOf(this);
+            if (index > -1) {
+                this.world.bubbles.splice(index, 1);
+            }
         }
-        console.log('bubble interval cleared')
     }
 }
