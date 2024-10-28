@@ -5,6 +5,9 @@ class Bubble extends MovableObject {
     toxic = false;
     air = false;
     sound = new Audio('./assets/sounds/bubble.wav')
+    bubbleGravity;
+    bubbleMovement;
+    world;
 
     constructor(x, y, width, height, mirror, image) {
         super();
@@ -18,27 +21,44 @@ class Bubble extends MovableObject {
     
     throw(x, y, width, height, mirror) {
         if (mirror) {
-            this.x = x; 
             this.y = y + (height / 2);
-            setInterval(() => {
+            this.bubbleMovement = setInterval(() => {
                 this.x -= 20
+                if (this.x < 0) {
+                    this.clearBubbleIntervals();
+                }
             }, 25)
         } else {
             this.x = x + width; 
             this.y = y + (height / 2);
-            setInterval(() => {
+            this.bubbleMovement = setInterval(() => {
                 this.x += 20
+                if (this.x > this.world.canvas.width) {
+                    this.clearBubbleIntervals();
+                }
             }, 25)
         }
+
         this.applyBubbleGravity()
     };
 
     applyBubbleGravity() {
-        setInterval(() => {
+        this.bubbleGravity = setInterval(() => {
                 this.y -= this.gravitySpeed;
                 this.gravitySpeed += this.acceleration;
+                if (this.y < 0 || this.y > this.world.canvas.height) {
+                    this.clearBubbleIntervals();
+                }
         }, 1000 / 25)
     } 
-}
 
-// bubble interval killen nach y > 0
+    clearBubbleIntervals() {
+        clearInterval(this.bubbleGravity);
+        clearInterval(this.bubbleMovement);
+        const index = this.world.bubbles.indexOf(this);
+        if (index > -1) {
+            this.world.bubbles.splice(index, 1);
+        }
+        console.log('bubble interval cleared')
+    }
+}

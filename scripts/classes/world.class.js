@@ -77,7 +77,9 @@ class World {
     run() {
         setInterval(() => {
             this.checkCollissions();
-            this.checkBubbleHit();
+            if (this.bubbles.length > 0) {
+                this.checkBubbleHit();
+            }
             this.collectBottle();
             this.collectCoin();
             this.checkEndbossHit();
@@ -154,6 +156,7 @@ class World {
     throwAirBubble() {
         let air = './assets/imgs/1.Sharkie/4.Attack/Bubble trap/Bubble.png'
         let bubble = new Bubble(this.character.x, this.character.y, this.character.width, this.character.height, this.character.mirror, air);
+        bubble.world = this;
         this.playSoundObject(bubble);
         bubble.air = true
         this.bubbles.push(bubble);
@@ -162,6 +165,7 @@ class World {
     throwToxicBubble() {
         let toxicIMG = './assets/imgs/1.Sharkie/4.Attack/Bubble trap/Poisoned Bubble.png'
         let poison = new Bubble(this.character.x, this.character.y, this.character.width, this.character.height, this.character.mirror, toxicIMG);
+        poison.world = this;
         poison.toxic = true
         this.playSoundObject(poison);
         this.bubbles.push(poison);
@@ -172,7 +176,8 @@ class World {
         this.bubbles.forEach((bubble) => {
             this.level.enemies.forEach((enemy) => {
                 if (bubble.isColliding(enemy) && bubble.air == true) {
-                    this.killJellyfish(enemy)
+                    this.killJellyfish(enemy);
+                    bubble.clearBubbleIntervals();
                 }
             })
         })
@@ -196,6 +201,7 @@ class World {
         this.bubbles.forEach((bubble) => {
             if (bubble.isColliding(this.boss) && bubble.toxic == true) {
                 this.damageEndboss(this.boss, bubble)
+                bubble.clearBubbleIntervals();
             }
         })
     }
