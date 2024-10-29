@@ -55,38 +55,45 @@ class Endboss extends MovableObject {
     } */
     type = 'endboss'
     immune = false;
-    contact = false
+    contact = false;
     sound = new Audio('./assets/sounds/boss.wav')
     death_sound = new Audio('./assets/sounds/boss_dying.wav')
     index = 0;
-    visible = false
-    dangerRange = 5000
-    moveSpeed = 1;
+    visible = false;
+    dangerRange = 3000
+    moveSpeed = 0.8;
+    world;
+    contactInterval;
 
-    constructor() {
-        super();
-        this.loadImage(this.IMAGES_SWIMMING[0]); 
+    constructor(world) {
+        super().loadImage(this.IMAGES_SWIMMING[0]);
+        this.world = world
+        console.log('welt', this.world)
         this.y = 0;
         this.x = 700 * 3;
         this.height = 400;
         this.width = this.height;
-        this.moveSpeed = 0.15 + Math.random() * 0.45
+        this.checkEndbossContact()
+        this.allImages()
+        this.animate();
+        this.checkDanger(this.dangerRange)
+    }
+
+    allImages() {
         this.loadImages(this.IMAGES_SWIMMING);
         this.loadImages(this.IMAGES_SPAWNING);
         this.loadImages(this.IMAGES_HURT);
         this.loadImages(this.IMAGES_DEAD);
         this.loadImages(this.IMAGES_DASH);
-        this.animate();
-        this.checkDanger(this.dangerRange)
     }
 
     animate() {
         this.animationLogic()
         this.movementLogic()
-    }; 
+    };
 
     animationLogic() {
-        setInterval(()=> {
+        setInterval(() => {
             // diese falsch -> wie animation einmal abspielen?
             if (this.contact) {
                 this.playAnimation(this.IMAGES_SPAWNING);
@@ -94,40 +101,50 @@ class Endboss extends MovableObject {
                 this.playAnimation(this.IMAGES_HURT);
             } if (this.health <= 0) {
                 this.playAnimation(this.IMAGES_DEAD);
-                this.playSoundBoss(this.death_sound) 
+                this.playSoundBoss(this.death_sound)
             } if (this.danger) {
                 this.playAnimation(this.IMAGES_DASH)
-            } else { 
+            } else {
                 this.playAnimation(this.IMAGES_SWIMMING);
-            } 
-            this.index ++
+            }
+            this.index++
 
         }, 180);
     }
 
     movementLogic() {
         setInterval(() => {
-            if (this.contact && !this.danger) { 
+            if (this.contact && !this.danger) {
                 this.moveSpeed = 1
                 this.moveLeft();
                 console.log('dash over')
             } else if (this.contact && this.danger) {
                 this.attackLogic()
             }
-        }, 1000 / 60); 
+        }, 1000 / 60);
     }
-    
+
     playSoundBoss(soundelement) {
         if (!mute) {
             soundelement.play()
-        }   
+        }
     }
 
-    attackLogic() {        
-            this.moveSpeed = 2.2
-            this.bossDash() 
-            console.log('dashed')
+    attackLogic() {
+        this.moveSpeed = 2.5
+        this.bossDash()
+        console.log('dashed')
     }
 
-    // wie umdrehen wenn char rechts ist?
+    checkEndbossContact() {
+        this.contactInterval = setInterval(() => {
+            if (this.world.character.x > (this.x - (this.width + 300)) && !this.contact) {
+                this.contact = true;
+                this.visible = true;
+                this.index = 0
+            }
+        }, 200)
+    } 
+
+    // wie umdrehen wenn char rechts ist? -> world übergeben -> introduce neu schreiben FUUUUUUCK
 }

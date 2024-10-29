@@ -1,10 +1,9 @@
 const canvas = document.getElementById('canvas');
 const canvasHeight = canvas.height;
 const canvasWidth = canvas.width;
-
 let level_1;
 
-function createLevel() {
+async function createLevel() {
     level_1 = new Level(
         [
             new BackgroundObject('./assets/imgs/3. Background/Layers/5. Water/D2.png', -719),
@@ -34,7 +33,6 @@ function createLevel() {
             new PufferFishGreen(),
             new JellyFishYellow(),
             new JellyFishPurple(),
-            new Endboss()
         ],
         [
             new Light('./assets/imgs/3. Background/Layers/1. Light/1.png'), // wie animieren?

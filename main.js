@@ -11,7 +11,8 @@ let bgSound = new Audio('./assets/sounds/bg_sound.mp3')
 
 let mute = false;
 
-function init() {
+async function init() {
+    await createLevel()
     world = new World(canvas, keyboard);
 }
 
@@ -66,7 +67,6 @@ document.addEventListener('keyup', (event) => {
 });
 
 function startGame() {
-    createLevel()
     startContainer.classList.add('d-none')
     endContainer.classList.add('d-none');
     winContainer.classList.add('d-none');

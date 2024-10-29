@@ -13,14 +13,16 @@ class World {
     bubbles = []
     collectedBottles = 0;
     collectedCoins = 0;
-    killedEnemies = 0;
+    killedEnemies = 0; // objekt?
     enemyType;
 
     constructor(canvas) {
         this.ctx = canvas.getContext('2d');
-        this.boss = this.level.enemies[this.level.enemies.length - 1];
         this.canvas = canvas;
         this.keyboard = keyboard;
+        this.boss = new Endboss(this); // Übergibt die Referenz zur Welt
+        this.level.enemies.push(this.boss); 
+        this.setWorld()
         this.run()
     }
 
@@ -29,6 +31,14 @@ class World {
         this.drawMirroredObjects();
         this.drawFixedObjects();
         this.update()
+    };
+
+    setWorld() {
+        this.character.world = this;
+        this.level.world = this;
+        this.level.enemies.forEach((enemy) => {
+            enemy.world = this;
+        });
     };
 
     drawMirroredObjects() {
@@ -78,7 +88,6 @@ class World {
             this.collectBottle();
             this.collectCoin();
             this.checkEndbossHit();
-            this.checkEndbossContact()
             this.draw();
         }, 150)
 
@@ -187,7 +196,7 @@ class World {
             this.killedEnemies++
             setTimeout(() => {
                 this.clearEnemyIntervals(enemy);
-                clearInterval(enemy.jellyfishMovement);    
+                clearInterval(enemy.jellyfishMovement);
                 let i = this.level.enemies.indexOf(enemy)
                 this.level.enemies.splice(i, 1)
             }, 1000)
@@ -290,18 +299,10 @@ class World {
         this.ctx.restore();
     }
 
-    checkEndbossContact() {
-        if (this.character.x > (this.boss.x - 300) && !this.boss.contact) {
-            this.boss.contact = true;
-            this.boss.visible = true;
-            this.boss.index = 0
-        }
-    }
-
     clearEnemyIntervals(enemy) {
         clearInterval(enemy.animationInterval);
         clearInterval(enemy.dangerInterval);
-        if(enemy.movingInterval) {
+        if (enemy.movingInterval) {
             clearInterval(enemy.movingInterval);
         }
         console.log('enemy intervals cleared')
