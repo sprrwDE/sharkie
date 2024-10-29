@@ -187,6 +187,10 @@ svg {
     fill: white;
 }
 
+.y {
+    color: yellow;
+}
+
 svg:hover {
     fill: yellow;
 }

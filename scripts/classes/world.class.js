@@ -115,9 +115,10 @@ class World {
     }
 
     damageCharacter(enemy) {
-        this.character.getHit(5);
+        this.character.getHit(enemy.damage);
         this.statusbar.setPercentage(this.character.health)
         this.enemyType = this.checkEnemyType(enemy)
+        console.log(enemy.damage)
     }
 
     checkEnemyType(enemy) {
