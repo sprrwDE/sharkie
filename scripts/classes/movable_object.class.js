@@ -117,6 +117,11 @@ class MovableObject extends DrawableObject {
         console.log(this.moveSpeed)
     }
 
+    bossDashRight() {
+        this.moveRight()
+        console.log(this.moveSpeed)
+    }
+
     checkDanger(range) {
         this.dangerInterval = setInterval(() => {
             this.danger = !this.danger;

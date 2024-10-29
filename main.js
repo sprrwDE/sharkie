@@ -13,7 +13,7 @@ let mute = false;
 
 async function init() {
     await createLevel()
-    world = new World(canvas, keyboard);
+    world = new World(keyboard);
 }
 
 document.addEventListener('keydown', (event) => {

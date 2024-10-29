@@ -131,7 +131,7 @@ class Character extends MovableObject {
     death_sound = new Audio('./assets/sounds/char_dying.wav')
     snore_sound = new Audio('./assets/sounds/snoring.wav')
     swim_sound = new Audio('./assets/sounds/swimming.wav')
-    health = 100;
+    health = 1000;
     lastMovement = 0;
 
     constructor(world) {

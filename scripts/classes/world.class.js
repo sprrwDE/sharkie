@@ -16,7 +16,7 @@ class World {
     killedEnemies = 0; // objekt?
     enemyType;
 
-    constructor(canvas) {
+    constructor(keyboard) {
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
         this.keyboard = keyboard;

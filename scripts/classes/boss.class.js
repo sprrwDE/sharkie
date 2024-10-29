@@ -112,11 +112,20 @@ class Endboss extends MovableObject {
         }, 180);
     }
 
+    checkEndbossPosition() {
+        if (this.world.character.x < this.x) {
+            this.moveLeft()
+        } else {
+            this.moveRight()
+        }
+    }
+
     movementLogic() {
         setInterval(() => {
+            this.checkEndbossPosition()
             if (this.contact && !this.danger) {
                 this.moveSpeed = 1
-                this.moveLeft();
+                checkEndbossPosition()
                 console.log('dash over')
             } else if (this.contact && this.danger) {
                 this.attackLogic()
@@ -124,27 +133,30 @@ class Endboss extends MovableObject {
         }, 1000 / 60);
     }
 
-    playSoundBoss(soundelement) {
-        if (!mute) {
-            soundelement.play()
-        }
-    }
-
     attackLogic() {
-        this.moveSpeed = 2.5
-        this.bossDash()
-        console.log('dashed')
+        this.moveSpeed = 1.5
+        if (this.world.character.x < this.x) {
+            this.bossDash()
+        } else {
+            this.bossDashRight()
+        } console.log('dashed')
     }
 
     checkEndbossContact() {
         this.contactInterval = setInterval(() => {
-            if (this.world.character.x > (this.x - (this.width + 300)) && !this.contact) {
+            if (this.world.character.x > (this.x - 200) && !this.contact) {
                 this.contact = true;
                 this.visible = true;
                 this.index = 0
             }
         }, 200)
-    } 
+    }
+
+    playSoundBoss(soundelement) {
+        if (!mute) {
+            soundelement.play()
+        }
+    }
 
     // wie umdrehen wenn char rechts ist? -> world übergeben -> introduce neu schreiben FUUUUUUCK
 }
