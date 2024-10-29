@@ -76,22 +76,29 @@ p {
 
 .text {
     color: white;
+    overflow: scroll;
+    scrollbar-color: yellow #00000000;
+    scrollbar-width: thin;
 }
 
 .text a {
     color: yellow;
     cursor: pointer;
+
 }
 
 .container {
-    margin: 0 auto;
+    position: fixed;
+    top: 5%;
+    bottom: 5%;
+    left: 50%;
+    transform: translate(-50%);   
+     margin: 0 auto;
     width: 100%;
     max-width: 1440px;
-    margin-top: 80px;
-    margin-bottom: 80px;
     background: black; opacity: 0.75;
     padding: 60px;
-    border-radius: 20px;
+    border-radius: 7px;
     line-height: 1.5;
 }
 
@@ -157,6 +164,13 @@ p {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
+}
+
+.dynamic {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    color: yellow;
 }
 
 .back {
@@ -256,6 +270,7 @@ svg:hover {
         justify-content: center;
         z-index: 9999;
         text-align: center;
+        overflow: scroll;
     }
 
     .start {
