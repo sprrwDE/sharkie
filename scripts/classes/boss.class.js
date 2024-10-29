@@ -59,6 +59,7 @@ class Endboss extends MovableObject {
     sound = new Audio('./assets/sounds/boss.wav')
     death_sound = new Audio('./assets/sounds/boss_dying.wav')
     index = 0;
+    mirror = false
     visible = false;
     dangerRange = 3000
     moveSpeed = 0.8;
@@ -114,8 +115,10 @@ class Endboss extends MovableObject {
 
     checkEndbossPosition() {
         if (this.world.character.x < this.x) {
+            this.mirror = false
             this.moveLeft()
         } else {
+            this.mirror = true
             this.moveRight()
         }
     }
@@ -136,8 +139,10 @@ class Endboss extends MovableObject {
     attackLogic() {
         this.moveSpeed = 1.5
         if (this.world.character.x < this.x) {
+            this.mirror = false
             this.bossDash()
         } else {
+            this.mirror = true
             this.bossDashRight()
         } console.log('dashed')
     }
@@ -158,5 +163,5 @@ class Endboss extends MovableObject {
         }
     }
 
-    // wie umdrehen wenn char rechts ist? -> world übergeben -> introduce neu schreiben FUUUUUUCK
+    // mittelpunkt in mitte mit transform bei mirror
 }

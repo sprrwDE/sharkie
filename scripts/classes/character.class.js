@@ -193,7 +193,7 @@ class Character extends MovableObject {
     buttonPressed() {
         this.checkSnooze()
         return this.world.keyboard.UP || this.world.keyboard.DOWN || this.world.keyboard.LEFT || this.world.keyboard.RIGHT
-    }
+    } 
 
     animationLogicMoving() {
         this.moving = false;
