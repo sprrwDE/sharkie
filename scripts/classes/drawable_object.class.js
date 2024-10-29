@@ -45,7 +45,7 @@ class DrawableObject {
         // } 
         /* catch(error) {
             console.warn('Error loading Image', error)
-            console.log('broken img src', this.img)
+            console.log('broken img src', this.img.src)
         } */
     }
  

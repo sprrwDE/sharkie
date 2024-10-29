@@ -126,7 +126,7 @@ class Character extends MovableObject {
     // Finslap
     immune = false;
     finslapActive = false;
-    immuneDuration = 1000;
+    immuneDuration = 300;
     finslap_sound = new Audio('./assets/sounds/finslap.wav')
     death_sound = new Audio('./assets/sounds/char_dying.wav')
     snore_sound = new Audio('./assets/sounds/snoring.wav')
