@@ -171,6 +171,7 @@ p {
     flex-direction: column;
     gap: 16px;
     color: yellow;
+    padding: 24px 0 24px 0;
 }
 
 .back {

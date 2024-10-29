@@ -95,6 +95,7 @@ function showWinScreen() {
 function showHomeScreen() {
     startContainer.classList.remove('d-none');
     endContainer.classList.add('d-none');
+    winContainer.classList.add('d-none');
 }
 
 function toggleInfoBox() {
