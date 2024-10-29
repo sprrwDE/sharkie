@@ -113,9 +113,8 @@ class MovableObject extends DrawableObject {
     }
 
     bossDash() {
-        if (this.danger) {
-            console.log('dashed')
-        } else return
+        this.moveLeft()
+        console.log(this.moveSpeed)
     }
 
     checkDanger(range) {

@@ -61,6 +61,7 @@ class Endboss extends MovableObject {
     index = 0;
     visible = false
     dangerRange = 5000
+    moveSpeed = 1;
 
     constructor() {
         super();
@@ -107,7 +108,9 @@ class Endboss extends MovableObject {
     movementLogic() {
         setInterval(() => {
             if (this.contact && !this.danger) { 
+                this.moveSpeed = 1
                 this.moveLeft();
+                console.log('dash over')
             } else if (this.contact && this.danger) {
                 this.attackLogic()
             }
@@ -120,7 +123,11 @@ class Endboss extends MovableObject {
         }   
     }
 
-    attackLogic() {
-        this.bossDash() // movable object
+    attackLogic() {        
+            this.moveSpeed = 2.2
+            this.bossDash() 
+            console.log('dashed')
     }
+
+    // wie umdrehen wenn char rechts ist?
 }
