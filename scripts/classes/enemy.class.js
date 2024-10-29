@@ -15,12 +15,7 @@ class Enemy extends MovableObject {
     checkDanger() {
         this.dangerInterval = setInterval(() => {
             this.danger = !this.danger;
-            if (this.danger) {
-                this.damage = 10
-            }
-            else if (!this.danger) {
-                this.damage = 5;
-            }
+            this.damage = this.danger ? 10 : 5;    
         }, 5000 + (5000 * Math.random()));
     }
 

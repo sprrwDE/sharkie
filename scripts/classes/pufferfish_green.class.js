@@ -59,8 +59,10 @@ class PufferFishGreen extends Enemy {
             this.danger = !this.danger;
             if (this.danger) {
                 this.offset['bottom'] = 0
+                this.damage = 10
             } else if (!this.danger) {
                 this.offset['bottom'] = 20
+                this.damage = 5
             }
         }, 5000 + (3000 * Math.random()));
     }
