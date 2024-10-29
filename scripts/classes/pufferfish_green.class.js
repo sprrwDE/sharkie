@@ -50,11 +50,11 @@ class PufferFishGreen extends Enemy {
         // this.loadImages(this.IMAGES_TRANSITION_REVERSE); ???
         this.loadImages(this.IMAGES_DANGER);
         this.loadImages(this.IMAGES_HIT);
-        this.checkDanger()
+        this.checkDanger(this.dangerRange)
         this.animate();
     }
 
-    checkDanger() {
+    checkDanger(range) {
         setInterval(() => {
             this.danger = !this.danger;
             if (this.danger) {
@@ -64,7 +64,7 @@ class PufferFishGreen extends Enemy {
                 this.offset['bottom'] = 20
                 this.damage = 5
             }
-        }, 5000 + (3000 * Math.random()));
+        }, range + (range * Math.random()));
     }
 
     animate() {

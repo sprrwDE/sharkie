@@ -7,16 +7,10 @@ class Enemy extends MovableObject {
     animationInterval;
     movingInterval;
     damage = 5;
+    dangerRange = 5000
 
     constructor() {
         super()
-    }
-
-    checkDanger() {
-        this.dangerInterval = setInterval(() => {
-            this.danger = !this.danger;
-            this.damage = this.danger ? 10 : 5;    
-        }, 5000 + (5000 * Math.random()));
     }
 
     animationLogic() {

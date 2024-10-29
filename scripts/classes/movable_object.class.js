@@ -12,7 +12,7 @@ class MovableObject extends DrawableObject {
     }
 
     setEnemyCharacteristics() {
-        this.y = this.height + (Math.random() * 400);
+        this.y = this.height + (Math.random() * 360);
         this.x = 300 + Math.random() * 700;
         this.height = 80
         this.width = this.height;
@@ -101,7 +101,8 @@ class MovableObject extends DrawableObject {
     applyGravity(grav, acc) {
         if (this.y + this.height <= 440) {
             this.y += grav;
-            grav += acc; }
+            grav += acc;
+        }
     }
 
     applyUpstream(up, acc) {
@@ -109,5 +110,18 @@ class MovableObject extends DrawableObject {
             this.y -= up;
             up += acc;
         }, 1000 / 25)
+    }
+
+    bossDash() {
+        if (this.danger) {
+            console.log('dashed')
+        } else return
+    }
+
+    checkDanger(range) {
+        this.dangerInterval = setInterval(() => {
+            this.danger = !this.danger;
+            this.damage = this.danger ? 10 : 5;
+        }, range + (range * Math.random()));
     }
 }

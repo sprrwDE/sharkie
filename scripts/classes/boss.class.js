@@ -39,6 +39,14 @@ class Endboss extends MovableObject {
         './assets/imgs/2.Enemy/3 Final Enemy/Dead/Mesa de trabajo 2 copia 9.png',
         './assets/imgs/2.Enemy/3 Final Enemy/Dead/Mesa de trabajo 2 copia 10.png'
     ]
+    IMAGES_DASH = [
+        './assets/imgs/2.Enemy/3 Final Enemy/Attack/1.png',
+        './assets/imgs/2.Enemy/3 Final Enemy/Attack/2.png',
+        './assets/imgs/2.Enemy/3 Final Enemy/Attack/3.png',
+        './assets/imgs/2.Enemy/3 Final Enemy/Attack/4.png',
+        './assets/imgs/2.Enemy/3 Final Enemy/Attack/5.png',
+        './assets/imgs/2.Enemy/3 Final Enemy/Attack/6.png'
+    ]
     /* offset = {
         'left': 20,
         'right': 20,
@@ -52,7 +60,7 @@ class Endboss extends MovableObject {
     death_sound = new Audio('./assets/sounds/boss_dying.wav')
     index = 0;
     visible = false
-    world;
+    dangerRange = 5000
 
     constructor() {
         super();
@@ -66,7 +74,9 @@ class Endboss extends MovableObject {
         this.loadImages(this.IMAGES_SPAWNING);
         this.loadImages(this.IMAGES_HURT);
         this.loadImages(this.IMAGES_DEAD);
+        this.loadImages(this.IMAGES_DASH);
         this.animate();
+        this.checkDanger(this.dangerRange)
     }
 
     animate() {
@@ -76,16 +86,19 @@ class Endboss extends MovableObject {
 
     animationLogic() {
         setInterval(()=> {
-            if (this.index < this.IMAGES_SPAWNING.length) {
+            // diese falsch -> wie animation einmal abspielen?
+            if (this.contact) {
                 this.playAnimation(this.IMAGES_SPAWNING);
-            } else { 
-                this.playAnimation(this.IMAGES_SWIMMING);
             } if (this.immune) {
                 this.playAnimation(this.IMAGES_HURT);
             } if (this.health <= 0) {
                 this.playAnimation(this.IMAGES_DEAD);
                 this.playSoundBoss(this.death_sound) 
-            }
+            } if (this.danger) {
+                this.playAnimation(this.IMAGES_DASH)
+            } else { 
+                this.playAnimation(this.IMAGES_SWIMMING);
+            } 
             this.index ++
 
         }, 180);
@@ -93,8 +106,10 @@ class Endboss extends MovableObject {
 
     movementLogic() {
         setInterval(() => {
-            if (this.contact) { 
+            if (this.contact && !this.danger) { 
                 this.moveLeft();
+            } else if (this.contact && this.danger) {
+                this.attackLogic()
             }
         }, 1000 / 60); 
     }
@@ -103,5 +118,9 @@ class Endboss extends MovableObject {
         if (!mute) {
             soundelement.play()
         }   
+    }
+
+    attackLogic() {
+        this.bossDash() // movable object
     }
 }

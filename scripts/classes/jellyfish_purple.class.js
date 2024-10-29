@@ -28,7 +28,7 @@ class JellyFishPurple extends Enemy {
         this.loadImages(this.IMAGES_SWIMMING);
         this.loadImages(this.IMAGES_DANGER);
         this.loadImages(this.IMAGES_HIT);
-        this.checkDanger();
+        this.checkDanger(this.dangerRange);
         this.animate();
     }
 
