@@ -46,15 +46,16 @@ class Statusbar extends DrawableObject {
     }
 
     resolveImageIndex(pctg) {
-        if (pctg == 100) {
+        if (pctg > 80) {
             return 0;
-        } else if (pctg > 80) {
-            return 1;
         } else if (pctg > 60) {
-            return 2;
+            return 1;
         } else if (pctg > 40) {
-            return 3;
+            return 2;
         } else if (pctg > 20) {
+            return 3;
+        } 
+        if (pctg > 0) {
             return 4;
         } else {
             return 5;
