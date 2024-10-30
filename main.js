@@ -163,7 +163,7 @@ function checkMobileEvents() {
         keyboard.UP = false;
     });
 
-    /* document.getElementById('pressdown').addEventListener('touchstart', (event) => {
+    document.getElementById('pressdown').addEventListener('touchstart', (event) => {
         event.preventDefault()
         keyboard.DOWN = true;
     });
@@ -223,5 +223,4 @@ function checkMobileEvents() {
         keyboard.POISON = false;
     });
     
-    */
 }
