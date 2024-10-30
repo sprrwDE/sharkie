@@ -73,7 +73,6 @@ class Endboss extends MovableObject {
 
     movementLogic() {
         setInterval(() => {
-            this.checkEndbossPosition()
             if (this.contact && !this.danger) {
                 this.moveSpeed = 1
                 checkEndbossPosition()
