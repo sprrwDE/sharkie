@@ -56,6 +56,7 @@ class Endboss extends MovableObject {
     type = 'endboss'
     immune = false;
     contact = false;
+    firstContact = false;
     sound = new Audio('./assets/sounds/boss.wav')
     death_sound = new Audio('./assets/sounds/boss_dying.wav')
     index = 0;
@@ -77,7 +78,6 @@ class Endboss extends MovableObject {
         this.checkEndbossContact()
         this.allImages()
         this.animate();
-        this.checkDanger(this.dangerRange)
     }
 
     allImages() {
@@ -94,27 +94,31 @@ class Endboss extends MovableObject {
     };
 
     animationLogic() {
+        let imageIndex = 0;
         setInterval(() => {
             // diese falsch -> wie animation einmal abspielen?
-            if (this.contact) {
+            if (this.contact && imageIndex < 10) {
                 this.playAnimation(this.IMAGES_SPAWNING);
-            } if (this.immune) {
+            } else if (this.immune) {
                 this.playAnimation(this.IMAGES_HURT);
-            } if (this.health <= 0) {
+            } else if (this.health <= 0) {
                 this.playAnimation(this.IMAGES_DEAD);
                 this.playSoundBoss(this.death_sound)
-            } if (this.danger) {
+            } else if (this.danger) {
                 this.playAnimation(this.IMAGES_DASH)
             } else {
                 this.playAnimation(this.IMAGES_SWIMMING);
             }
-            this.index++
+            if (this.world.character.x + this.world.character.width && !this.firstContact) {
+                imageIndex = 0;
+            }
+            imageIndex++
 
         }, 180);
     }
 
     checkEndbossPosition() {
-        if (this.world.character.x < this.x) {
+        if (this.world.character.x + this.world.character.width < this.x + (this.width / 2)) {
             this.mirror = false
             this.moveLeft()
         } else {
@@ -138,7 +142,7 @@ class Endboss extends MovableObject {
 
     attackLogic() {
         this.moveSpeed = 1.5
-        if (this.world.character.x < this.x) {
+        if (this.world.character.x + this.world.character.width + (this.width / 2)) {
             this.mirror = false
             this.bossDash()
         } else {
@@ -149,12 +153,19 @@ class Endboss extends MovableObject {
 
     checkEndbossContact() {
         this.contactInterval = setInterval(() => {
-            if (this.world.character.x > (this.x - 200) && !this.contact) {
-                this.contact = true;
-                this.visible = true;
-                this.index = 0
+            if ((this.world.character.x + this.world.character.width) > (this.x) && !this.contact) {
+                this.spawnEndboss();
             }
         }, 200)
+    }
+
+    spawnEndboss() {
+        this.checkDanger(this.dangerRange)
+        this.contact = true;
+        this.visible = true;
+        setTimeout(() => {
+            this.firstContact = true
+        }, 180)
     }
 
     playSoundBoss(soundelement) {
@@ -164,4 +175,5 @@ class Endboss extends MovableObject {
     }
 
     // mittelpunkt in mitte mit transform bei mirror
+    // move up logik??
 }
