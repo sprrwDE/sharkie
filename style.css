@@ -111,8 +111,8 @@ p {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
     z-index: 0;
+    justify-content: center;
 }
 
 .start {
@@ -195,6 +195,10 @@ svg:hover {
     fill: yellow;
 }
 
+.landscape {
+    display: none;
+}
+
 .movement {
     color: white;
     text-align: center;
@@ -235,22 +239,28 @@ svg:hover {
 @media only screen and (max-width: 720px) {
     canvas {
         width: 100%;
+        height: auto;
     }
 
     .screen {
         width: 100%;
+        height: auto;
+        aspect-ratio: 3 / 2;
     }
 
-    .start {
+    .start, .win, .end {
         width: 100%;
+        height: auto;
     }
 
-    .win {
+    .landscape {
         width: 100%;
-    }
-
-    .end {
-        width: 100%;
+        flex-direction: row;
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        z-index: 2;
+        padding: 40px;
     }
 }
 
@@ -283,6 +293,10 @@ svg:hover {
     }
 
     .canvas {
+        display: none;
+    }
+
+    .landscape {
         display: none;
     }
 }
