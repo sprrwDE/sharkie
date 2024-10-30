@@ -99,7 +99,7 @@ class Endboss extends MovableObject {
 
     checkEndbossContact() {
         this.contactInterval = setInterval(() => {
-            if ((this.world.character.x + this.world.character.width) > (this.x) && !this.contact) {
+            if ((this.world.character.x + this.world.character.width) > (this.x - 240) && !this.contact) {
                 this.spawnEndboss();
             }
         }, 200)

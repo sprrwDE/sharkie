@@ -279,7 +279,7 @@ class World {
 
         if (object.visible) {
             object.draw(this.ctx)
-            object.hitbox(this.ctx) // hitbox
+            // object.hitbox(this.ctx) // hitbox
         }
 
         if (object.mirror) {
