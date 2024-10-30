@@ -17,10 +17,12 @@ class Endboss extends MovableObject {
     moveSpeed = 0.8;
     world;
     contactInterval;
+    sound;
 
     constructor(world) {
         super().loadImage('./assets/imgs/2.Enemy/3 Final Enemy/2.floating/1.png');
         this.db = new BossDB
+        this.sound = this.db.sound;
         this.loadImageCaches(this.db.allImages)
         this.world = world
         console.log('welt', this.world)
@@ -61,7 +63,7 @@ class Endboss extends MovableObject {
         }, 180);
     }
 
-    checkEndbossPosition() {
+    endbossMove() {
         if (this.world.character.x + this.world.character.width < this.x + (this.width / 2)) {
             this.mirror = false
             this.moveLeft()
@@ -75,15 +77,15 @@ class Endboss extends MovableObject {
         setInterval(() => {
             if (this.contact && !this.danger) {
                 this.moveSpeed = 1
-                checkEndbossPosition()
+                this.endbossMove()
                 console.log('dash over')
             } else if (this.contact && this.danger) {
-                this.attackLogic()
+                this.endbossAttack()
             }
         }, 1000 / 60);
     }
 
-    attackLogic() {
+    endbossAttack() {
         this.moveSpeed = 1.5
         if (this.world.character.x + this.world.character.width + (this.width / 2)) {
             this.mirror = false
