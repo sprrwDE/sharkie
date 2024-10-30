@@ -1,11 +1,12 @@
 class Endboss extends MovableObject {
     db;
-    /* offset = {
+    offset = {
         'left': 20,
         'right': 20,
         'top': 160,
-        'bottom': 240 
-    } */
+        'bottom': 120
+    } 
+    hitboxColor = 'red'
     type = 'endboss'
     immune = false;
     contact = false;
@@ -22,14 +23,14 @@ class Endboss extends MovableObject {
     constructor(world) {
         super().loadImage('./assets/imgs/2.Enemy/3 Final Enemy/2.floating/1.png');
         this.db = new BossDB
-        this.sound = this.db.sound;
+        this.sound = this.db.sound
         this.loadImageCaches(this.db.allImages)
         this.world = world
         console.log('welt', this.world)
         this.y = 0;
         this.x = 700 * 3;
-        this.height = 400;
-        this.width = this.height;
+        this.height = 467;
+        this.width = 400;
         this.checkEndbossContact()
         this.animate();
     }

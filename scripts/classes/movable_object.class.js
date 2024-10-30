@@ -6,6 +6,12 @@ class MovableObject extends DrawableObject {
     finslapInProgress = false; // Neue Variable zum Überwachen des Animationsstatus
     movementIntervalJellyfish;
     upstream;
+    offset = {
+        'left': 0,
+        'right': 0,
+        'top': 0,
+        'bottom': 0 
+    }
 
     constructor() {
         super()
@@ -24,7 +30,7 @@ class MovableObject extends DrawableObject {
             (this.x + (this.offset['left'] / 2)) <= (object.x + (object.width - object.offset['right'])) &&
             (this.y + this.height - (this.offset['bottom'] / 3)) >= object.y + object.offset['top'] &&
             (this.y + (this.offset['top'])) <= (object.y + (object.height - object.offset['bottom']))
-    }
+    } 
 
     getHit(hp) {
         this.health -= hp;
