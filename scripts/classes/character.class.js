@@ -15,10 +15,6 @@ class Character extends MovableObject {
     immune = false;
     finslapActive = false;
     immuneDuration = 300;
-    finslap_sound = new Audio('./assets/sounds/finslap.wav')
-    death_sound = new Audio('./assets/sounds/char_dying.wav')
-    snore_sound = new Audio('./assets/sounds/snoring.wav')
-    swim_sound = new Audio('./assets/sounds/swimming.wav')
     health = 1000;
     lastMovement = 0;
 
@@ -87,7 +83,7 @@ class Character extends MovableObject {
             this.snoozeLogic();
         } else {
             this.playAnimation(this.db.IMAGES_IDLE);
-            this.swim_sound.pause();
+            this.db.swim_sound.pause();
         }
     }
 
@@ -105,7 +101,7 @@ class Character extends MovableObject {
         this.playAnimation(this.db.IMAGES_SWIM);
         this.moving = true;
         this.lastMovement = new Date().getTime();
-        this.playSoundCharacter(this.swim_sound);
+        this.playSoundCharacter(this.db.swim_sound);
     }
 
     checkSnooze() {
@@ -118,7 +114,7 @@ class Character extends MovableObject {
 
     snoozeLogic() {
         this.playAnimation(this.db.IMAGES_SNOOZE);
-        this.playSoundCharacter(this.snore_sound);
+        this.playSoundCharacter(this.db.snore_sound);
         if (this.y < this.world.canvas.height - 50) {
             this.applyGravity(1, 0.5)
         } else {
@@ -132,7 +128,7 @@ class Character extends MovableObject {
         } else {
             this.playAnimation(this.db.IMAGES_DEAD);
         }
-        this.playSoundCharacter(this.death_sound);
+        this.playSoundCharacter(this.db.death_sound);
         this.applyGravity(1, 0.1)
         setTimeout(() => {
             bgSound.pause()
@@ -157,7 +153,7 @@ class Character extends MovableObject {
         this.immune = true;
         this.currentIndex = 0;
         this.playAnimation(this.IMAGES_FINSLAP);
-        this.playSoundCharacter(this.finslap_sound);
+        this.playSoundCharacter(this.db.finslap_sound);
 
         setTimeout(() => {
             this.immune = false;

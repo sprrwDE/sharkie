@@ -110,8 +110,8 @@ function toggleMuteAllSounds() {
 function toggleBgSound() {
     if (mute) {
         bgSound.pause()
-        world.character.snore_sound.pause()
-        world.character.swim_sound.pause()
+        world.character.db.snore_sound.pause()
+        world.character.db.swim_sound.pause()
     } else {
         bgSound.play()
     }

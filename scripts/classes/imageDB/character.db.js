@@ -1,4 +1,8 @@
 class CharacterDB {
+    finslap_sound = new Audio('./assets/sounds/finslap.wav')
+    death_sound = new Audio('./assets/sounds/char_dying.wav')
+    snore_sound = new Audio('./assets/sounds/snoring.wav')
+    swim_sound = new Audio('./assets/sounds/swimming.wav')
     IMAGES_IDLE = [
         './assets/imgs/1.Sharkie/1.IDLE/1.png',
         './assets/imgs/1.Sharkie/1.IDLE/2.png',
