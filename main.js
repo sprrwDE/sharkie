@@ -12,7 +12,8 @@ let bgSound = new Audio('./assets/sounds/bg_sound.mp3')
 let mute = false;
 
 async function init() {
-    await createLevel()
+    checkMobileEvents();
+    await createLevel();
     world = new World(keyboard);
 }
 
@@ -149,4 +150,78 @@ function dynamic() {
 function dynamicTemplate() {
     return `<p>Enemies Killed: ${world.killedEnemies}</p>
     <p>Coins Collected: ${world.collectedCoins}</p>`
+}
+
+function checkMobileEvents() {
+    document.getElementById('pressup').addEventListener('touchstart', (event) => {
+        event.preventDefault()
+        keyboard.UP = true;
+    });
+
+    document.getElementById('pressup').addEventListener('touchend', (event) => {
+        event.preventDefault()
+        keyboard.UP = false;
+    });
+
+    /* document.getElementById('pressdown').addEventListener('touchstart', (event) => {
+        event.preventDefault()
+        keyboard.DOWN = true;
+    });
+
+    document.getElementById('pressdown').addEventListener('touchend', (event) => {
+        event.preventDefault()
+        keyboard.DOWN = false;
+    }); 
+    
+        document.getElementById('pressright').addEventListener('touchstart', (event) => {
+        event.preventDefault()
+        keyboard.RIGHT = true;
+    });
+
+    document.getElementById('pressright').addEventListener('touchend', (event) => {
+        event.preventDefault()
+        keyboard.RIGHT = false;
+    });
+
+        document.getElementById('pressleft').addEventListener('touchstart', (event) => {
+        event.preventDefault()
+        keyboard.LEFT = true;
+    });
+
+    document.getElementById('pressleft').addEventListener('touchend', (event) => {
+        event.preventDefault()
+        keyboard.LEFT = false;
+    });
+
+            document.getElementById('pressfin').addEventListener('touchstart', (event) => {
+        event.preventDefault()
+        keyboard.FIN = true;
+    });
+
+    document.getElementById('pressfin').addEventListener('touchend', (event) => {
+        event.preventDefault()
+        keyboard.FIN = false;
+    });
+
+            document.getElementById('pressbubble').addEventListener('touchstart', (event) => {
+        event.preventDefault()
+        keyboard.SHOOT = true;
+    });
+
+    document.getElementById('pressbubble').addEventListener('touchend', (event) => {
+        event.preventDefault()
+        keyboard.SHOOT = false;
+    });
+
+        document.getElementById('presspoison').addEventListener('touchstart', (event) => {
+        event.preventDefault()
+        keyboard.POISON = true;
+    });
+
+    document.getElementById('presspoison').addEventListener('touchend', (event) => {
+        event.preventDefault()
+        keyboard.POISON = false;
+    });
+    
+    */
 }
