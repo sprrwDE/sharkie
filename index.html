@@ -33,9 +33,9 @@
     <!-- CANVAS -->
     <canvas id="canvas" width="720px" height="480px"></canvas>
     <!-- SOUND -->
-    <div class="screen mute" id="startscreen">
+    <div class="screen mute" id="mutescreen">
 
-        <a class="test" onclick="toggleMuteAllSounds()">
+        <a class="absolute" onclick="toggleMuteAllSounds()">
             <svg class="pinned" id="Layer_2" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" data-name="Layer 1"
                 width="300" height="300" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink"
                 xmlns:svgjs="http://svgjs.dev/svgjs">
@@ -97,8 +97,35 @@
     <!-- LANDSCAPE -->
     <div class="screen">
         <div class="landscape">
-            <p>test</p>
-            <p>test</p>
+            <!-- LEFT CONTROLS -->
+            <div>test</div>
+            <!-- MUTE -->
+            <a class="mute-mobile" onclick="toggleMuteAllSounds()">
+                <svg class="pinned" id="mute-mobile" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" data-name="Layer 1"
+                    width="300" height="300" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink"
+                    xmlns:svgjs="http://svgjs.dev/svgjs">
+                    <g width="100%" height="100%" transform="matrix(1,0,0,1,0,0)">
+                        <path
+                            d="m6.734 44.426h9.18l18.199 14.559c.479.384 1.054.581 1.633.581.379 0 .761-.085 1.119-.257.974-.468 1.579-1.459 1.579-2.586v-49.446c0-1.127-.605-2.118-1.579-2.586-.904-.435-1.959-.311-2.751.323l-18.2 14.56h-9.18c-2.61 0-4.734 2.124-4.734 4.734v15.383c0 2.61 2.124 4.734 4.734 4.734zm28.629-37.85c.251-.199.485-.154.636-.082.215.104.445.363.445.783v49.446c0 .42-.23.68-.445.783-.152.074-.386.117-.636-.083l-18.098-14.478v-21.89zm-31.363 17.733c0-1.508 1.227-2.734 2.734-2.734h8.531v20.852h-8.531c-1.508 0-2.734-1.227-2.734-2.734v-15.383z"
+                            fill="#ffffff" fill-opacity="1" data-original-color="#000000ff" stroke="none"
+                            stroke-opacity="1" />
+                        <path
+                            d="m43.237 37.763c.195.195.451.293.707.293s.512-.098.707-.293c3.178-3.178 3.178-8.348 0-11.525-.391-.391-1.023-.391-1.414 0s-.391 1.023 0 1.414c2.398 2.397 2.398 6.3 0 8.697-.391.391-.391 1.023 0 1.414z"
+                            fill="#ffffff" fill-opacity="1" data-original-color="#000000ff" stroke="none"
+                            stroke-opacity="1" />
+                        <path
+                            d="m48.154 42.68c.195.195.451.293.707.293s.512-.098.707-.293c2.853-2.853 4.424-6.646 4.424-10.68s-1.571-7.827-4.424-10.68c-.391-.391-1.023-.391-1.414 0s-.391 1.023 0 1.414c5.109 5.109 5.109 13.422 0 18.531-.391.391-.391 1.023 0 1.414z"
+                            fill="#ffffff" fill-opacity="1" data-original-color="#000000ff" stroke="none"
+                            stroke-opacity="1" />
+                        <path
+                            d="m54.056 48.167c.256 0 .512-.098.707-.293 8.752-8.753 8.752-22.995 0-31.748-.391-.391-1.023-.391-1.414 0s-.391 1.023 0 1.414c7.972 7.974 7.972 20.946 0 28.92-.391.391-.391 1.023 0 1.414.195.195.451.293.707.293z"
+                            fill="#ffffff" fill-opacity="1" data-original-color="#000000ff" stroke="none"
+                            stroke-opacity="1" />
+                    </g>
+                </svg>
+            </a>
+            <!-- RIGHT CONTROLS -->
+            <div>test</div>
         </div>
     </div>
     <!-- PORTRAIT -->
