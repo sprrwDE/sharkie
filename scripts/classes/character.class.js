@@ -152,7 +152,7 @@ class Character extends MovableObject {
         this.finslapActive = true;
         this.immune = true;
         this.currentIndex = 0;
-        this.playAnimation(this.IMAGES_FINSLAP);
+        this.playAnimation(this.db.IMAGES_FINSLAP);
         this.playSoundCharacter(this.db.finslap_sound);
 
         setTimeout(() => {

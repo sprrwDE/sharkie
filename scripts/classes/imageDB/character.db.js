@@ -127,4 +127,4 @@ class CharacterDB {
         this.IMAGES_DEAD_SHOCK,
         this.IMAGES_DEAD
     ]
-}
+}   
