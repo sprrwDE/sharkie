@@ -39,6 +39,12 @@ class DrawableObject {
         });
     }
 
+    loadImageCaches(cache) {
+        cache.forEach(array => {
+            this.loadImages(array)
+        })
+    }
+
     draw(ctx) {
         // try {
             ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
