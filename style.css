@@ -126,6 +126,10 @@ p {
     z-index: 1;
 }
 
+.landscape {
+    display: none;
+}
+
 .end {
     background-image: url('./assets/imgs/3. Background/Mesa de trabajo 1.png');
     z-index: 1;
@@ -161,6 +165,17 @@ p {
 
 .d-none {
     display: none !important;
+}
+
+.mobile-ctrl {
+    display: flex;
+    gap: 8px;
+    color: white;
+}
+
+.mobile-ctrl p:hover {
+    color: yellow;
+    cursor: pointer;
 }
 
 .content {
@@ -262,6 +277,16 @@ svg:hover {
         width: 100%;
         height: auto;
         aspect-ratio: 3 / 2;
+    }
+
+    .landscape {
+        display: flex;
+        height: 100%;
+        width: 100%;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-end;
+        padding: 20px;
     }
 }
 
