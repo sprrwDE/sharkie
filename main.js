@@ -144,7 +144,7 @@ function setFlexibleValues() {
 }
 
 function dynamic() {
-    dynamicContentRef.innerHTML = dynamicTemplate()
+    dynamicContentRef.innerHTML = dynamicTemplate();
 }
 
 function dynamicTemplate() {

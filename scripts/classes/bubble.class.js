@@ -27,26 +27,33 @@ class Bubble extends MovableObject {
     
     throw(x, y, width, height, mirror) {
         if (mirror) {
-            this.y = y + (height / 2);
-            this.bubbleMovement = setInterval(() => {
-                this.x -= 20
-                if (this.x < 0) {
-                    this.clearBubbleIntervals();
-                }
-            }, 25)
+            this.throwRight(x, y, width, height)
         } else {
-            this.x = x + width; 
-            this.y = y + (height / 2);
-            this.bubbleMovement = setInterval(() => {
-                this.x += 20
-                if (this.x > (-this.world.camera_x + this.world.canvas.width)) {
-                    this.clearBubbleIntervals();
-                }
-            }, 25)
+            this.throwLeft(x, y, width, height)
         }
-
         this.applyBubbleGravity()
     };
+
+    throwRight(x, y, width, height) {
+        this.y = y + (height / 2);
+        this.bubbleMovement = setInterval(() => {
+            this.x -= 20
+            if (this.x < 0) {
+                this.clearBubbleIntervals();
+            }
+        }, 25)
+    }
+
+    throwLeft(x, y, width, height) {
+        this.x = x + width; 
+        this.y = y + (height / 2);
+        this.bubbleMovement = setInterval(() => {
+            this.x += 20
+            if (this.x > (-this.world.camera_x + this.world.canvas.width)) {
+                this.clearBubbleIntervals();
+            }
+        }, 25)
+    }
 
     applyBubbleGravity() {
         this.bubbleGravity = setInterval(() => {
@@ -61,12 +68,9 @@ class Bubble extends MovableObject {
     clearBubbleIntervals() {
         clearInterval(this.bubbleGravity);
         clearInterval(this.bubbleMovement);
-        const index = this.world.bubbles.indexOf(this);
-        if (this.world) {
             const index = this.world.bubbles.indexOf(this);
             if (index > -1) {
                 this.world.bubbles.splice(index, 1);
-            }
         }
     }
 }

@@ -9,7 +9,7 @@ class World {
     statusbar = new Statusbar(50, 20, 200, 60, 'char');
     bossbar = new Statusbar(480, 20, 200, 60, 'boss')
     bottleIcon = new StatusIcon(55, 80, 40, 40, 'bottle')
-    coinIcon = new StatusIcon(60, 130, 30, 30, 'coin')
+    coinIcon = new StatusIcon(60, 130, 30, 30, 'coin');
     bubbles = []
     collectedBottles = 0;
     collectedCoins = 0;
