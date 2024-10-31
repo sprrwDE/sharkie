@@ -195,12 +195,16 @@ class World {
             this.bubbles.splice(n, 1)
             this.killedEnemies++
             setTimeout(() => {
-                this.clearEnemyIntervals(enemy);
-                clearInterval(enemy.jellyfishMovement);
-                let i = this.level.enemies.indexOf(enemy)
-                this.level.enemies.splice(i, 1)
+                this.removeJelly(enemy)
             }, 1000)
         }
+    }
+
+    removeJelly(enemy) {
+        this.clearEnemyIntervals(enemy);
+        clearInterval(enemy.jellyfishMovement);
+        let i = this.level.enemies.indexOf(enemy)
+        this.level.enemies.splice(i, 1)
     }
 
     checkEndbossHit() {
