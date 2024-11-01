@@ -28,10 +28,10 @@ async function createLevel() {
             new BackgroundObject('./assets/imgs/3. Background/Layers/2. Floor/D2.png', 719 * 3),
         ],
         [
-            // new PufferFishGreen(), // mehrere verschiedene Farben erstellen
-            // new PufferFishGreen(), // left + right?
+            new PufferFishGreen(), // mehrere verschiedene Farben erstellen
+            new PufferFishGreen(), // left + right?
             new PufferFishGreen(),
-            // new JellyFishYellow(),
+            new JellyFishYellow(),
             new JellyFishPurple(),
         ],
         [

@@ -6,10 +6,10 @@ class JellyFishYellow extends Enemy {
         './assets/imgs/2.Enemy/2 Jelly fish/Regular damage/Yellow 4.png'
     ];
     IMAGES_DANGER = [
-        './assets/imgs/2.Enemy/2 Jelly fish/Super dangerous/Green 1.png',
-        './assets/imgs/2.Enemy/2 Jelly fish/Super dangerous/Green 2.png',
-        './assets/imgs/2.Enemy/2 Jelly fish/Super dangerous/Green 3.png',
-        './assets/imgs/2.Enemy/2 Jelly fish/Super dangerous/Green 4.png'
+        './assets/imgs/2.Enemy/2 Jelly fish/S｣per dangerous/Green 1.png',
+        './assets/imgs/2.Enemy/2 Jelly fish/S｣per dangerous/Green 2.png',
+        './assets/imgs/2.Enemy/2 Jelly fish/S｣per dangerous/Green 3.png',
+        './assets/imgs/2.Enemy/2 Jelly fish/S｣per dangerous/Green 4.png'
     ];
     IMAGES_HIT = [
         './assets/imgs/2.Enemy/2 Jelly fish/Dead/Yellow/y1.png',
@@ -21,7 +21,7 @@ class JellyFishYellow extends Enemy {
     sound = new Audio('./assets/sounds/shock.wav');
 
     constructor() {
-        super().loadImage(this.IMAGES_SWIMMING[0]);
+        super().loadImage('./assets/imgs/2.Enemy/2 Jelly fish/Regular damage/Yellow 1.png');
         this.setEnemyCharacteristics();
         this.loadImages(this.IMAGES_SWIMMING);
         this.loadImages(this.IMAGES_DANGER);

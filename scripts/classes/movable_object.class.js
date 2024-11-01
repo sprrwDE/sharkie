@@ -82,9 +82,6 @@ class MovableObject extends DrawableObject {
     }
 
     enemyUpAndDown() {
-        if (this.movementIntervalJellyfish) {
-            clearInterval(this.movementIntervalJellyfish);
-        }
         this.movementIntervalJellyfish = setInterval(() => {
             if (this.movingUp) {
                 this.enemyUp();
