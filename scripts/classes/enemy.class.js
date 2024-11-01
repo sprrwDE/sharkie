@@ -42,7 +42,6 @@ class Enemy extends MovableObject {
   }
 
   stopAllIntervals() {
-    // Beende alle Intervalle, um die Bewegung und Animation zu stoppen
     if (this.animationInterval) {
         clearInterval(this.animationInterval);
         console.log("Animation interval cleared:", this.animationInterval);

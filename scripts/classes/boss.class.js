@@ -43,7 +43,6 @@ class Endboss extends MovableObject {
   animationLogic() {
     setInterval(() => {
       if (this.contact && !this.firstContact) {
-        this.playAnimation(this.db.IMAGES_SPAWNING);
         this.introduceEndboss();
       } else if (this.immune) {
         this.playAnimation(this.db.IMAGES_HURT);
@@ -60,12 +59,12 @@ class Endboss extends MovableObject {
 
   introduceEndboss() {
     if (this.imageIndex < this.db.IMAGES_SPAWNING.length) {
-    } else if (this.imageIndex > this.db.IMAGES_SPAWNING.length) {
-      this.imageIndex = 0;
-    } else if (this.imageIndex === this.db.IMAGES_SPAWNING.length) {
-      this.firstContact = true;
+      this.img = this.imgCache[this.db.IMAGES_SPAWNING[this.imageIndex]];
+      this.imageIndex++;
+    } else {
+      this.firstContact = true; 
+      this.imageIndex = 0; 
     }
-    this.imageIndex++;
   }
 
   endbossMove() {
