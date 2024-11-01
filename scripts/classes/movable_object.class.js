@@ -118,7 +118,7 @@ class MovableObject extends DrawableObject {
 
 
     applyUpstream(up, acc) {
-        // this.stopMovement(); 
+        this.stopMovement(); 
         if (this.upstream) {
             clearInterval(this.upstream); 
             console.log('upstream interval cleared:', this.upstream);

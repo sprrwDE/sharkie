@@ -34,6 +34,5 @@ class JellyFishPurple extends Enemy {
     animate() {
         this.animationLogic();
         this.enemyUpAndDown();
-        // wenn getroffen stehen bleiben und hochmoven
     }
 }

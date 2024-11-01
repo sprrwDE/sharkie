@@ -196,6 +196,7 @@ class World {
             this.killedEnemies++
             setTimeout(() => {
                 this.removeJelly(enemy)
+                enemy.stopAllIntervals();
             }, 1000)
         }
     }

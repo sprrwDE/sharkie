@@ -40,4 +40,23 @@ class Enemy extends MovableObject {
       }
     }, 1200);
   }
+
+  stopAllIntervals() {
+    // Beende alle Intervalle, um die Bewegung und Animation zu stoppen
+    if (this.animationInterval) {
+        clearInterval(this.animationInterval);
+        console.log("Animation interval cleared:", this.animationInterval);
+        this.animationInterval = null;
+    }
+    if (this.movementIntervalJellyfish) {
+        clearInterval(this.movementIntervalJellyfish);
+        console.log("Jelly movement interval cleared:", this.movementIntervalJellyfish);
+        this.movementIntervalJellyfish = null;
+    }
+    if (this.dangerInterval) {
+        clearInterval(this.dangerInterval);
+        console.log("Danger interval cleared:", this.dangerInterval);
+        this.dangerInterval = null;
+    }
+}
 }
