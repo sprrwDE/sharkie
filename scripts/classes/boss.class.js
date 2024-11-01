@@ -72,8 +72,8 @@ class Endboss extends MovableObject {
         this.img = this.imgCache[this.db.IMAGES_DEAD[this.imageIndex]];
         this.imageIndex++;
       } else {
-        this.deathAnimationPlayed = true; // Sterbeanimation abgeschlossen
-        this.imageIndex = this.db.IMAGES_DEAD.length - 1; // Letztes Bild behalten
+        this.deathAnimationPlayed = true; 
+        this.imageIndex = this.db.IMAGES_DEAD.length - 1; 
         this.playSoundBoss(this.db.death_sound); 
       }
     }

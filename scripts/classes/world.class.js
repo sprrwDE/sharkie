@@ -104,7 +104,7 @@ class World {
 
     checkCollissions() {
         this.level.enemies.forEach((enemy) => {
-            if (this.character.isColliding(enemy) && !this.character.immune && !enemy.hit) {
+            if (this.character.isColliding(enemy) && !this.character.immune && !enemy.hit && this.character.health > 0) {
                 enemy.hit = false;
                 this.playSoundObject(enemy);
                 this.damageCharacter(enemy);
@@ -127,7 +127,6 @@ class World {
         this.character.getHit(enemy.damage);
         this.statusbar.setPercentage(this.character.health)
         this.enemyType = this.checkEnemyType(enemy)
-        console.log(enemy.damage)
     }
 
     checkEnemyType(enemy) {
