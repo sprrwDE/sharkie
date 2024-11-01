@@ -1,71 +1,82 @@
 class Endboss extends MovableObject {
-  db;
-  offset = {
-    left: 20,
-    right: 20,
-    top: 160,
-    bottom: 120,
-  };
-  hitboxColor = "red";
-  type = "endboss";
-  immune = false;
-  contact = false;
-  firstContact = false;
-  index = 0;
-  mirror = false;
-  visible = false;
-  dangerRange = 3000;
-  moveSpeed = 0.8;
-  world;
-  contactInterval;
-  sound;
-  imageIndex = 0;
-
-  constructor(world) {
-    super().loadImage("./assets/imgs/2.Enemy/3 Final Enemy/2.floating/1.png");
-    this.db = new BossDB();
-    this.sound = this.db.sound;
-    this.loadImageCaches(this.db.allImages);
-    this.world = world;
-    this.y = 0;
-    this.x = 700 * 3;
-    this.height = 467;
-    this.width = 400;
-    this.checkEndbossContact();
-    this.animate();
-  }
-
-  animate() {
-    this.animationLogic();
-    this.movementLogic();
-  }
-
-  animationLogic() {
-    setInterval(() => {
-      if (this.contact && !this.firstContact) {
-        this.introduceEndboss();
-      } else if (this.immune) {
-        this.playAnimation(this.db.IMAGES_HURT);
-      } else if (this.health <= 0) {
-        this.playAnimation(this.db.IMAGES_DEAD);
-        this.playSoundBoss(this.db.death_sound);
-      } else if (this.danger) {
-        this.playAnimation(this.db.IMAGES_DASH);
-      } else if (this.firstContact) {
-        this.playAnimation(this.db.IMAGES_SWIMMING);
-      }
-    }, 100);
-  }
-
-  introduceEndboss() {
-    if (this.imageIndex < this.db.IMAGES_SPAWNING.length) {
-      this.img = this.imgCache[this.db.IMAGES_SPAWNING[this.imageIndex]];
-      this.imageIndex++;
-    } else {
-      this.firstContact = true; 
-      this.imageIndex = 0; 
+    db;
+    offset = {
+      left: 20,
+      right: 20,
+      top: 160,
+      bottom: 120,
+    };
+    hitboxColor = "red";
+    type = "endboss";
+    immune = false;
+    contact = false;
+    firstContact = false;
+    index = 0;
+    mirror = false;
+    visible = false;
+    dangerRange = 3000;
+    moveSpeed = 0.8;
+    world;
+    contactInterval;
+    sound;
+    imageIndex = 0;
+    deathAnimationPlayed = false; // Initialisieren des Flags
+  
+    constructor(world) {
+      super().loadImage("./assets/imgs/2.Enemy/3 Final Enemy/2.floating/1.png");
+      this.db = new BossDB();
+      this.sound = this.db.sound;
+      this.loadImageCaches(this.db.allImages);
+      this.world = world;
+      this.y = 0;
+      this.x = 700 * 3;
+      this.height = 467;
+      this.width = 400;
+      this.checkEndbossContact();
+      this.animate();
     }
-  }
+  
+    animate() {
+      this.animationLogic();
+      this.movementLogic();
+    }
+  
+    animationLogic() {
+      setInterval(() => {
+        if (this.health <= 0 && !this.deathAnimationPlayed) { // Sterbeanimation hat höchste Priorität
+          this.playDeathAnimation();
+        } else if (this.contact && !this.firstContact) {
+          this.introduceEndboss();
+        } else if (this.immune) {
+          this.playAnimation(this.db.IMAGES_HURT);
+        } else if (this.danger) {
+          this.playAnimation(this.db.IMAGES_DASH);
+        } else if (this.firstContact && !this.deathAnimationPlayed) {
+          this.playAnimation(this.db.IMAGES_SWIMMING);
+        }
+      }, 100);
+    }
+  
+    introduceEndboss() {
+      if (this.imageIndex < this.db.IMAGES_SPAWNING.length) {
+        this.img = this.imgCache[this.db.IMAGES_SPAWNING[this.imageIndex]];
+        this.imageIndex++;
+      } else {
+        this.firstContact = true; 
+        this.imageIndex = 0; 
+      }
+    }
+  
+    playDeathAnimation() {
+      if (this.imageIndex < this.db.IMAGES_DEAD.length) {
+        this.img = this.imgCache[this.db.IMAGES_DEAD[this.imageIndex]];
+        this.imageIndex++;
+      } else {
+        this.deathAnimationPlayed = true; // Sterbeanimation abgeschlossen
+        this.imageIndex = this.db.IMAGES_DEAD.length - 1; // Letztes Bild behalten
+        this.playSoundBoss(this.db.death_sound); 
+      }
+    }
 
   endbossMove() {
     if (
@@ -85,7 +96,9 @@ class Endboss extends MovableObject {
       if (this.contact && !this.danger) {
         this.moveSpeed = 1;
         this.endbossMove();
+        this.damage = 15
       } else if (this.contact && this.danger) {
+        this.damage = 10
         this.endbossAttack();
       }
     }, 1000 / 60);

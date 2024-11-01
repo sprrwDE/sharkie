@@ -244,7 +244,7 @@ class World {
             this.level.enemies.splice((this.boss), 1)
             showWinScreen()
             bgSound.pause()
-        }, 800)
+        }, 600)
     }
 
     collectCoin() {
