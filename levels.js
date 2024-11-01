@@ -30,7 +30,7 @@ async function createLevel() {
         [
             // new PufferFishGreen(), // mehrere verschiedene Farben erstellen
             // new PufferFishGreen(), // left + right?
-            // new PufferFishGreen(),
+            new PufferFishGreen(),
             // new JellyFishYellow(),
             new JellyFishPurple(),
         ],

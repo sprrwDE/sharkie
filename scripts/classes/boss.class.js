@@ -86,7 +86,6 @@ class Endboss extends MovableObject {
       if (this.contact && !this.danger) {
         this.moveSpeed = 1;
         this.endbossMove();
-        console.log("dash over");
       } else if (this.contact && this.danger) {
         this.endbossAttack();
       }
@@ -102,7 +101,6 @@ class Endboss extends MovableObject {
       this.mirror = true;
       this.bossDashRight();
     }
-    console.log("dashed");
   }
 
   checkEndbossContact() {
