@@ -18,7 +18,7 @@ class StatusIcon extends MovableObject {
     barType;
 
     constructor(x, y, width, height, icon) {
-        super()
+        super().loadImage('./assets/imgs/4. Marcadores/Posion/Animada/1.png');
         this.x = x;
         this.y = y;
         this.width = width;

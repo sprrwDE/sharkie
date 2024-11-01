@@ -13,7 +13,7 @@ class Poison extends MovableObject {
     animationInterval;
 
     constructor(x, y) {
-        super();
+        super().loadImage("./assets/imgs/4. Marcadores/Posion/Animada/1.png");
         this.loadImages(this.IMAGES_BOTTLE);
         this.x = x;
         this.y = y;

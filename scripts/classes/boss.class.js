@@ -27,7 +27,6 @@ class Endboss extends MovableObject {
     this.sound = this.db.sound;
     this.loadImageCaches(this.db.allImages);
     this.world = world;
-    console.log("welt", this.world);
     this.y = 0;
     this.x = 700 * 3;
     this.height = 467;
@@ -61,13 +60,10 @@ class Endboss extends MovableObject {
 
   introduceEndboss() {
     if (this.imageIndex < this.db.IMAGES_SPAWNING.length) {
-      console.log("contact", this.firstContact);
-      console.log("indx", this.imageIndex);
-    } else if (this.imageIndex > 10) {
+    } else if (this.imageIndex > this.db.IMAGES_SPAWNING.length) {
       this.imageIndex = 0;
-    } else if (this.imageIndex === 10) {
+    } else if (this.imageIndex === this.db.IMAGES_SPAWNING.length) {
       this.firstContact = true;
-      console.log("contact", this.firstContact);
     }
     this.imageIndex++;
   }

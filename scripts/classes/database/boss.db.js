@@ -27,6 +27,7 @@ class BossDB {
         './assets/imgs/2.Enemy/3 Final Enemy/1.Introduce/8.png',
         './assets/imgs/2.Enemy/3 Final Enemy/1.Introduce/9.png',
         './assets/imgs/2.Enemy/3 Final Enemy/1.Introduce/10.png',
+        './assets/imgs/2.Enemy/3 Final Enemy/2.floating/13.png'
     ];
     IMAGES_HURT = [
         './assets/imgs/2.Enemy/3 Final Enemy/Hurt/1.png',

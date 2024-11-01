@@ -42,8 +42,7 @@ class PufferFishGreen extends Enemy {
     sound = new Audio('./assets/sounds/autsch.wav')
     
     constructor() {
-        super()
-        this.loadImage(this.IMAGES_SWIMMING[0]); 
+        super().loadImage(this.IMAGES_SWIMMING[0]); 
         this.setEnemyCharacteristics()
         this.loadImages(this.IMAGES_SWIMMING);
         this.loadImages(this.IMAGES_TRANSITION);

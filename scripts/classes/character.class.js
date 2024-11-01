@@ -15,7 +15,7 @@ class Character extends MovableObject {
     immune = false;
     finslapActive = false;
     immuneDuration = 300;
-    health = 1000;
+    health = 100;
     lastMovement = 0;
 
     constructor(world) {

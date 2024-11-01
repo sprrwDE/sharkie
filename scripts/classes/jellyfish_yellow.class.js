@@ -21,8 +21,7 @@ class JellyFishYellow extends Enemy {
     sound = new Audio('./assets/sounds/shock.wav')
 
     constructor() {
-        super();
-        this.loadImage(this.IMAGES_SWIMMING[0]);
+        super().loadImage(this.IMAGES_SWIMMING[0]);
         this.setEnemyCharacteristics();
         this.loadImages(this.IMAGES_SWIMMING);
         this.loadImages(this.IMAGES_DANGER);

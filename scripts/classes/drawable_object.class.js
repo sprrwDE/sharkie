@@ -46,13 +46,13 @@ class DrawableObject {
     }
 
     draw(ctx) {
-        // try {
+        try {
             ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
-        // } 
-        /* catch(error) {
+       } 
+        catch(error) {
             console.warn('Error loading Image', error)
             console.log('broken img src', this.img.src)
-        } */
+        }
     }
  
     hitbox(ctx) {

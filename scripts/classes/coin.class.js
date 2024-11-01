@@ -1,26 +1,26 @@
 class Coin extends MovableObject {
-    IMAGES_COIN = [
-        './assets/imgs/4. Marcadores/1. Coins/1.png',
-        './assets/imgs/4. Marcadores/1. Coins/2.png',
-        './assets/imgs/4. Marcadores/1. Coins/3.png',
-        './assets/imgs/4. Marcadores/1. Coins/4.png'
-    ]
-    sound = new Audio('./assets/sounds/coin.wav');
-    animationInterval;
+  IMAGES_COIN = [
+    "./assets/imgs/4. Marcadores/1. Coins/1.png",
+    "./assets/imgs/4. Marcadores/1. Coins/2.png",
+    "./assets/imgs/4. Marcadores/1. Coins/3.png",
+    "./assets/imgs/4. Marcadores/1. Coins/4.png",
+  ];
+  sound = new Audio("./assets/sounds/coin.wav");
+  animationInterval;
 
-    constructor(x, y) {
-        super();
-        this.loadImages(this.IMAGES_COIN);
-        this.x = x;
-        this.y = y;
-        this.width = 40;
-        this.height = 40;
-        this.animate();
-    }
+  constructor(x, y) {
+    super().loadImage("./assets/imgs/4. Marcadores/1. Coins/1.png");
+    this.loadImages(this.IMAGES_COIN);
+    this.x = x;
+    this.y = y;
+    this.width = 40;
+    this.height = 40;
+    this.animate();
+  }
 
-    animate() {
-        this.animationInterval = setInterval(() => {
-            this.playAnimation(this.IMAGES_COIN)
-        }, 200);
-    }
+  animate() {
+    this.animationInterval = setInterval(() => {
+      this.playAnimation(this.IMAGES_COIN);
+    }, 200);
+  }
 }
