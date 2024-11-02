@@ -31,7 +31,7 @@ class World {
   bubbles = [];
   collectedBottles = 0;
   collectedCoins = 0;
-  killedEnemies = 0; // objekt?
+  killedEnemies = 0; 
   enemyType;
 
   /**
@@ -108,9 +108,7 @@ class World {
    */
   update() {
     let self = this;
-    requestAnimationFrame(function () {
-      self.draw();
-    });
+    requestAnimationFrame(function () {self.draw();});
   }
 
   /**
@@ -132,16 +130,12 @@ class World {
   run() {
     setInterval(() => {
       this.checkCollissions();
-      if (this.bubbles.length > 0) {
-        this.checkBubbleHit();
-      }
+      if (this.bubbles.length > 0) {this.checkBubbleHit();}
       this.collectItems();
       this.checkEndbossHit();
       this.draw();
     }, 150);
-    setInterval(() => {
-      this.checkBubbleThrow();
-    }, 600);
+    setInterval(() => {this.checkBubbleThrow();}, 600);
   }
 
   collectItems() {
@@ -197,13 +191,9 @@ class World {
    * @returns {string} The type of the enemy.
    */
   checkEnemyType(enemy) {
-    if (enemy.type === "pufferfish") {
-      return "pufferfish";
-    } else if (enemy.type === "jellyfish") {
-      return "jellyfish";
-    } else if (enemy.type === "endboss") {
-      return "endboss";
-    }
+    if (enemy.type === "pufferfish") {return "pufferfish";} 
+    else if (enemy.type === "jellyfish") {return "jellyfish";} 
+    else if (enemy.type === "endboss") {return "endboss";}
   }
 
   /**
@@ -244,8 +234,7 @@ class World {
    * Throws a poison bubble to damage the boss.
    */
   throwToxicBubble() {
-    let toxicIMG =
-      "./assets/imgs/1.Sharkie/4.Attack/Bubble trap/Poisoned Bubble.png";
+    let toxicIMG = "./assets/imgs/1.Sharkie/4.Attack/Bubble trap/Poisoned Bubble.png";
     let poison = new Bubble(this.character.x, this.character.y, this.character.width, this.character.height, this.character.mirror, toxicIMG);
     poison.world = this;
     poison.toxic = true;
@@ -282,8 +271,7 @@ class World {
       setTimeout(() => {
         this.removeJelly(enemy);
         enemy.stopAllIntervals();
-      }, 1000);
-    }
+      }, 1000);}
   }
 
   /**
@@ -304,8 +292,7 @@ class World {
     this.bubbles.forEach((bubble) => {
       if (bubble.isColliding(this.boss) && bubble.toxic == true) {
         this.damageEndboss(this.boss, bubble);
-        bubble.clearBubbleIntervals();
-      }
+        bubble.clearBubbleIntervals();}
     });
   }
 
@@ -315,11 +302,8 @@ class World {
    * @param {Bubble} bubble - The toxic bubble that hit the boss.
    */
   damageEndboss(boss, bubble) {
-    if (boss.type == "endboss" && !boss.immune) {
-      this.hitBoss(boss, bubble);
-    } if (boss.health <= 0) {
-      this.killBoss(boss);
-    }
+    if (boss.type == "endboss" && !boss.immune) {this.hitBoss(boss, bubble);} 
+    if (boss.health <= 0) {this.killBoss(boss);}
     setTimeout(() => {boss.immune = false;}, 400);
   }
 
@@ -380,13 +364,9 @@ class World {
    * @param {DrawableObject} object - The object to render.
    */
   renderToCanvas(object) {
-    if (object.mirror) {
-      this.mirror(object);
-    } if (object.visible) {
-      object.draw(this.ctx);
-    } if (object.mirror) {
-      this.restoreDirection(object);
-    }
+    if (object.mirror) this.mirror(object);
+    if (object.visible) object.draw(this.ctx);
+    if (object.mirror) this.restoreDirection(object);
   }
 
   /**
@@ -416,7 +396,7 @@ class World {
   clearEnemyIntervals(enemy) {
     clearInterval(enemy.animationInterval);
     clearInterval(enemy.dangerInterval);
-    if (enemy.movingInterval) {clearInterval(enemy.movingInterval);}
+    if (enemy.movingInterval) clearInterval(enemy.movingInterval);
   }
 
   /**
