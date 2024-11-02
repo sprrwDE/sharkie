@@ -134,8 +134,9 @@ class World {
       this.collectItems();
       this.checkEndbossHit();
       this.draw();
+      // if(this.bubbles.length <= 1) this.checkBubbleThrow()
     }, 150);
-    setInterval(() => {this.checkBubbleThrow();}, 600);
+    // setInterval(() => {this.checkBubbleThrow();}, 600);
   }
 
   collectItems() {
@@ -213,9 +214,10 @@ class World {
   /**
    * Checks whether to throw an air or poison bubble based on user input.
    */
-  checkBubbleThrow() {
-    if (this.keyboard.SHOOT) {this.throwAirBubble();} 
-    if (this.keyboard.POISON && this.collectedBottles > 0) {this.throwToxicBubble();}
+  checkBubbleThrow(val) {
+    let value = val
+    if (value == 'air') {this.throwAirBubble();
+    } else if (value == 'poison' && this.collectedBottles > 0) this.throwToxicBubble();
   }
 
   /**

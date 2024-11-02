@@ -26,7 +26,7 @@ class CharacterDB {
      * @type {HTMLAudioElement}
      */
     swim_sound = new Audio('./assets/sounds/swimming.wav');
-
+    
     /**
      * Array of image paths for the character idle animation.
      * @type {string[]}

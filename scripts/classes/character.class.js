@@ -55,7 +55,7 @@ class Character extends MovableObject {
    */
   animationLogic() {
     setInterval(() => {
-      if (!this.finslapActive) {
+      if (!this.finslapActive && !this.bubbleActive) {
         this.animationLogicMoving();
         this.animationLogicFighting();
       }
@@ -240,12 +240,43 @@ class Character extends MovableObject {
   animationLogicFighting() {
     if (this.world.keyboard.FIN && !this.finslapActive) {
       this.activateFinslap();
-    } else if (this.world.keyboard.SHOOT) {
-      this.playAnimation(this.db.IMAGES_SHOOTING);
-    } else if (this.world.keyboard.POISON) {
-      this.playAnimation(this.db.IMAGES_POISONBUBBLE);
+    } else if (this.world.keyboard.SHOOT && !this.bubbleActive) {
+      this.bubbleAnimation(this.db.IMAGES_SHOOTING, 'air');
+    } else if (this.world.keyboard.POISON  && !this.bubbleActive) {
+      this.bubbleAnimation(this.db.IMAGES_POISONBUBBLE, 'poison');
     }
   }
+
+  activateBubble(arr) {
+    this.bubbleActive = true;
+    this.imageIndex = 0;
+    this.bubbleAnimation(arr);
+  }
+
+  bubbleAnimation(arr, val) {
+    if (this.bubbleActive) return; 
+    this.bubbleActive = true;
+    this.imageIndex = 0;
+
+    const bubbleInterval = setInterval(() => {
+        if (this.imageIndex < arr.length) {
+            this.img = this.imgCache[arr[this.imageIndex]];
+            this.imageIndex++;
+        } else {
+            this.endBubble(bubbleInterval);
+            this.world.checkBubbleThrow(val)
+        }
+    }, 100); 
+}
+
+endBubble(bubbleInterval) {
+  clearInterval(bubbleInterval);
+  this.imageIndex = 0;
+  
+  setTimeout(() => {
+      this.bubbleActive = false;
+  }, 50); 
+}
 
   /**
    * Activates the finslap attack, starting its animation and setting immunity.

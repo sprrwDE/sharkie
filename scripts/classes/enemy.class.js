@@ -64,7 +64,6 @@ class Enemy extends MovableObject {
       if (this.upstream) {
         clearInterval(this.upstream);
         this.upstream = null;
-      } else {
       }
     }, 1200);
   }
