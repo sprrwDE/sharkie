@@ -247,36 +247,50 @@ class Character extends MovableObject {
     }
   }
 
-  activateBubble(arr) {
-    this.bubbleActive = true;
-    this.imageIndex = 0;
-    this.bubbleAnimation(arr);
-  }
-
-  bubbleAnimation(arr, val) {
-    if (this.bubbleActive) return; 
-    this.bubbleActive = true;
-    this.imageIndex = 0;
-
-    const bubbleInterval = setInterval(() => {
-        if (this.imageIndex < arr.length) {
-            this.img = this.imgCache[arr[this.imageIndex]];
-            this.imageIndex++;
-        } else {
-            this.endBubble(bubbleInterval);
-            this.world.checkBubbleThrow(val)
-        }
-    }, 100); 
+/**
+ * Activates the bubble animation by setting `bubbleActive` to true and initializing the animation sequence.
+ * @param {string[]} arr - Array of images representing the bubble animation.
+ */
+activateBubble(arr) {
+  this.bubbleActive = true;
+  this.imageIndex = 0;
+  this.bubbleAnimation(arr);
 }
 
+/**
+ * Plays the bubble animation frame by frame and triggers `endBubble` once the animation completes.
+ * @param {string[]} arr - Array of images representing the bubble animation.
+ * @param {boolean} val - Optional flag passed to check if a new bubble should be thrown after animation.
+ */
+bubbleAnimation(arr, val) {
+  if (this.bubbleActive) return; 
+  this.bubbleActive = true;
+  this.imageIndex = 0;
+
+  const bubbleInterval = setInterval(() => {
+    if (this.imageIndex < arr.length) {
+      this.img = this.imgCache[arr[this.imageIndex]];
+      this.imageIndex++;
+    } else {
+      this.endBubble(bubbleInterval);
+      this.world.checkBubbleThrow(val); // Check if another bubble should be thrown
+    }
+  }, 100); 
+}
+
+/**
+ * Ends the bubble animation by clearing the interval and resetting `bubbleActive` after a brief delay.
+ * @param {number} bubbleInterval - Interval ID for the bubble animation.
+ */
 endBubble(bubbleInterval) {
   clearInterval(bubbleInterval);
   this.imageIndex = 0;
   
   setTimeout(() => {
-      this.bubbleActive = false;
+    this.bubbleActive = false; // Allows for a new bubble to be thrown after animation ends
   }, 50); 
 }
+
 
   /**
    * Activates the finslap attack, starting its animation and setting immunity.

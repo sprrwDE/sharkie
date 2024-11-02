@@ -134,9 +134,7 @@ class World {
       this.collectItems();
       this.checkEndbossHit();
       this.draw();
-      // if(this.bubbles.length <= 1) this.checkBubbleThrow()
     }, 150);
-    // setInterval(() => {this.checkBubbleThrow();}, 600);
   }
 
   collectItems() {
