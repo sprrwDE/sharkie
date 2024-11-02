@@ -27,6 +27,7 @@ function loadingScreen() {
   loadingInterval = setInterval(() => {
     if (loadingComplete) {
       removeLoadingScreen();
+      startGame()
     }
   }, 60);
 }

@@ -62,15 +62,15 @@ class PufferFishGreen extends Enemy {
 
     animationLogic() {
         this.animationInterval = setInterval(() => {
-            if (this.danger) {
-                this.playAnimation(this.IMAGES_TRANSITION);
-                this.playAnimation(this.IMAGES_DANGER);
-            } else if (this.hit) {
-                this.playAnimation(this.IMAGES_HIT);
-                this.startUpstream();
-            } else {
-                this.playAnimation(this.IMAGES_SWIMMING);
-            }
+                if (this.danger) {
+                    this.playAnimation(this.IMAGES_TRANSITION);
+                    this.playAnimation(this.IMAGES_DANGER);
+                } else if (this.hit) {
+                    this.playAnimation(this.IMAGES_HIT);
+                    this.startUpstream();
+                } else {
+                    this.playAnimation(this.IMAGES_SWIMMING);
+                }
         }, 200);
     }
 
@@ -88,7 +88,9 @@ class PufferFishGreen extends Enemy {
 
     enemyLeft() {
         this.movingInterval = setInterval(() => {
-            this.moveLeft();
+            if(loadingComplete) {
+                this.moveLeft();
+            }
         }, 1000 / 60);
     }
 }
