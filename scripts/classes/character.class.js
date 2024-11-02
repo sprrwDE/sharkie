@@ -131,9 +131,8 @@ class Character extends MovableObject {
       this.hurtByEnemy();
     } else if (this.buttonPressed()) {
       this.characterSwimmingLogic();
-    } else if (this.checkSnooze() && !this.world.keyboard.SHOOT && !this.world.keyboard.POISON) {
+    } else if (this.checkSnooze()) {
       this.snoozeLogic();
-      this.playSoundCharacter(this.db.snore_sound);
     } else {
       this.playAnimation(this.db.IMAGES_IDLE);
       this.db.swim_sound.pause();
@@ -182,6 +181,7 @@ class Character extends MovableObject {
    */
   snoozeLogic() {
     this.playAnimation(this.db.IMAGES_SNOOZE);
+    this.playSoundCharacter(this.db.snore_sound);
     if (this.y < this.world.canvas.height - 50) {
       this.applyGravity(1, 0.5);
     } else {
@@ -240,13 +240,10 @@ class Character extends MovableObject {
   animationLogicFighting() {
     if (this.world.keyboard.FIN && !this.finslapActive) {
       this.activateFinslap();
-      this.lastMovement = new Date().getTime();
     } else if (this.world.keyboard.SHOOT) {
       this.playAnimation(this.db.IMAGES_SHOOTING);
-      this.lastMovement = new Date().getTime();
     } else if (this.world.keyboard.POISON) {
       this.playAnimation(this.db.IMAGES_POISONBUBBLE);
-      this.lastMovement = new Date().getTime();
     }
   }
 
@@ -256,7 +253,6 @@ class Character extends MovableObject {
   activateFinslap() {
     this.finslapActive = true;
     this.imageIndex = 0;
-    this.playSoundCharacter(this.db.finslap_sound);
     this.finslapAnimation();
   }
 
@@ -273,6 +269,7 @@ class Character extends MovableObject {
         this.endSlap(finslapInterval);
       }
     }, 100);
+    this.playSoundCharacter(this.db.finslap_sound);
   }
 
   /**

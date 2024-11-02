@@ -25,12 +25,6 @@ let infobox = document.getElementById("infobox");
 let cvs = document.getElementById("canvas");
 
 /**
- * Background sound element for the game.
- * @type {HTMLAudioElement}
- */
-let bgSound = new Audio("./assets/sounds/bg_sound.mp3");
-
-/**
  * Interval for loading screen display.
  * @type {number|null}
  */
@@ -55,13 +49,35 @@ let allImages = 233;
 let loadingComplete = false;
 
 /**
- * Flag indicating if sound is muted.
+ * Flag indicating if sound is muted, loaded from Local Storage.
  * @type {boolean}
  */
-let mute = false;
+let mute = loadMuteStatus();
 
 /**
- * Initializes the game world, sets up levels, and handles assets.
+ * Background sound element for the game.
+ * @type {HTMLAudioElement}
+ */
+let bgSound = new Audio("./assets/sounds/bg_sound.mp3");
+
+/**
+ * Loads the mute status from Local Storage.
+ * @returns {boolean} True if muted, otherwise false.
+ */
+function loadMuteStatus() {
+  return localStorage.getItem("isMuted") === "true";
+}
+
+/**
+ * Saves the mute status to Local Storage.
+ * @param {boolean} isMuted - The mute status to save.
+ */
+function saveMuteStatus(isMuted) {
+  localStorage.setItem("isMuted", isMuted.toString());
+}
+
+/**
+ * Initializes the game and world.
  * @async
  */
 async function init() {
@@ -69,7 +85,44 @@ async function init() {
   loadingScreen();
   await createLevel();
   world = new World(keyboard);
+  updateSoundSettings(); // Applies the mute status on start
 }
+
+/**
+ * Toggles the mute status for all sounds and saves it.
+ */
+function toggleMuteAllSounds() {
+  mute = !mute;
+  saveMuteStatus(mute);
+  toggleBgSound();
+}
+
+/**
+ * Enables or disables background sound based on the mute status.
+ */
+function toggleBgSound() {
+  if (mute) {
+    bgSound.pause();
+    world.character.db.snore_sound.pause();
+    world.character.db.swim_sound.pause();
+  } else {
+    bgSound.play();
+  }
+}
+
+/**
+ * Updates sound settings based on the mute status.
+ */
+function updateSoundSettings() {
+  if (mute) {
+    bgSound.pause();
+  } else {
+    bgSound.play();
+  }
+}
+
+// Apply initial sound settings on load
+updateSoundSettings();
 
 /**
  * Displays the loading screen while assets are loading.
@@ -180,27 +233,6 @@ function toggleInfoBox() {
 }
 
 /**
- * Toggles the mute state for all sounds.
- */
-function toggleMuteAllSounds() {
-  mute = !mute;
-  toggleBgSound();
-}
-
-/**
- * Toggles the background sound based on the mute state.
- */
-function toggleBgSound() {
-  if (mute) {
-    bgSound.pause();
-    world.character.db.snore_sound.pause();
-    world.character.db.swim_sound.pause();
-  } else {
-    bgSound.play();
-  }
-}
-
-/**
  * Resets the game by clearing intervals and setting default values.
  */
 function resetGame() {
@@ -213,7 +245,6 @@ function resetGame() {
  */
 function restartGame() {
   resetGame();
-  toggleBgSound();
   startGame();
   init();
 }
