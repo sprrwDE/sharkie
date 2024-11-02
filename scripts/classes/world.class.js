@@ -318,8 +318,8 @@ class World {
     }
 
     lights() {
-        this.ctx.translate(-this.camera_x * 0.7, 0);
+        this.ctx.translate(-this.camera_x * 0.9, 0);
         this.addObjectToMap(this.level.light);
-        this.ctx.translate(this.camera_x * 0.7, 0);
+        this.ctx.translate(this.camera_x * 0.9, 0);
     }
 }

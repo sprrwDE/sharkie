@@ -31,7 +31,7 @@ class DrawableObject {
           img.onload = () => {
             loadedImages++;
             if (loadedImages === allImages) {
-              loadingComplete = true; // Ladebildschirm entfernen, wenn alles geladen
+              loadingComplete = true; 
             }
           };
           this.imgCache[path] = img;

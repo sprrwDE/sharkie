@@ -113,7 +113,6 @@ class MovableObject extends DrawableObject {
         }
     }
 
-
     applyUpstream(up, acc) {
         this.stopMovement(); 
         if (this.upstream) {

@@ -86,11 +86,13 @@ class Character extends MovableObject {
       this.hurtByEnemy();
     } else if (this.buttonPressed()) {
       this.characterSwimmingLogic();
+      this.db.snore_sound.pause();
     } else if (this.checkSnooze()) {
       this.snoozeLogic();
     } else {
       this.playAnimation(this.db.IMAGES_IDLE);
-      this.db.swim_sound.pause();
+      this.db.swim_sound.pause();      
+      this.db.snore_sound.pause();
     }
   }
 

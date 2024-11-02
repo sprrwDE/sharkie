@@ -5,6 +5,7 @@ let endContainer = document.getElementById("endscreen");
 let winContainer = document.getElementById("win");
 let startButton = document.getElementById("start");
 let loadingScreenRef = document.getElementById("loadingscreen");
+let muteScreenRef = document.getElementById("mutescreen");
 let dynamicContentRef = document.getElementById("dyn");
 let infobox = document.getElementById("infobox");
 let cvs = document.getElementById("canvas");
@@ -27,7 +28,8 @@ function loadingScreen() {
   loadingInterval = setInterval(() => {
     if (loadingComplete) {
       removeLoadingScreen();
-      startGame()
+      startGame();
+      muteScreenRef.classList.remove('d-none')
     }
   }, 60);
 }
@@ -110,6 +112,7 @@ function showEndScreen() {
   resetGame();
   endContainer.classList.remove("d-none");
   cvs.classList.add("d-none");
+  muteScreenRef.classList.add('d-none')
 }
 
 function showWinScreen() {
@@ -117,12 +120,14 @@ function showWinScreen() {
   resetGame();
   winContainer.classList.remove("d-none");
   cvs.classList.add("d-none");
+  muteScreenRef.classList.add('d-none')
 }
 
 function showHomeScreen() {
   startContainer.classList.remove("d-none");
   endContainer.classList.add("d-none");
   winContainer.classList.add("d-none");
+  muteScreenRef.classList.add('d-none')
 }
 
 function toggleInfoBox() {
