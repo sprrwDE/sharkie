@@ -25,19 +25,18 @@ class DrawableObject {
     }
 
     loadImages(array) {
-        array.forEach(path => {
-            this.totalImages++
-            let img = new Image();
-            img.src = path;
-            this.imgCache[path] = img;
-            ////// LOADINGSCREEN
-            // this.img.onload -> globale variable wie viele bilder geladen wurden (console log checken)
-            // am anfang images loaded = 0 -> hochzählen foreach(img) images loaded ++
-            // if imagesLoaded = totalImages
-            // loaded = true -> vorher definieren mehmet fragen
-            // ladebalken / animation machen?
+        array.forEach((path) => {
+          let img = new Image();
+          img.src = path;
+          img.onload = () => {
+            loadedImages++;
+            if (loadedImages === allImages) {
+              loadingComplete = true; // Ladebildschirm entfernen, wenn alles geladen
+            }
+          };
+          this.imgCache[path] = img;
         });
-    }
+      }
 
     loadImageCaches(cache) {
         cache.forEach(array => {

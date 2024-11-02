@@ -129,30 +129,33 @@ class Character extends MovableObject {
     }
   }
 
-    animationLogicDeath() {
-        if (this.deathAnimationPlayed) return; 
-        this.deathAnimationPlayed = true; 
-        this.imageIndex = 0;
-        const deathImages = this.isDead() && this.world.enemyType === "jellyfish" ? this.db.IMAGES_DEAD_SHOCK : this.db.IMAGES_DEAD;
-        this.playDeathAnimation(deathImages);
-        this.playSoundCharacter(this.db.death_sound);
+  animationLogicDeath() {
+    if (this.deathAnimationPlayed) return;
+    this.deathAnimationPlayed = true;
+    this.imageIndex = 0;
+    const deathImages =
+      this.isDead() && this.world.enemyType === "jellyfish"
+        ? this.db.IMAGES_DEAD_SHOCK
+        : this.db.IMAGES_DEAD;
+    this.playDeathAnimation(deathImages);
+    this.playSoundCharacter(this.db.death_sound);
+  }
+
+  playDeathAnimation(images) {
+    const deathInterval = setInterval(() => {
+      if (this.imageIndex < images.length) {
+        this.img = this.imgCache[images[this.imageIndex]];
+        this.imageIndex++;
+      } else {
+        clearInterval(deathInterval);
+        this.imageIndex = images.length - 1;
+        bgSound.pause();
+        this.db.snore_sound.pause();
+        this.db.swim_sound.pause();
+        showEndScreen();
       }
-    
-      playDeathAnimation(images) {
-        const deathInterval = setInterval(() => {
-          if (this.imageIndex < images.length) {
-            this.img = this.imgCache[images[this.imageIndex]];
-            this.imageIndex++;
-          } else {
-            clearInterval(deathInterval); 
-            this.imageIndex = images.length - 1; 
-            bgSound.pause();
-            this.db.snore_sound.pause();
-            this.db.swim_sound.pause();
-            showEndScreen(); 
-          }
-        }, 100); 
-      }
+    }, 100);
+  }
 
   animationLogicFighting() {
     if (this.world.keyboard.FIN && !this.finslapActive) {
