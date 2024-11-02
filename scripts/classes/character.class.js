@@ -12,7 +12,6 @@ class Character extends MovableObject {
    * @type {Object} offset - Offset for the character's hitbox positioning.
    * @type {boolean} immune - If true, the character is immune to damage.
    * @type {boolean} finslapActive - If true, the finslap attack is active.
-   * @type {number} immuneDuration - Duration of immunity after finslap activation.
    * @type {number} health - Current health of the character.
    * @type {number} lastMovement - Timestamp of the last movement action.
    * @type {boolean} deathAnimationPlayed - Flag to indicate if the death animation has been played.
@@ -26,7 +25,6 @@ class Character extends MovableObject {
   offset = { left: 40, right: 80, top: 90, bottom: 130 };
   immune = false;
   finslapActive = false;
-  immuneDuration = 300;
   health = 100;
   lastMovement = 0;
   deathAnimationPlayed = false;
@@ -133,8 +131,9 @@ class Character extends MovableObject {
       this.hurtByEnemy();
     } else if (this.buttonPressed()) {
       this.characterSwimmingLogic();
-    } else if (this.checkSnooze()) {
+    } else if (this.checkSnooze() && !this.world.keyboard.SHOOT && !this.world.keyboard.POISON) {
       this.snoozeLogic();
+      this.playSoundCharacter(this.db.snore_sound);
     } else {
       this.playAnimation(this.db.IMAGES_IDLE);
       this.db.swim_sound.pause();
@@ -183,7 +182,6 @@ class Character extends MovableObject {
    */
   snoozeLogic() {
     this.playAnimation(this.db.IMAGES_SNOOZE);
-    this.playSoundCharacter(this.db.snore_sound);
     if (this.y < this.world.canvas.height - 50) {
       this.applyGravity(1, 0.5);
     } else {
@@ -242,10 +240,13 @@ class Character extends MovableObject {
   animationLogicFighting() {
     if (this.world.keyboard.FIN && !this.finslapActive) {
       this.activateFinslap();
+      this.lastMovement = new Date().getTime();
     } else if (this.world.keyboard.SHOOT) {
       this.playAnimation(this.db.IMAGES_SHOOTING);
+      this.lastMovement = new Date().getTime();
     } else if (this.world.keyboard.POISON) {
       this.playAnimation(this.db.IMAGES_POISONBUBBLE);
+      this.lastMovement = new Date().getTime();
     }
   }
 
@@ -255,10 +256,8 @@ class Character extends MovableObject {
   activateFinslap() {
     this.finslapActive = true;
     this.imageIndex = 0;
+    this.playSoundCharacter(this.db.finslap_sound);
     this.finslapAnimation();
-    setTimeout(() => {
-      this.immune = true;
-    }, 200);
   }
 
   /**
@@ -267,13 +266,13 @@ class Character extends MovableObject {
   finslapAnimation() {
     const finslapInterval = setInterval(() => {
       if (this.imageIndex < this.db.IMAGES_FINSLAP.length) {
+        this.immune = true
         this.img = this.imgCache[this.db.IMAGES_FINSLAP[this.imageIndex]];
         this.imageIndex++;
       } else {
         this.endSlap(finslapInterval);
       }
     }, 100);
-    this.playSoundCharacter(this.db.finslap_sound);
   }
 
   /**

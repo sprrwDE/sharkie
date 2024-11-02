@@ -63,10 +63,8 @@ class Enemy extends MovableObject {
     setTimeout(() => {
       if (this.upstream) {
         clearInterval(this.upstream);
-        console.log("Upstream interval cleared:", this.upstream);
         this.upstream = null;
       } else {
-        console.log("No upstream interval to clear.");
       }
     }, 1200);
   }

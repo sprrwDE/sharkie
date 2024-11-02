@@ -10,7 +10,7 @@ let world;
  */
 let keyboard = new Keyboard();
 
-/** 
+/**
  * UI element references for various game states and controls.
  * @type {HTMLElement}
  */
@@ -24,37 +24,37 @@ let dynamicContentRef = document.getElementById("dyn");
 let infobox = document.getElementById("infobox");
 let cvs = document.getElementById("canvas");
 
-/** 
+/**
  * Background sound element for the game.
  * @type {HTMLAudioElement}
  */
 let bgSound = new Audio("./assets/sounds/bg_sound.mp3");
 
-/** 
+/**
  * Interval for loading screen display.
  * @type {number|null}
  */
 let loadingInterval = null;
 
-/** 
+/**
  * Counter for loaded images.
  * @type {number}
  */
 let loadedImages = 0;
 
-/** 
+/**
  * Total number of images to load.
  * @type {number}
  */
 let allImages = 233;
 
-/** 
+/**
  * Flag indicating if all images are loaded.
  * @type {boolean}
  */
 let loadingComplete = false;
 
-/** 
+/**
  * Flag indicating if sound is muted.
  * @type {boolean}
  */
@@ -80,7 +80,7 @@ function loadingScreen() {
     if (loadingComplete) {
       removeLoadingScreen();
       startGame();
-      muteScreenRef.classList.remove('d-none');
+      muteScreenRef.classList.remove("d-none");
     }
   }, 60);
 }
@@ -89,25 +89,27 @@ function loadingScreen() {
  * Removes the loading screen when assets are fully loaded.
  */
 function removeLoadingScreen() {
-  clearInterval(loadingInterval);
-  loadingScreenRef.classList.add("d-none");
+  setTimeout(() => {
+    clearInterval(loadingInterval);
+    loadingScreenRef.classList.add("d-none");
+  }, 200);
 }
 
-/** 
+/**
  * Handles keyboard input for movement and actions.
  * @param {KeyboardEvent} event - The keyboard event.
  */
 document.addEventListener("keydown", (event) => {
-  if (event.keyCode === 87) keyboard.UP = true;       // W key
-  if (event.keyCode === 83) keyboard.DOWN = true;     // S key
-  if (event.keyCode === 65) keyboard.LEFT = true;     // A key
-  if (event.keyCode === 68) keyboard.RIGHT = true;    // D key
-  if (event.keyCode === 32) keyboard.FIN = true;      // Space key
-  if (event.keyCode === 69) keyboard.SHOOT = true;    // E key
-  if (event.keyCode === 81) keyboard.POISON = true;   // Q key
+  if (event.keyCode === 87) keyboard.UP = true; // W key
+  if (event.keyCode === 83) keyboard.DOWN = true; // S key
+  if (event.keyCode === 65) keyboard.LEFT = true; // A key
+  if (event.keyCode === 68) keyboard.RIGHT = true; // D key
+  if (event.keyCode === 32) keyboard.FIN = true; // Space key
+  if (event.keyCode === 69) keyboard.SHOOT = true; // E key
+  if (event.keyCode === 81) keyboard.POISON = true; // Q key
 });
 
-/** 
+/**
  * Resets keyboard input state on key release.
  * @param {KeyboardEvent} event - The keyboard event.
  */
@@ -146,7 +148,7 @@ function showEndScreen() {
   resetGame();
   endContainer.classList.remove("d-none");
   cvs.classList.add("d-none");
-  muteScreenRef.classList.add('d-none');
+  muteScreenRef.classList.add("d-none");
 }
 
 /**
@@ -157,7 +159,7 @@ function showWinScreen() {
   resetGame();
   winContainer.classList.remove("d-none");
   cvs.classList.add("d-none");
-  muteScreenRef.classList.add('d-none');
+  muteScreenRef.classList.add("d-none");
 }
 
 /**
@@ -167,7 +169,7 @@ function showHomeScreen() {
   startContainer.classList.remove("d-none");
   endContainer.classList.add("d-none");
   winContainer.classList.add("d-none");
-  muteScreenRef.classList.add('d-none');
+  muteScreenRef.classList.add("d-none");
 }
 
 /**
@@ -260,57 +262,75 @@ function checkMobileEvents() {
     keyboard.UP = false;
   });
 
-  document.getElementById("pressdown").addEventListener("touchstart", (event) => {
-    event.preventDefault();
-    keyboard.DOWN = true;
-  });
+  document
+    .getElementById("pressdown")
+    .addEventListener("touchstart", (event) => {
+      event.preventDefault();
+      keyboard.DOWN = true;
+    });
   document.getElementById("pressdown").addEventListener("touchend", (event) => {
     event.preventDefault();
     keyboard.DOWN = false;
   });
 
-  document.getElementById("pressright").addEventListener("touchstart", (event) => {
-    event.preventDefault();
-    keyboard.RIGHT = true;
-  });
-  document.getElementById("pressright").addEventListener("touchend", (event) => {
-    event.preventDefault();
-    keyboard.RIGHT = false;
-  });
+  document
+    .getElementById("pressright")
+    .addEventListener("touchstart", (event) => {
+      event.preventDefault();
+      keyboard.RIGHT = true;
+    });
+  document
+    .getElementById("pressright")
+    .addEventListener("touchend", (event) => {
+      event.preventDefault();
+      keyboard.RIGHT = false;
+    });
 
-  document.getElementById("pressleft").addEventListener("touchstart", (event) => {
-    event.preventDefault();
-    keyboard.LEFT = true;
-  });
+  document
+    .getElementById("pressleft")
+    .addEventListener("touchstart", (event) => {
+      event.preventDefault();
+      keyboard.LEFT = true;
+    });
   document.getElementById("pressleft").addEventListener("touchend", (event) => {
     event.preventDefault();
     keyboard.LEFT = false;
   });
 
-  document.getElementById("pressfin").addEventListener("touchstart", (event) => {
-    event.preventDefault();
-    keyboard.FIN = true;
-  });
+  document
+    .getElementById("pressfin")
+    .addEventListener("touchstart", (event) => {
+      event.preventDefault();
+      keyboard.FIN = true;
+    });
   document.getElementById("pressfin").addEventListener("touchend", (event) => {
     event.preventDefault();
     keyboard.FIN = false;
   });
 
-  document.getElementById("pressbubble").addEventListener("touchstart", (event) => {
-    event.preventDefault();
-    keyboard.SHOOT = true;
-  });
-  document.getElementById("pressbubble").addEventListener("touchend", (event) => {
-    event.preventDefault();
-    keyboard.SHOOT = false;
-  });
+  document
+    .getElementById("pressbubble")
+    .addEventListener("touchstart", (event) => {
+      event.preventDefault();
+      keyboard.SHOOT = true;
+    });
+  document
+    .getElementById("pressbubble")
+    .addEventListener("touchend", (event) => {
+      event.preventDefault();
+      keyboard.SHOOT = false;
+    });
 
-  document.getElementById("presspoison").addEventListener("touchstart", (event) => {
-    event.preventDefault();
-    keyboard.POISON = true;
-  });
-  document.getElementById("presspoison").addEventListener("touchend", (event) => {
-    event.preventDefault();
-    keyboard.POISON = false;
-  });
+  document
+    .getElementById("presspoison")
+    .addEventListener("touchstart", (event) => {
+      event.preventDefault();
+      keyboard.POISON = true;
+    });
+  document
+    .getElementById("presspoison")
+    .addEventListener("touchend", (event) => {
+      event.preventDefault();
+      keyboard.POISON = false;
+    });
 }
