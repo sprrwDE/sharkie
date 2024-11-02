@@ -144,6 +144,10 @@ p {
   color: white;
 }
 
+.back-portrait {
+  display: none;
+}
+
 .restart {
   display: flex;
   gap: 8px;
@@ -368,6 +372,28 @@ svg:hover {
   .pt8 {
     padding-top: 10px;
   }
+
+  .back {
+    top: 3%;
+    left: 3%;
+    z-index: 99;
+  }
+
+  .container {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%);
+    margin: 0 auto;
+    width: 100%;
+    max-width: 1440px;
+    background: black;
+    opacity: 0.75;
+    padding: 10%;
+    border-radius: 0;
+    line-height: 1.5;
+  }
 }
 
 /* Iphone SE */
@@ -414,5 +440,13 @@ svg:hover {
 
   .canvas {
     display: none;
+  }
+
+  .back {
+    display: none;
+  }
+
+  .back-portrait {
+    display: block;
   }
 }
