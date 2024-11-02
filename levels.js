@@ -35,7 +35,8 @@ async function createLevel() {
             new JellyFishPurple(),
         ],
         [
-            new Light('./assets/imgs/3. Background/Layers/1. Light/1.png'), // wie animieren?
+            new Light('./assets/imgs/3. Background/Layers/1. Light/1.png', 0),
+            new Light('./assets/imgs/3. Background/Layers/1. Light/2.png', 719),
         ],
         [
             new Poison(300, 300),

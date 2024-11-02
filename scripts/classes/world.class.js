@@ -44,7 +44,7 @@ class World {
     drawMirroredObjects() {
         this.ctx.translate(this.camera_x, 0); // camera back
         this.addObjectToMap(this.level.backgroundObects);
-        this.addObjectToMap(this.level.light)
+        this.lights();
         this.addObjectToMap(this.level.enemies);
         this.addObjectToMap(this.level.poison);
         this.addObjectToMap(this.level.coins);
@@ -315,5 +315,11 @@ class World {
     clearCollectableIntervals(object) {
         clearInterval(object.animationInterval);
         console.log('interval cleared')
+    }
+
+    lights() {
+        this.ctx.translate(-this.camera_x * 0.7, 0);
+        this.addObjectToMap(this.level.light);
+        this.ctx.translate(this.camera_x * 0.7, 0);
     }
 }

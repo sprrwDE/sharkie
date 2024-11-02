@@ -3,58 +3,59 @@
 /* Document & Container */
 
 @font-face {
-    font-family: 'Luckiest Guy';
-    src: url('./assets/imgs/5.Font/Luckiest_Guy/LuckiestGuy-Regular.ttf') format('truetype');
+  font-family: "Luckiest Guy";
+  src: url("./assets/imgs/5.Font/Luckiest_Guy/LuckiestGuy-Regular.ttf")
+    format("truetype");
 }
 
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    scroll-behavior: smooth;
-    font-family: 'Luckiest Guy', sans-serif;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  scroll-behavior: smooth;
+  font-family: "Luckiest Guy", sans-serif;
 }
 
 html {
-    height: 100%;
+  height: 100%;
 }
 
 body {
-    min-height: 100vh;
-    background-image: url('./assets/imgs/3. Background/background.jpeg');
-    background-position: center;
-    background-size: cover;
-    font-family: url('./assets/imgs/5.Font/Luckiest_Guy/LuckiestGuy-Regular.ttf')
+  min-height: 100vh;
+  background-image: url("./assets/imgs/3. Background/background.jpeg");
+  background-position: center;
+  background-size: cover;
+  font-family: url("./assets/imgs/5.Font/Luckiest_Guy/LuckiestGuy-Regular.ttf");
 }
 
 button {
-    border-radius: 25px;
-    border: none;
-    box-shadow: none;
-    padding: 8px;
-    cursor: pointer;
+  border-radius: 25px;
+  border: none;
+  box-shadow: none;
+  padding: 8px;
+  cursor: pointer;
 }
 
 button:hover {
-    background-color: yellow;
+  background-color: yellow;
 }
 
 canvas {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: black;
-    border-radius: 10px;
-    box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
-    display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: black;
+  border-radius: 10px;
+  box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+  display: block;
 }
 
 /* Link Styling */
 
 a {
-    text-decoration: none;
-    color: white;
+  text-decoration: none;
+  color: white;
 }
 
 /* Headlines */
@@ -65,261 +66,277 @@ h3,
 h4,
 h5,
 h6 {
-    margin-block-start: 0;
-    margin-block-end: 0;
-    font-size: 56px;
+  margin-block-start: 0;
+  margin-block-end: 0;
+  font-size: 56px;
 }
 
 p {
-    font-size: 20px;
+  font-size: 20px;
 }
 
 .text {
-    color: white;
-    overflow: scroll;
-    scrollbar-color: yellow #00000000;
-    scrollbar-width: thin;
+  color: white;
+  overflow: scroll;
+  scrollbar-color: yellow #00000000;
+  scrollbar-width: thin;
 }
 
 .text a {
-    color: yellow;
-    cursor: pointer;
-
+  color: yellow;
+  cursor: pointer;
 }
 
 .container {
-    position: fixed;
-    top: 5%;
-    bottom: 5%;
-    left: 50%;
-    transform: translate(-50%);   
-    margin: 0 auto;
-    width: 100%;
-    max-width: 1440px;
-    background: black; opacity: 0.75;
-    padding: 60px;
-    border-radius: 7px;
-    line-height: 1.5;
+  position: fixed;
+  top: 5%;
+  bottom: 5%;
+  left: 50%;
+  transform: translate(-50%);
+  margin: 0 auto;
+  width: 100%;
+  max-width: 1440px;
+  background: black;
+  opacity: 0.75;
+  padding: 60px;
+  border-radius: 7px;
+  line-height: 1.5;
 }
 
 .screen {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 720px;
-    height: 480px;
-    border-radius: 10px;
-    box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    z-index: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 720px;
+  height: 480px;
+  border-radius: 10px;
+  box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 0;
 }
 
 .start {
-    background-image: url('./assets/imgs/3. Background/Mesa de trabajo 1.png');
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    z-index: 1;
+  background-image: url("./assets/imgs/3. Background/Mesa de trabajo 1.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  z-index: 1;
 }
 
 .landscape {
-    display: none;
+  display: none;
 }
 
 .end {
-    background-image: url('./assets/imgs/3. Background/Mesa de trabajo 1.png');
-    z-index: 1;
-    color: white;
+  background-image: url("./assets/imgs/3. Background/Mesa de trabajo 1.png");
+  z-index: 1;
+  color: white;
 }
 
 .restart {
-    display: flex;
-    gap: 8px;
+  display: flex;
+  gap: 8px;
 }
 
 .infos {
-    display: flex;
-    gap: 20px;
-    z-index: 1;
+  display: flex;
+  gap: 20px;
+  z-index: 1;
 }
 
 .infos a:hover {
-    color: yellow;
-    cursor: pointer;
+  color: yellow;
+  cursor: pointer;
 }
 
 .content {
-    position: relative;
-    top: 25%;
-    left: 20%;
-    gap: 16px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    color: white;
+  position: relative;
+  top: 25%;
+  left: 20%;
+  gap: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: white;
 }
 
 .d-none {
-    display: none !important;
+  display: none !important;
 }
 
 .mobile-ctrl {
-    display: flex;
-    gap: 8px;
-    color: white;
+  display: flex;
+  gap: 8px;
+  color: white;
 }
 
 .mobile-ctrl p:hover {
-    color: yellow;
-    cursor: pointer;
+  color: yellow;
+  cursor: pointer;
 }
 
 .content {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
 }
 
 .dynamic {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    color: yellow;
-    padding: 24px 0 24px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  color: yellow;
+  padding: 24px 0 24px 0;
 }
 
 .back {
-    position: fixed;
-    top: 50px;
-    left: 50px;
+  position: fixed;
+  top: 50px;
+  left: 50px;
 }
 
 svg {
-    height: 40px;
-    width: 40px;
-    cursor: pointer;
-    fill: white;
+  height: 40px;
+  width: 40px;
+  cursor: pointer;
+  fill: white;
 }
 
 .y {
-    color: yellow;
+  color: yellow;
 }
 
 svg:hover {
-    fill: yellow;
+  fill: yellow;
 }
 
 .movement {
-    color: white;
-    text-align: center;
+  color: white;
+  text-align: center;
 }
 
 .ctrls {
-    background-image: url('./assets/imgs/3. Background/Mesa de trabajo 1.png');
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
-    z-index: 1;
+  background-image: url("./assets/imgs/3. Background/Mesa de trabajo 1.png");
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  z-index: 1;
 }
 
 .pinned {
-    position: absolute;
-    top: 20px;
-    right: 20px;
+  position: absolute;
+  top: 20px;
+  right: 20px;
 }
 
 .test {
-    position: absolute;
-    z-index: 9999;
-    bottom: 15%;
-    left: 10%;
+  position: absolute;
+  z-index: 9999;
+  bottom: 15%;
+  left: 10%;
 }
 
 .mute {
-    z-index: 0;
+  z-index: 0;
 }
 
 .portrait {
-    display: none;
+  display: none;
 }
 
 /* Ab Tablet Landscape */
 @media only screen and (max-width: 1280px) {
-    canvas {
-        width: 65%;
-    }
+  canvas {
+    width: 65%;
+  }
 
-    .screen {
-        width: 65%;
-        height: auto;
-        aspect-ratio: 3 / 2;
-    }
+  .screen {
+    width: 65%;
+    height: auto;
+    aspect-ratio: 3 / 2;
+  }
 
-    .start {
-        width: 65%;
-        height: auto;
-        aspect-ratio: 3 / 2;
-    }
+  .start {
+    width: 65%;
+    height: auto;
+    aspect-ratio: 3 / 2;
+  }
 
-    .win {
-        width: 65%;
-        height: auto;
-        aspect-ratio: 3 / 2;
-    }
+  .win {
+    width: 65%;
+    height: auto;
+    aspect-ratio: 3 / 2;
+  }
 
-    .end {
-        width: 70%;
-        height: auto;
-        aspect-ratio: 3 / 2;
-    }
+  .end {
+    width: 70%;
+    height: auto;
+    aspect-ratio: 3 / 2;
+  }
 
-    .landscape {
-        display: flex;
-        height: auto;
-        width: 100%;
-        height: 100%;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: flex-end;
-        padding: 20px;
-    }
+  .landscape {
+    display: flex;
+    height: auto;
+    width: 100%;
+    height: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding: 20px;
+  }
+
+  h1 {
+    font-size: 40px;
+  }
+
+  h2 {
+    font-size: 32px;
+  }
+
+  h3 {
+    font-size: 24px;
+  }
+
+  h4 {
+    font-size: 16px;
+  }
 }
 
 /* Smartphone Portrait */
 @media only screen and (max-width: 480px) {
-    canvas {
-        height: 100vh;
-    }
+  canvas {
+    height: 100vh;
+  }
 
-    .screen {
-        width: 100%;
-    }
+  .screen {
+    width: 100%;
+  }
 
-    .portrait {
-        position: absolute;
-        display: flex;
-        height: 100vh;
-        width: 100%;
-        background-color: black;
-        color: white;
-        align-items: center;
-        justify-content: center;
-        z-index: 9999;
-        text-align: center;
-        overflow: scroll;
-    }
+  .portrait {
+    position: absolute;
+    display: flex;
+    height: 100vh;
+    width: 100%;
+    background-color: black;
+    color: white;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    text-align: center;
+    overflow: scroll;
+  }
 
-    .start {
-        display: none;
-    }
+  .start {
+    display: none;
+  }
 
-    .canvas {
-        display: none;
-    }
+  .canvas {
+    display: none;
+  }
 }
