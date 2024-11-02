@@ -306,6 +306,16 @@ svg:hover {
   h4 {
     font-size: 16px;
   }
+
+  .ctrl-button {
+    background-color: #ffffffd0;
+    border-radius: 100px;
+    height: 32px;
+  }
+
+  .ctrl-button-mov {
+    height: 32px;
+  }
 }
 
 /* Smartphone Portrait */
