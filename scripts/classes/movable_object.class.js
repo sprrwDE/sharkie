@@ -18,8 +18,8 @@ class MovableObject extends DrawableObject {
     }
 
     setEnemyCharacteristics() {
-        this.y = this.height + (Math.random() * 360);
-        this.x = 300 + Math.random() * 700;
+        this.y = this.height + (Math.random() * 300);
+        this.x = 300 + Math.random() * (720 * 2);
         this.height = 80;
         this.width = this.height;
         this.moveSpeed = 0.15 + Math.random() * 0.45;

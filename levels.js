@@ -28,10 +28,13 @@ async function createLevel() {
             new BackgroundObject('./assets/imgs/3. Background/Layers/2. Floor/D2.png', 719 * 3),
         ],
         [
-            new PufferFishGreen(), // mehrere verschiedene Farben erstellen
-            new PufferFishGreen(), // left + right?
+            new PufferFishGreen(), 
+            new PufferFishGreen(), 
+            new PufferFishGreen(),
             new PufferFishGreen(),
             new JellyFishYellow(),
+            new JellyFishYellow(),
+            new JellyFishPurple(),
             new JellyFishPurple(),
         ],
         [
@@ -42,10 +45,15 @@ async function createLevel() {
             new Poison(300, 300),
             new Poison(400, 300),
             new Poison(500, 300),
-            new Poison(600, 300),
-            new Poison(700, 300),
+            new Poison(600, 250),
+            new Poison(700, 250),
             new Poison(800, 300),
-            new Poison(900, 300)
+            new Poison(1000, 100),
+            new Poison(1200, 300),
+            new Poison(1400, 100),
+            new Poison(1800, 150),
+            new Poison(1800, 200),
+
         ],
         [
             new Coin(300, 200),

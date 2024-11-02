@@ -146,6 +146,7 @@ class Character extends MovableObject {
   playDeathAnimation(images) {
     const deathInterval = setInterval(() => {
       if (this.imageIndex < images.length) {
+        clearInterval(this.movementInterval)
         this.img = this.imgCache[images[this.imageIndex]];
         this.imageIndex++;
       } else {
