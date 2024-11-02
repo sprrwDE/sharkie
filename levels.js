@@ -66,8 +66,10 @@ async function createLevel() {
         ],
         [
             // Light effects
-            new Light('./assets/imgs/3. Background/Layers/1. Light/1.png', 0),
-            new Light('./assets/imgs/3. Background/Layers/1. Light/2.png', 719),
+            new Light('./assets/imgs/3. Background/Layers/1. Light/2.png', 0),
+            new Light('./assets/imgs/3. Background/Layers/1. Light/1.png', 719),
+            new Light('./assets/imgs/3. Background/Layers/1. Light/2.png', 719 * 2),
+            new Light('./assets/imgs/3. Background/Layers/1. Light/1.png', 719 * 3),
         ],
         [
             // Poison bottles

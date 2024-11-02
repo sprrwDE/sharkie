@@ -98,9 +98,9 @@ class World {
    * Draws the background lighting effect.
    */
   lights() {
-    this.ctx.translate(-this.camera_x * 0.9, 0);
+    this.ctx.translate(-this.camera_x * 0.1, 0);
     this.addObjectToMap(this.level.light);
-    this.ctx.translate(this.camera_x * 0.9, 0);
+    this.ctx.translate(this.camera_x * 0.1, 0);
   }
 
   /**

@@ -266,14 +266,13 @@ bubbleAnimation(arr, val) {
   if (this.bubbleActive) return; 
   this.bubbleActive = true;
   this.imageIndex = 0;
-
   const bubbleInterval = setInterval(() => {
     if (this.imageIndex < arr.length) {
       this.img = this.imgCache[arr[this.imageIndex]];
       this.imageIndex++;
     } else {
       this.endBubble(bubbleInterval);
-      this.world.checkBubbleThrow(val); // Check if another bubble should be thrown
+      this.world.checkBubbleThrow(val); 
     }
   }, 100); 
 }
@@ -287,7 +286,7 @@ endBubble(bubbleInterval) {
   this.imageIndex = 0;
   
   setTimeout(() => {
-    this.bubbleActive = false; // Allows for a new bubble to be thrown after animation ends
+    this.bubbleActive = false; 
   }, 50); 
 }
 

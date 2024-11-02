@@ -85,7 +85,7 @@ async function init() {
   loadingScreen();
   await createLevel();
   world = new World(keyboard);
-  updateSoundSettings(); // Applies the mute status on start
+  updateSoundSettings(); 
 }
 
 /**
