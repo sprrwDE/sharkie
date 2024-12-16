@@ -19,6 +19,7 @@ class Endboss extends MovableObject {
    * @type {World} world - Reference to the game world for accessing character position.
    * @type {number} imageIndex - Current image index for animation frames.
    * @type {boolean} deathAnimationPlayed - Flag to track if the death animation has been played.
+   * @type {sound} boss sound
    */
 
   db;
@@ -56,6 +57,17 @@ class Endboss extends MovableObject {
     this.width = 400;
     this.checkEndbossContact();
     this.animate();
+  }
+
+  /**
+   * Getter for lazy-loading the boss sound.
+   * Loads the sound only once and caches it.
+   */
+  get bossSound() {
+    if (!this.sound) {
+      this.sound = this.db.sound; // Load the sound only when accessed
+    }
+    return this.sound;
   }
 
   /**
@@ -181,17 +193,6 @@ class Endboss extends MovableObject {
     this.contact = true;
     this.visible = true;
   }
-
-    /**
-   * Getter for lazy-loading the boss sound.
-   * Loads the sound only once and caches it.
-   */
-    get bossSound() {
-      if (!this.sound) {
-        this.sound = this.db.sound; // Load the sound only when accessed
-      }
-      return this.sound;
-    }
 
   /**
    * Plays the specified sound for the endboss if sounds are not muted.

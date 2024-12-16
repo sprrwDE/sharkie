@@ -31,6 +31,13 @@ class Bubble extends MovableObject {
       'top': 0,
       'bottom': 0
     };
+
+    get sound() {
+      if (!this.sound) {
+        this.sound = new Audio('./assets/sounds/bubble.wav'); 
+      }
+      return this.sound;
+    }
   
     /**
      * Initializes a new bubble instance with position, size, direction, and image settings.
