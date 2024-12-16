@@ -38,6 +38,7 @@ class Endboss extends MovableObject {
   sound;
   imageIndex = 0;
   deathAnimationPlayed = false;
+  sound;
 
   /**
    * Initializes a new Endboss instance with specific attributes and sets up animations and event listeners.
@@ -180,6 +181,17 @@ class Endboss extends MovableObject {
     this.contact = true;
     this.visible = true;
   }
+
+    /**
+   * Getter for lazy-loading the boss sound.
+   * Loads the sound only once and caches it.
+   */
+    get bossSound() {
+      if (!this.sound) {
+        this.sound = this.db.sound; // Load the sound only when accessed
+      }
+      return this.sound;
+    }
 
   /**
    * Plays the specified sound for the endboss if sounds are not muted.
